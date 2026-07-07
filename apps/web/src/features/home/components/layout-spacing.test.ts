@@ -37,40 +37,15 @@ describe('homepage premium spacing contracts', () => {
     expect(header).toContain('z-[var(--z-header)]');
   });
 
-  it('renders mobile navigation as logo plus hamburger with drawer CTA content', () => {
-    const mobileNavigation = read('packages/ui/src/navigation/MobileNavigation.tsx');
-    const headerDrawer = read('packages/ui/src/navigation/HeaderDrawer.tsx');
-    const mobileDrawer = read('packages/ui/src/navigation/MobileDrawer.tsx');
-    const hamburger = read('packages/ui/src/navigation/HamburgerButton.tsx');
-
-    expect(mobileNavigation).toContain('flex shrink-0 items-center desktop:hidden');
-    expect(headerDrawer).toContain('<MobileDrawer');
-    expect(headerDrawer).toContain('hideCloseButton');
-    expect(headerDrawer).toContain('drawerBottom');
-    expect(mobileDrawer).toContain('translate-y-[-100%]');
-    expect(mobileDrawer).toContain('tablet:translate-x-[100%]');
-    expect(hamburger).not.toContain('bg-current');
-    expect(hamburger).toContain("backgroundColor: 'currentColor'");
-  });
-
-  it('uses a top-drop full-width sheet on mobile and a right drawer on tablet', () => {
-    const drawer = read('packages/ui/src/navigation/HeaderDrawer.tsx');
-    const primitive = read('packages/ui/src/navigation/MobileDrawer.tsx');
-
-    expect(drawer).toContain('w-screen max-w-none');
-    expect(drawer).toContain('tablet:w-[85vw] tablet:max-w-sm');
-    expect(primitive).toContain('translate-y-[-100%]');
-    expect(primitive).toContain('tablet:translate-y-0');
-    expect(primitive).toContain('tablet:translate-x-[100%]');
-  });
-
-  it('gives the mobile header bar its own visible glass surface and keeps CTA out of the bar', () => {
+  it('renders only desktop chrome — no mobile navigation or drawer components', () => {
     const header = read('packages/ui/src/navigation/AppHeader.tsx');
-    const mobileNavigation = read('packages/ui/src/navigation/MobileNavigation.tsx');
 
     expect(header).toContain('border-[var(--color-header-border)]');
     expect(header).toContain('backdrop-blur-[12px]');
-    expect(mobileNavigation).not.toContain('AppButton');
+    expect(header).not.toContain('MobileNavigation');
+    expect(header).not.toContain('HeaderDrawer');
+    expect(header).not.toContain('drawerBottom');
+    expect(header).not.toContain('menuOpen');
   });
 
   it('constrains hero content to a two-column premium grid on desktop', () => {

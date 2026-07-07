@@ -4,9 +4,7 @@ import { forwardRef, useEffect, useState } from 'react';
 import { cn } from '../utils/cn';
 import { AppContainer } from '../layout/AppContainer';
 import { DesktopNavigation } from './DesktopNavigation';
-import { HeaderDrawer } from './HeaderDrawer';
 import { HeaderLogo } from './HeaderLogo';
-import { MobileNavigation } from './MobileNavigation';
 
 export interface HeaderLink {
   label: string;
@@ -17,14 +15,12 @@ export interface AppHeaderProps extends React.HTMLAttributes<HTMLElement> {
   logo?: React.ReactNode;
   links?: HeaderLink[];
   cta?: React.ReactNode;
-  drawerBottom?: React.ReactNode;
   currentPath?: string;
 }
 
 const AppHeader = forwardRef<HTMLElement, AppHeaderProps>(
-  ({ logo, links = [], cta, drawerBottom, currentPath = '/', className, ...props }, ref) => {
+  ({ logo, links = [], cta, currentPath = '/', className, ...props }, ref) => {
     const [scrolled, setScrolled] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
       const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,17 +28,6 @@ const AppHeader = forwardRef<HTMLElement, AppHeaderProps>(
       onScroll();
       return () => window.removeEventListener('scroll', onScroll);
     }, []);
-
-    useEffect(() => {
-      if (menuOpen) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-      return () => {
-        document.body.style.overflow = '';
-      };
-    }, [menuOpen]);
 
     return (
       <header
@@ -83,20 +68,9 @@ const AppHeader = forwardRef<HTMLElement, AppHeaderProps>(
             <div className="flex h-16 tablet:h-[72px] desktop:h-20 items-center justify-between">
               <div className="shrink-0">{logo && <HeaderLogo>{logo}</HeaderLogo>}</div>
               <DesktopNavigation links={links} currentPath={currentPath} cta={cta} />
-              <MobileNavigation open={menuOpen} onToggle={() => setMenuOpen((value) => !value)} />
             </div>
           </AppContainer>
         </div>
-
-        <HeaderDrawer
-          open={menuOpen}
-          onClose={() => setMenuOpen(false)}
-          logo={logo}
-          links={links}
-          currentPath={currentPath}
-          cta={cta}
-          drawerBottom={drawerBottom}
-        />
       </header>
     );
   },

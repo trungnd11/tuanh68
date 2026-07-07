@@ -84,13 +84,6 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           </HeaderCTA>
         }
         currentPath={pathname}
-        drawerBottom={
-          <div className="space-y-1.5 border-t border-border-subtle pt-4">
-            <p className="text-caption text-text-subtle">Hotline: 1900 XXXX</p>
-            <p className="text-caption text-text-subtle">info@tuananh68.vn</p>
-            <p className="text-caption text-text-subtle">Bình Dương, Việt Nam</p>
-          </div>
-        }
       />
       {children}
       <Footer
