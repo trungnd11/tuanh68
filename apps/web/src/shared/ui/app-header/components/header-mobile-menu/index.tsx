@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import CloseMenuIcon from "@/assets/icons/close-menu.svg";
 import MobileMenuIcon from "@/assets/icons/mobile-menu.svg";
 import AppBorderRadius from "@/shared/ui/app-border-radius";
-import { HeaderLanguageButton, HeaderPurchaseButton } from "@/shared/ui/app-header/components/header-actions";
+import { HeaderPurchaseButton } from "@/shared/ui/app-header/components/header-actions";
 import HeaderMenu from "@/shared/ui/app-header/components/header-menu";
 import { appColors } from "@/shared/theme";
 import { scrollToPurchaseForm } from "@/shared/utils/scroll";
@@ -114,7 +114,6 @@ export default function HeaderMobileMenu({ isOpen, onClose, onToggle, activeId }
   return (
     <>
       <div className="relative z-80 flex shrink-0 items-center gap-3 xl:hidden">
-        <HeaderLanguageButton mobile />
         <AppBorderRadius
           cornerRadius={10}
           borderWidth={1}
