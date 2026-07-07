@@ -1,30 +1,26 @@
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import { twc } from "react-twc";
 import PlayIcon from "@/assets/icons/play.svg";
-import { f88OverviewParagraphKeys } from "@/app/sections/f88-overview/content";
 import AppButton from "@/shared/ui/app-button";
 import AppPageTitle from "@/shared/ui/app-page-title";
-import { isCurrentDateInRange } from "@/shared/utils/date-util";
 
 const ParagraphStyle = twc.p`text-main-app-text-body`;
 
-export default function TextDescription() {
-  const t = useTranslations("HomePage.f88Overview");
-  const tCountdown = useTranslations("HomePage.banner.countdown");
-  const dateRangeLabel = tCountdown("dateRangeLabel");
-  const isInRange = isCurrentDateInRange(dateRangeLabel);
+const PARAGRAPHS = [
+  "F88 là một trong những công ty tài chính hàng đầu tại Việt Nam, chuyên cung cấp các dịch vụ tài chính toàn diện. Với hơn 10 năm kinh nghiệm, F88 đã xây dựng được mạng lưới chi nhánh rộng khắp cả nước.",
+  "F88 cam kết mang đến những giải pháp tài chính tiện lợi, nhanh chóng và minh bạch cho khách hàng. Công ty không ngừng đổi mới và áp dụng công nghệ vào quy trình vận hành để nâng cao trải nghiệm khách hàng.",
+];
 
+export default function TextDescription() {
   return (
     <div className={clsx("order-2 flex flex-col gap-6 xl:order-1 xl:gap-8")}>
-      <AppPageTitle className={clsx("hidden text-start xl:block")}>{t("title")}</AppPageTitle>
+      <AppPageTitle className={clsx("hidden text-start xl:block")}>Tổng quan về F88</AppPageTitle>
       <div className={clsx("flex flex-col gap-5")}>
-        {f88OverviewParagraphKeys.map((paragraphKey) => (
-          <ParagraphStyle key={paragraphKey}>{t(paragraphKey)}</ParagraphStyle>
+        {PARAGRAPHS.map((paragraph, index) => (
+          <ParagraphStyle key={index}>{paragraph}</ParagraphStyle>
         ))}
       </div>
       <AppButton
-        disabled={!isInRange}
         borderRadiusProps={{
           classNameContainer: clsx("xl:flex-1 drop-shadow-[0_1px_0_rgba(0,0,0,0.4)]"),
         }}
@@ -34,7 +30,7 @@ export default function TextDescription() {
         )}
       >
         <PlayIcon />
-        <span>{t("roadshow")}</span>
+        <span>Xem Roadshow</span>
       </AppButton>
     </div>
   );

@@ -1,31 +1,20 @@
-type JourneyTimelineTranslations = {
-  (key: "items.first.title"): string;
-  (key: "items.first.description"): string;
-  (key: "items.second.title"): string;
-  (key: "items.second.description"): string;
-  (key: "items.third.title"): string;
-  (key: "items.third.description"): string;
-  (key: "items.fourth.title"): string;
-  (key: "items.fourth.description"): string;
-};
-
-export function getJourneyItems(t: JourneyTimelineTranslations) {
+export function getJourneyItems() {
   return [
     {
-      title: t("items.first.title"),
-      description: t("items.first.description"),
+      title: "Thành lập",
+      description: "F88 được thành lập với sứ mệnh mang giải pháp tài chính đến mọi người dân Việt Nam.",
     },
     {
-      title: t("items.second.title"),
-      description: t("items.second.description"),
+      title: "Mở rộng mạng lưới",
+      description: "F88 mở rộng mạng lưới chi nhánh ra khắp các tỉnh thành trên cả nước.",
     },
     {
-      title: t("items.third.title"),
-      description: t("items.third.description"),
+      title: "Chuyển đổi số",
+      description: "Ứng dụng công nghệ vào quy trình vận hành, nâng cao trải nghiệm khách hàng.",
     },
     {
-      title: t("items.fourth.title"),
-      description: t("items.fourth.description"),
+      title: "IPO",
+      description: "F88 chính thức chào bán cổ phiếu ra công chúng, đánh dấu bước ngoặt phát triển.",
     },
   ];
 }

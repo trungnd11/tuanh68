@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { Fragment } from "react";
-import { useTranslations } from "next-intl";
 import TimelineArrow from "@/assets/icons/timeline-arrow.svg";
 import AppBorderRadius from "@/shared/ui/app-border-radius";
 import AppResponsiveTimeline from "@/shared/ui/app-responsive-timeline";
@@ -29,8 +28,7 @@ function JourneyCard({ title, description, mobile = false }: JourneyItem & { mob
 }
 
 export default function JourneyTimeline() {
-  const t = useTranslations("HomePage.f88Journey.timeline");
-  const journeyItems = getJourneyItems(t);
+  const journeyItems = getJourneyItems();
 
   return (
     <AppResponsiveTimeline
@@ -75,9 +73,9 @@ export default function JourneyTimeline() {
           totalItems={totalItems}
           onPrev={handlePrev}
           onNext={handleNext}
-          counter={t("counter", { total: totalItems })}
-          prevLabel={t("prev")}
-          nextLabel={t("next")}
+          counter={`${currentIndex + 1}/${totalItems}`}
+          prevLabel="Trước"
+          nextLabel="Sau"
         />
       )}
       renderDesktop={() => (

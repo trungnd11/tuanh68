@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { useRef, useState } from "react";
-import { useTranslations } from "next-intl";
 import { AppIcon } from "@f88/react-icons";
 import CheckCircleFilled from "@f88/react-icons/icons/CheckCircleFilled";
 import AppResponsiveTimeline from "@/shared/ui/app-responsive-timeline";
@@ -13,8 +12,27 @@ import { RoadmapTimelineUtil } from "../../utils/roadmapTimelineUtil";
 import IpoRoadmapCta from "@/app/sections/ipo-roadmap/components/ipo-roadmap-cta";
 import IpoRoadmapTimelineContent from "./components/ipo-roadmap-timeline-content";
 
+const TIMELINE_TITLES: Record<string, string> = {
+  introduceStock: "Giới thiệu cổ phiếu",
+  subscription: "Đăng ký mua",
+  allocation: "Phân bổ",
+  payment: "Thanh toán",
+  ipoResult: "Kết quả IPO",
+  hoseListingRegistration: "Đăng ký niêm yết HOSE",
+  hoseListing: "Niêm yết HOSE",
+};
+
+const TIMELINE_DATES: Record<string, string> = {
+  introduceStock: "02/07 - 05/07",
+  subscription: "06/07 - 27/07",
+  allocation: "27/07 - 28/07",
+  payment: "30/07 - 04/08",
+  ipoResult: "06/08/2026",
+  hoseListingRegistration: "Dự kiến T8/2026",
+  hoseListing: "Dự kiến Q4 2026",
+};
+
 export default function IpoRoadmapTimeline() {
-  const t = useTranslations("HomePage.ipoRoadmap");
   const activeIndex = ipoRoadmapItems.findIndex((_, itemIndex) => RoadmapTimelineUtil.isItemActive(itemIndex));
   const initialIndex = activeIndex >= 0 ? activeIndex : 0;
   const contentRef = useRef<HTMLDivElement>(null);
@@ -77,7 +95,7 @@ export default function IpoRoadmapTimeline() {
                           )}
                         />
                       </span>
-                      <span className={clsx("text-xs font-semibold")}>{t("timeline.inProgress")}</span>
+                      <span className={clsx("text-xs font-semibold")}>Đang diễn ra</span>
                     </div>
                   )}
 
@@ -88,15 +106,15 @@ export default function IpoRoadmapTimeline() {
                       activeItem && "text-white"
                     )}
                   >
-                    <p className={clsx("font-bold")}>{t(`timeline.items.${item.titleKey}.title`)}</p>
+                    <p className={clsx("font-bold")}>{TIMELINE_TITLES[item.titleKey]}</p>
                     {successItem ? (
                       <div className={clsx("flex items-center gap-1 text-main-app-green")}>
                         <CheckCircleFilled inheritColor className={clsx("text-base")} />
-                        <span className={clsx("text-xs font-semibold")}>{t("timeline.completed")}</span>
+                        <span className={clsx("text-xs font-semibold")}>Đã hoàn thành</span>
                       </div>
                     ) : (
                       <p className={clsx(!activeItem && "text-main-app-gray", "text-xs font-normal")}>
-                        {t(`timeline.items.${item.dateLabelKey}.date`)}
+                        {TIMELINE_DATES[item.dateLabelKey]}
                       </p>
                     )}
                   </div>
@@ -112,9 +130,9 @@ export default function IpoRoadmapTimeline() {
             totalItems={totalItems}
             onPrev={handlePrev}
             onNext={handleNext}
-            counter={t("timeline.counter", { current: currentIndex + 1, total: totalItems })}
-            prevLabel={t("timeline.prev")}
-            nextLabel={t("timeline.next")}
+            counter={`${currentIndex + 1}/${totalItems}`}
+            prevLabel="Trước"
+            nextLabel="Sau"
           />
         )}
         renderDesktop={() => (
@@ -155,7 +173,7 @@ export default function IpoRoadmapTimeline() {
                           )}
                         />
                       </span>
-                      <span className={clsx("text-xs font-semibold")}>{t("timeline.inProgress")}</span>
+                      <span className={clsx("text-xs font-semibold")}>Đang diễn ra</span>
                     </div>
                   )}
 
@@ -166,15 +184,15 @@ export default function IpoRoadmapTimeline() {
                       activeItem && "text-white"
                     )}
                   >
-                    <p className={clsx("font-bold")}>{t(`timeline.items.${item.titleKey}.title`)}</p>
+                    <p className={clsx("font-bold")}>{TIMELINE_TITLES[item.titleKey]}</p>
                     {successItem ? (
                       <div className={clsx("flex items-center gap-1 text-main-app-green")}>
                         <CheckCircleFilled inheritColor className={clsx("text-base")} />
-                        <span className={clsx("text-xs font-semibold")}>{t("timeline.completed")}</span>
+                        <span className={clsx("text-xs font-semibold")}>Đã hoàn thành</span>
                       </div>
                     ) : (
                       <p className={clsx(!activeItem && "text-main-app-gray", "text-xs font-normal")}>
-                        {t(`timeline.items.${item.dateLabelKey}.date`)}
+                        {TIMELINE_DATES[item.dateLabelKey]}
                       </p>
                     )}
                   </div>
