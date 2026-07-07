@@ -1,11 +1,24 @@
 "use client";
 
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { offeringInfoItems } from "../../data";
 import { formatAnimatedCounterValue, parseAnimatedCounterValue } from "./counter-value";
+
+const STAT_LABELS: Record<string, string> = {
+  shareQuantity: "Số lượng cổ phiếu",
+  sharePrice: "Giá chào bán",
+  capitalRaised: "Tổng giá trị",
+  postIpoValuation: "Định giá sau IPO",
+};
+
+const STAT_VALUES: Record<string, string> = {
+  shareQuantity: "33.000.000",
+  sharePrice: "10.000đ",
+  capitalRaised: "330 tỷ",
+  postIpoValuation: "---",
+};
 
 const COUNTER_DURATION_MS = 1400;
 
@@ -52,9 +65,6 @@ function AnimatedStatValue({ value }: { value: string }) {
 }
 
 export default function OfferingInfoStats() {
-  const tLabels = useTranslations("HomePage.offeringInfo.stats.labels");
-  const tValues = useTranslations("HomePage.offeringInfo.stats.values");
-
   return (
     <div className={clsx("grid auto-rows-fr grid-cols-2 items-stretch gap-1 justify-evenly xl:flex xl:gap-0")}>
       {offeringInfoItems.map((item) => (
@@ -64,8 +74,8 @@ export default function OfferingInfoStats() {
             "flex h-full flex-col items-center justify-center gap-1 bg-white px-3 py-3.5 text-center xl:gap-3 xl:bg-transparent xl:p-0"
           )}
         >
-          <AnimatedStatValue value={tValues(item.valueKey)} />
-          <p className="text-sm leading-5 text-app-neutral-900">{tLabels(item.labelKey)}</p>
+          <AnimatedStatValue value={STAT_VALUES[item.valueKey]} />
+          <p className="text-sm leading-5 text-app-neutral-900">{STAT_LABELS[item.labelKey]}</p>
         </div>
       ))}
     </div>

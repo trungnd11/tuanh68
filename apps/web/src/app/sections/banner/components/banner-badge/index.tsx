@@ -1,10 +1,7 @@
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import TrendUpIcon from "@/assets/icons/trend-up.svg";
 
 export default function BannerBadge() {
-  const t = useTranslations("HomePage.banner.badge");
-
   return (
     <div
       className={clsx(
@@ -14,7 +11,7 @@ export default function BannerBadge() {
       )}
     >
       <TrendUpIcon className="size-4" />
-      <span className={clsx("tracking-[0.5px]")}>{t("label")}</span>
+      <span className={clsx("tracking-[0.5px]")}>Cổ phiếu F88</span>
     </div>
   );
 }

@@ -1,11 +1,15 @@
 "use client";
 
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import { actions } from "./data";
 import AppButton from "@/shared/ui/app-button";
 import { scrollToPurchaseForm } from "@/shared/utils/scroll";
 import { isCurrentDateInRange } from "@/shared/utils/date-util";
+
+const ACTION_LABELS: Record<string, string> = {
+  purchase: "Đăng ký mua",
+  roadshow: "Xem Roadshow",
+};
 
 const actionButtonClassName = clsx(
   "inline-flex h-13 w-full items-center justify-center xl:h-16 xl:min-w-70",
@@ -14,10 +18,7 @@ const actionButtonClassName = clsx(
 );
 
 export default function BannerActions() {
-  const t = useTranslations("HomePage.banner.actions");
-  const tCountdown = useTranslations("HomePage.banner.countdown");
-  const dateRangeLabel = tCountdown("dateRangeLabel");
-  const isInRange = isCurrentDateInRange(dateRangeLabel);
+  const isInRange = isCurrentDateInRange("");
 
   const handleActionClick = (labelKey: string) => {
     if (labelKey !== "purchase") {
@@ -41,7 +42,7 @@ export default function BannerActions() {
           }}
         >
           {action.icon}
-          <span>{t(action.labelKey)}</span>
+          <span>{ACTION_LABELS[action.labelKey]}</span>
         </AppButton>
       ))}
     </div>

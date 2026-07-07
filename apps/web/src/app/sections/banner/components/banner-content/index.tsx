@@ -2,8 +2,6 @@
 
 import clsx from "clsx";
 import { useEffect, useState, type ReactNode } from "react";
-import { useTranslations } from "next-intl";
-import { bannerCountdownLabelKeys } from "@/app/sections/banner/content";
 import AppContent from "@/shared/ui/app-content";
 import BannerActions from "../banner-actions";
 import BannerBadge from "../banner-badge";
@@ -11,6 +9,8 @@ import BannerCountdown from "../banner-countdown";
 import BannerHeading from "../banner-heading";
 import { BannerCountdownUtil } from "../../utils/bannerCountdownUtil";
 import { resolveBannerCountdownTargetDate } from "./countdown-target";
+
+const COUNTDOWN_LABELS: [string, string, string, string] = ["Ngày", "Giờ", "Phút", "Giây"];
 
 type BannerRevealItemProps = {
   children: ReactNode;
@@ -39,11 +39,10 @@ function BannerRevealItem({ children, delayMs, isEntered }: BannerRevealItemProp
 
 export default function BannerContent() {
   const [isEntered, setIsEntered] = useState(false);
-  const t = useTranslations("HomePage.banner.countdown");
-  const dateRangeLabel = t("dateRangeLabel");
+  const dateRangeLabel = "";
   const countdownTargetDate = resolveBannerCountdownTargetDate(dateRangeLabel);
   const initialRemainingSeconds = BannerCountdownUtil.getRemainingSeconds(countdownTargetDate);
-  const countdownLabels = bannerCountdownLabelKeys.map((key) => t(key)) as [string, string, string, string];
+  const countdownLabels = COUNTDOWN_LABELS;
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsEntered(true), 500);
@@ -68,7 +67,7 @@ export default function BannerContent() {
           <BannerRevealItem delayMs={500} isEntered={isEntered}>
             <BannerCountdown
               dateRangeLabel={dateRangeLabel}
-              dateRangePrefix={t("dateRangePrefix")}
+              dateRangePrefix=""
               targetDate={countdownTargetDate}
               countdownLabels={countdownLabels}
               initialRemainingSeconds={initialRemainingSeconds}

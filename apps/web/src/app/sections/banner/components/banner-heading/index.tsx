@@ -1,9 +1,6 @@
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 
 export default function BannerHeading() {
-  const t = useTranslations("HomePage.banner.heading");
-
   return (
     <>
       <h1
@@ -12,7 +9,7 @@ export default function BannerHeading() {
           "font-extrabold leading-13 xl:leading-19.5"
         )}
       >
-        {t("title")}
+        Cơ hội đầu tư cổ phiếu F88
       </h1>
 
       <p
@@ -20,7 +17,7 @@ export default function BannerHeading() {
           "mt-4 hidden text-body-lg-regular leading-8 tracking-[0.07px] text-white/90 xl:mt-5.25 xl:block"
         )}
       >
-        {t("description")}
+        Tham gia đồng hành cùng F88 trong hành trình phát triển
       </p>
     </>
   );
