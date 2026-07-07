@@ -1,0 +1,16 @@
+﻿:root {
+  --container-sm: 40rem;
+  --container-md: 48rem;
+  --container-lg: 64rem;
+  --container-xl: 80rem;
+  --container-2xl: 80rem;
+  --section-width: min(100% - (var(--spacing-container-x) * 2), var(--container-2xl));
+  --content-width: min(100% - (var(--spacing-container-x) * 2), var(--container-lg));
+  --prose-width: min(100% - (var(--spacing-container-x) * 2), 46rem);
+  --grid-column-gap-sm: var(--spacing-16);
+  --grid-column-gap-md: var(--spacing-24);
+  --grid-column-gap-lg: var(--spacing-32);
+  --grid-row-gap-sm: var(--spacing-24);
+  --grid-row-gap-md: var(--spacing-40);
+  --grid-row-gap-lg: var(--spacing-56);
+}

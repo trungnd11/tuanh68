@@ -1,0 +1,9 @@
+{
+  "extends": "@tuanh68/tsconfig/package-base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules", "src/**/*.test.ts"]
+}

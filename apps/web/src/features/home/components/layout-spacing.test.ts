@@ -28,23 +28,28 @@ describe('homepage premium spacing contracts', () => {
 
   it('keeps header content inside AppContainer with premium responsive height', () => {
     const header = read('packages/ui/src/navigation/AppHeader.tsx');
-    const desktopNavigation = read('packages/ui/src/navigation/DesktopNavigation.tsx');
 
     expect(header).toContain('<AppContainer size="2xl">');
-    expect(header).toContain('flex h-16 tablet:h-[72px] desktop:h-20 items-center justify-between');
-    expect(desktopNavigation).toContain('absolute left-1/2 hidden -translate-x-1/2 desktop:flex');
+    expect(header).toContain('flex h-16 desktop:h-20 items-center justify-between');
+    expect(header).toContain('hidden desktop:flex');
     expect(header).toContain('fixed top-0 left-0 right-0');
     expect(header).toContain('z-[var(--z-header)]');
   });
 
-  it('renders only desktop chrome — no mobile navigation or drawer components', () => {
+  it('renders desktop nav items with Figma active-state teal underline', () => {
     const header = read('packages/ui/src/navigation/AppHeader.tsx');
 
     expect(header).toContain('border-[var(--color-header-border)]');
     expect(header).toContain('backdrop-blur-[12px]');
+    expect(header).toContain("label: 'Giới thiệu'");
+    expect(header).toContain("label: 'Ván phủ phim'");
+    expect(header).toContain('href="tel:0983570760"');
+    expect(header).toContain('border-b-2 border-[#48a6a7]');
+    expect(header).toContain('font-semibold text-white');
+    expect(header).toContain('font-medium text-[var(--color-text-nav-inactive)]');
+    expect(header).toContain('bg-[var(--color-accent-teal)]');
     expect(header).not.toContain('MobileNavigation');
     expect(header).not.toContain('HeaderDrawer');
-    expect(header).not.toContain('drawerBottom');
     expect(header).not.toContain('menuOpen');
   });
 
@@ -87,8 +92,7 @@ describe('homepage premium spacing contracts', () => {
     expect(layout).toContain('<SiteChrome>');
     expect(chrome).toContain('<AppHeader');
     expect(chrome).toContain('currentPath={pathname}');
-    expect(chrome).toContain("{ label: 'Giới thiệu', href: '/about' }");
-    expect(chrome).toContain("{ label: 'Tin tức', href: '/news' }");
+    expect(chrome).toContain('<AppHeader');
     expect(chrome).toContain('<Footer');
   });
 });

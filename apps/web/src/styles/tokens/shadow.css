@@ -1,0 +1,9 @@
+﻿:root {
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.16);
+  --shadow-sm: 0 6px 18px rgb(0 0 0 / 0.18);
+  --shadow-md: 0 14px 36px rgb(0 0 0 / 0.22);
+  --shadow-lg: 0 24px 64px rgb(0 0 0 / 0.28);
+  --shadow-xl: 0 36px 96px rgb(0 0 0 / 0.34);
+  --shadow-glass: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 18px 48px rgb(0 0 0 / 0.22);
+  --shadow-floating: 0 28px 80px rgb(0 0 0 / 0.3);
+}

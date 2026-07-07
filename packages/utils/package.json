@@ -1,0 +1,33 @@
+{
+  "name": "@tuanh68/utils",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "test": "vitest run --no-cache",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0"
+  },
+  "devDependencies": {
+    "@tuanh68/eslint-config": "workspace:*",
+    "@tuanh68/tsconfig": "workspace:*",
+    "eslint": "^9.17.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
