@@ -8,15 +8,15 @@ import { appSectionNavigatorItems, appSectionTitles, appSectionBackgrounds } fro
 import AppBorderRadius from "@/shared/ui/app-border-radius";
 import type { AppSectionNavigatorProps } from "@/shared/ui/app-section-navigator/types";
 
-export default function AppSectionNavigator({ locale, headerOffset = 95, logo, className }: AppSectionNavigatorProps) {
+export default function AppSectionNavigator({ headerOffset = 95, logo, className }: AppSectionNavigatorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const items = useMemo(
     () =>
       appSectionNavigatorItems.map((item) => ({
         ...item,
-        title: appSectionTitles[locale][item.key],
+        title: appSectionTitles[item.key],
       })),
-    [locale]
+    []
   );
   const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
   const activeId = useActiveSection(sectionIds, headerOffset);
@@ -108,7 +108,7 @@ export default function AppSectionNavigator({ locale, headerOffset = 95, logo, c
                       <span
                         className={clsx(
                           "relative inline-flex whitespace-nowrap bg-[#3E3E3E] p-2.5 leading-4 text-white text-xs",
-                          locale === "vi" ? "font-semibold" : "font-medium"
+                          "font-semibold"
                         )}
                       >
                         {item.title}

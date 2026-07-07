@@ -1,5 +1,3 @@
-import type { AppLocale } from "@/i18n/routing";
-
 export const appSectionIds = {
   banner: "banner",
   offeringInfo: "offering-info",
@@ -18,36 +16,20 @@ export const appSectionIds = {
 export type AppSectionKey = keyof typeof appSectionIds;
 export type AppSectionId = (typeof appSectionIds)[AppSectionKey];
 
-export const appSectionTitles = {
-  vi: {
-    banner: "F88 PO",
-    offeringInfo: "Thông tin chào bán",
-    f88Overview: "Tổng quan về F88",
-    f88MarketLeader: "Vị thế dẫn đầu",
-    f88BreakthroughGrowth: "Kết quả kinh doanh",
-    f88StrategicDirection: "Định hướng chiến lược",
-    f88Journey: "Hành trình F88",
-    ipoRoadmap: "Lộ trình PO",
-    investorMaterials: "Tài liệu nhà đầu tư",
-    purchaseGuide: "Hướng dẫn mua",
-    newsSection: "Tin tức",
-    investorFaq: "Câu hỏi thường gặp",
-  },
-  en: {
-    banner: "F88 PO",
-    offeringInfo: "Offering Information",
-    f88Overview: "F88 Overview",
-    f88MarketLeader: "Market Leadership",
-    f88BreakthroughGrowth: "Financial Performance",
-    f88StrategicDirection: "Strategic Direction",
-    f88Journey: "F88 Journey",
-    ipoRoadmap: "PO Roadmap",
-    investorMaterials: "Investor Materials",
-    purchaseGuide: "Purchase Guide",
-    newsSection: "News",
-    investorFaq: "FAQ",
-  },
-} as const satisfies Record<AppLocale, Record<AppSectionKey, string>>;
+export const appSectionTitles: Record<AppSectionKey, string> = {
+  banner: "F88 PO",
+  offeringInfo: "Thông tin chào bán",
+  f88Overview: "Tổng quan về F88",
+  f88MarketLeader: "Vị thế dẫn đầu",
+  f88BreakthroughGrowth: "Kết quả kinh doanh",
+  f88StrategicDirection: "Định hướng chiến lược",
+  f88Journey: "Hành trình F88",
+  ipoRoadmap: "Lộ trình PO",
+  investorMaterials: "Tài liệu nhà đầu tư",
+  purchaseGuide: "Hướng dẫn mua",
+  newsSection: "Tin tức",
+  investorFaq: "Câu hỏi thường gặp",
+} as const;
 
 export type AppSectionBackground = "light" | "dark";
 
