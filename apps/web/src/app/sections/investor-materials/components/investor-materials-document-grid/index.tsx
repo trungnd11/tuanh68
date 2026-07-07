@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import {
   getInvestorMaterialFilters,
   getInvestorMaterialsMoreLabel,
@@ -23,8 +22,7 @@ type InvestorMaterialsDocumentGridProps = {
 };
 
 export default function InvestorMaterialsDocumentGrid({ investorDocumentGroups }: InvestorMaterialsDocumentGridProps) {
-  const t = useTranslations("HomePage.investorMaterials");
-  const investorMaterialFilters = getInvestorMaterialFilters(t);
+  const investorMaterialFilters = getInvestorMaterialFilters();
   const [activeFilter, setActiveFilter] = useState(investorMaterialFilters[0]?.key ?? "legal");
   const [expanded, setExpanded] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
@@ -129,7 +127,7 @@ export default function InvestorMaterialsDocumentGrid({ investorDocumentGroups }
               }}
               className="inline-flex cursor-pointer items-center gap-2.5 text-sm font-semibold leading-5 text-app-primary-550"
             >
-              {expanded ? activeGroup.lessLabel : getInvestorMaterialsMoreLabel(t, activeGroup.key, hiddenItemCount)}
+              {expanded ? activeGroup.lessLabel : getInvestorMaterialsMoreLabel(activeGroup.key, hiddenItemCount)}
               <span className={clsx("transition-transform", expanded && "rotate-180")}>
                 <ArrowsChevronDownOutlined inheritColor width={16} height={16} />
               </span>

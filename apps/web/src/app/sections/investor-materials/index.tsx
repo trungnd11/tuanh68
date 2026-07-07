@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { getLocale, getTranslations } from "next-intl/server";
 import AppContent from "@/shared/ui/app-content";
 import InvestorMaterialsHeading from "@/app/sections/investor-materials/components/investor-materials-heading";
 import InvestorMaterialsDocumentGrid from "@/app/sections/investor-materials/components/investor-materials-document-grid";
@@ -8,12 +7,8 @@ import { getInvestorServedDocuments } from "@/app/sections/investor-materials/se
 import { appSectionIds } from "@/shared/config/app";
 
 export default async function InvestorMaterialsSection() {
-  const [t, locale, documents] = await Promise.all([
-    getTranslations("HomePage.investorMaterials"),
-    getLocale(),
-    getInvestorServedDocuments(),
-  ]);
-  const investorDocumentGroups = buildInvestorDocumentGroups(t, documents, locale);
+  const documents = await getInvestorServedDocuments();
+  const investorDocumentGroups = buildInvestorDocumentGroups(documents);
 
   return (
     <section id={appSectionIds.investorMaterials} className={clsx("bg-app-neutral-50 py-10 xl:py-16")}>

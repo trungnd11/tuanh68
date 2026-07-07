@@ -19,45 +19,27 @@ export type InvestorDocumentGroup = {
   moreHref: string;
 };
 
-export type InvestorMaterialsTranslations = {
-  (key: "heading.title"): string;
-  (key: "heading.description"): string;
-  (key: "heading.mobileBreakAfter"): string;
-  (key: "filters.businessResults"): string;
-  (key: "filters.ipoMaterials"): string;
-  (key: "groups.businessResults.monthly.moreLabel", values: { count: number }): string;
-  (key: "groups.businessResults.monthly.lessLabel"): string;
-  (key: "groups.ipoMaterials.monthly.moreLabel", values: { count: number }): string;
-  (key: "groups.ipoMaterials.monthly.lessLabel"): string;
-};
-
-export function getInvestorMaterialsMoreLabel(
-  t: InvestorMaterialsTranslations,
-  groupKey: InvestorDocumentGroup["key"],
-  count: number
-) {
-  return groupKey === "legal"
-    ? t("groups.businessResults.monthly.moreLabel", { count })
-    : t("groups.ipoMaterials.monthly.moreLabel", { count });
+export function getInvestorMaterialsMoreLabel(groupKey: InvestorDocumentGroup["key"], count: number) {
+  return `Xem thêm (${count})`;
 }
 
-export function getInvestorMaterialsHeading(t: InvestorMaterialsTranslations) {
+export function getInvestorMaterialsHeading() {
   return {
-    title: t("heading.title"),
-    description: t("heading.description"),
-    mobileBreakAfter: t("heading.mobileBreakAfter"),
+    title: "Tài liệu nhà đầu tư",
+    description: "Cập nhật thông tin mới nhất về tình hình hoạt động và kết quả kinh doanh của F88",
+    mobileBreakAfter: "",
   };
 }
 
-export function getInvestorMaterialFilters(t: InvestorMaterialsTranslations): InvestorMaterialFilter[] {
+export function getInvestorMaterialFilters(): InvestorMaterialFilter[] {
   return [
     {
       key: "legal",
-      label: t("filters.businessResults"),
+      label: "Kết quả kinh doanh",
     },
     {
       key: "ir",
-      label: t("filters.ipoMaterials"),
+      label: "Tài liệu IPO",
     },
   ];
 }
@@ -68,22 +50,15 @@ function formatPublishedAt(publishedAt: string) {
   return `Ngày đăng: ${day}/${month}/${year}`;
 }
 
-function getDocumentLocale(locale: string) {
-  return locale === "en" ? "ENG" : "VN";
-}
-
 export function buildInvestorDocumentGroups(
-  t: InvestorMaterialsTranslations,
-  documents: InvestorServedDocument[],
-  locale: string
+  documents: InvestorServedDocument[]
 ): Record<string, InvestorDocumentGroup> {
-  const documentLocale = getDocumentLocale(locale);
-  const localizedDocuments = documents.filter((item) => item.locale === documentLocale);
+  const localizedDocuments = documents.filter((item) => item.locale === "VN");
 
   return {
     legal: {
       key: "legal",
-      lessLabel: t("groups.businessResults.monthly.lessLabel"),
+      lessLabel: "Thu gọn",
       moreHref: "#",
       items: localizedDocuments
         .filter((item) => item.category === "legal")
@@ -96,7 +71,7 @@ export function buildInvestorDocumentGroups(
     },
     ir: {
       key: "ir",
-      lessLabel: t("groups.ipoMaterials.monthly.lessLabel"),
+      lessLabel: "Thu gọn",
       moreHref: "#",
       items: localizedDocuments
         .filter((item) => item.category === "ir")

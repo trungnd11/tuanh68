@@ -1,11 +1,9 @@
-import { useTranslations } from "next-intl";
 import AppPageTitle from "@/shared/ui/app-page-title";
 import { getInvestorMaterialsHeading } from "@/app/sections/investor-materials/data";
 import { TextUtil } from "@/shared/utils/text-util";
 
 export default function InvestorMaterialsHeading() {
-  const t = useTranslations("HomePage.investorMaterials");
-  const investorMaterialsHeading = getInvestorMaterialsHeading(t);
+  const investorMaterialsHeading = getInvestorMaterialsHeading();
   const wrappedTitle = investorMaterialsHeading.mobileBreakAfter
     ? TextUtil.wrapAfter(investorMaterialsHeading.title, [investorMaterialsHeading.mobileBreakAfter])
     : investorMaterialsHeading.title;
