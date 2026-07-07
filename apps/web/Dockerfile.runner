@@ -1,0 +1,20 @@
+# Runtime-only image — expects .next/standalone to already be built on the host
+FROM node:22-alpine
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+# Copy the standalone build output (includes public/ and .next/static/ from copy-standalone-assets script)
+COPY --chown=nextjs:nodejs .next/standalone ./
+
+USER nextjs
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]

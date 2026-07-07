@@ -1,1 +1,0 @@
-export { AboutFactorySection } from './AboutFactory';

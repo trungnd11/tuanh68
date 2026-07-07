@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@config "../shared/theme/tailwind.config.ts";
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+@keyframes app-input-autofill {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes app-input-autofill-cancel {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+input {
+  animation-duration: 0.01s;
+  animation-name: app-input-autofill-cancel;
+}
+
+input:-webkit-autofill {
+  animation-name: app-input-autofill;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+section[id] {
+  scroll-margin-top: 5.3125rem;
+}
+
+@media (min-width: 1200px) {
+  section[id] {
+    scroll-margin-top: 5.9375rem;
+  }
+}

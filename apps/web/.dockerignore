@@ -1,0 +1,12 @@
+.git
+.gitignore
+.idea
+.next
+!.next/standalone
+.turbo
+coverage
+node_modules
+npm-debug.log*
+pnpm-debug.log*
+Dockerfile*
+README.md
