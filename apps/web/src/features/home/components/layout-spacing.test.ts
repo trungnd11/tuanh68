@@ -47,6 +47,7 @@ describe('homepage premium spacing contracts', () => {
     expect(header).toContain('border-b-2 border-[#48a6a7]');
     expect(header).toContain('font-semibold text-white');
     expect(header).toContain('font-medium text-[var(--color-text-nav-inactive)]');
+    expect(header).toContain('uppercase');
     expect(header).toContain('bg-[var(--color-accent-teal)]');
     expect(header).not.toContain('MobileNavigation');
     expect(header).not.toContain('HeaderDrawer');

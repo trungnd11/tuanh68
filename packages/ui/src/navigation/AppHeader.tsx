@@ -91,22 +91,23 @@ export function AppHeader({ currentPath = '/' }: AppHeaderProps) {
                         href={item.href}
                         aria-current={active ? 'page' : undefined}
                         className={cn(
-                          'flex flex-col items-start px-[12px] drop-shadow-[0px_1px_0.5px_rgba(0,0,0,0.05)] transition-colors duration-fast ease-standard',
+                          'flex flex-col items-start px-[12px] transition-colors duration-fast ease-standard',
                           active
-                            ? 'border-b-2 border-[#48a6a7] pb-[10px] pt-[8px]'
-                            : 'py-[8px]',
+                            ? 'border-b-2 border-[#48a6a7] pb-[10px] pt-[8px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.05)]'
+                            : 'py-[8px] drop-shadow-[0px_1px_0.5px_rgba(0,0,0,0.05)]',
                         )}
                       >
-                        <span
-                          className={cn(
-                            'text-[14px] leading-[20px] tracking-[0.35px] transition-colors duration-fast ease-standard',
-                            active
-                              ? 'font-semibold text-white'
-                              : 'font-medium text-[var(--color-text-nav-inactive)]',
-                            active ? '' : 'uppercase',
-                          )}
-                        >
-                          {active ? item.label : item.label.toUpperCase()}
+                        <span className="flex flex-col justify-center leading-[0]">
+                          <span
+                            className={cn(
+                              'text-[14px] leading-[20px] tracking-[0.35px] uppercase transition-colors duration-fast ease-standard',
+                              active
+                                ? 'font-semibold text-white'
+                                : 'font-medium text-[var(--color-text-nav-inactive)]',
+                            )}
+                          >
+                            {item.label}
+                          </span>
                         </span>
                       </a>
                     </div>
