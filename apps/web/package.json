@@ -8,7 +8,7 @@
     "dev:sit": "dotenv -e .env.sit -- next dev",
     "dev:ida": "dotenv -e .env.ida -- next dev",
     "dev:prod": "dotenv -e .env.production -- next dev",
-    "build": "dotenv -e .env -- next build && node scripts/copy-standalone-assets.mjs",
+    "build": "next build && node scripts/copy-standalone-assets.mjs",
     "build:sit": "dotenv -e .env.sit -- next build && node scripts/copy-standalone-assets.mjs",
     "build:ida": "dotenv -e .env.ida -- next build && node scripts/copy-standalone-assets.mjs",
     "build:prod": "dotenv -e .env.production -- next build && node scripts/copy-standalone-assets.mjs",
