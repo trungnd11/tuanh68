@@ -47,9 +47,9 @@ export default function AppScrollTop() {
       onClick={handleScrollTop}
       className={clsx(
         "fixed bottom-6 right-6 z-50 flex size-12 items-center justify-center rounded-full",
-        "bg-app-primary-550 text-white shadow-[0_12px_30px_rgba(2,49,25,0.24)] cursor-pointer",
-        "transition-all duration-200 hover:-translate-y-0.5 hover:bg-app-primary-500",
-        "border-4",
+        "bg-app-brand-teal text-white shadow-[0_12px_30px_rgba(72,166,167,0.24)] cursor-pointer",
+        "transition-all duration-200 hover:-translate-y-0.5 hover:bg-app-brand-teal/90",
+        "border-4 border-white",
         isVisible ? "pointer-events-auto opacity-100" : "pointer-events-none translate-y-2 opacity-0"
       )}
     >

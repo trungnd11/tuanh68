@@ -21,9 +21,11 @@
 ### Task 1: Static Contract Test
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/layout-spacing.test.ts`
 
 **Interfaces:**
+
 - Consumes: file contents for `apps/web/src/features/home/index.tsx` and `apps/web/src/app/layout.tsx`.
 - Produces: failing test proving Header/Footer are currently in the wrong file.
 
@@ -32,10 +34,10 @@
 Add a test that asserts:
 
 ```ts
-expect(home).not.toContain('<Navbar');
-expect(home).not.toContain('<Footer');
-expect(layout).toContain('<Navbar');
-expect(layout).toContain('<Footer');
+expect(home).not.toContain("<Navbar");
+expect(home).not.toContain("<Footer");
+expect(layout).toContain("<Navbar");
+expect(layout).toContain("<Footer");
 ```
 
 - [ ] **Step 2: Run failing test**
@@ -49,10 +51,12 @@ Expected: FAIL because `HomePage` currently renders `<Navbar>` and `<Footer>`.
 ### Task 2: Move Chrome To RootLayout
 
 **Files:**
+
 - Modify: `apps/web/src/app/layout.tsx`
 - Modify: `apps/web/src/features/home/index.tsx`
 
 **Interfaces:**
+
 - Consumes: existing `Navbar`, `Footer`, `AppButton`, `navLinks`, and `footerColumns` usage.
 - Produces: Root layout wrapping every route with Header/Footer; HomePage returns only content.
 
@@ -88,9 +92,11 @@ Remove Header/Footer imports/constants and return only:
 ### Task 3: Verification
 
 **Files:**
+
 - Verify changed app/home files and tests.
 
 **Interfaces:**
+
 - Consumes: completed Tasks 1-2.
 - Produces: verified refactor.
 

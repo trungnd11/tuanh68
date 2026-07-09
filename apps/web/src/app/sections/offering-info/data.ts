@@ -1,1 +1,0 @@
-export { offeringInfoItems } from "./content";

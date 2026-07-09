@@ -1,9 +1,11 @@
 # Homepage/Header Spacing Fix Design
 
 ## Goal
+
 Repair Homepage and Header spacing so the landing page reads as a premium Industrial Luxury experience instead of a wireframe, with no horizontal edge-sticking or overflow.
 
 ## Scope
+
 - Header container and responsive navigation spacing.
 - Hero container, two-column layout, vertical rhythm, headline hierarchy, CTA styling, and layered background.
 - Quote form glass card spacing and control sizing.
@@ -11,6 +13,7 @@ Repair Homepage and Header spacing so the landing page reads as a premium Indust
 - Shared layout tokens/components only where needed to support consistent spacing.
 
 ## Constraints
+
 - Do not change business logic.
 - Do not create backend code.
 - Do not add heavy UI libraries.
@@ -20,6 +23,7 @@ Repair Homepage and Header spacing so the landing page reads as a premium Indust
 - Verification must include `pnpm lint`, `pnpm typecheck`, and `pnpm build`.
 
 ## Design
+
 The layout source of truth is `AppContainer`. It remains centered with `margin-inline: auto`, uses `max-width: 1280px`, and applies responsive horizontal padding through the shared spacing token.
 
 Header stays full-width for the glass/background treatment. Header content sits inside `AppContainer`, with a `64px` mobile height and `80px` desktop height. Logo stays left, navigation and CTA are aligned on desktop, and the hamburger remains available on mobile.
@@ -33,6 +37,7 @@ Quote form is a `440px` desktop glass card with `32px` padding, `28px` radius, b
 Stats section is separated from hero with `56px` mobile and `80px` desktop vertical padding. Cards live inside `AppContainer`, use `1/2/4` responsive columns, `28px` padding, `24px` radius, and glass border styling.
 
 ## Testing
+
 - Run `pnpm lint`.
 - Run `pnpm typecheck`.
 - Run `pnpm build`.

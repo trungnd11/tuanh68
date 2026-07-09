@@ -1,0 +1,13 @@
+<svg width="400" height="192" viewBox="0 0 400 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="192" fill="#2973b2"/>
+  <rect y="0" width="400" height="192" fill="url(#grad2)" fill-opacity="0.3"/>
+  <circle cx="200" cy="80" r="30" stroke="white" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M178 75L192 88L178 101L185 108L198 95L210 108L216 101L203 88L216 75L210 68L198 81L185 68Z" fill="white" opacity="0.6"/>
+  <text x="200" y="130" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif" opacity="0.8">Giải Thưởng Quốc Tế</text>
+  <defs>
+    <linearGradient id="grad2" x1="0" y1="0" x2="400" y2="192">
+      <stop offset="0%" stop-color="#1a5276"/>
+      <stop offset="100%" stop-color="#48a6a7"/>
+    </linearGradient>
+  </defs>
+</svg>

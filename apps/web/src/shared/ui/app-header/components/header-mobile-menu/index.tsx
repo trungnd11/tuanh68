@@ -3,18 +3,15 @@
 import { useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import CloseMenuIcon from "@/assets/icons/close-menu.svg";
 import MobileMenuIcon from "@/assets/icons/mobile-menu.svg";
 import AppBorderRadius from "@/shared/ui/app-border-radius";
-import { HeaderPurchaseButton } from "@/shared/ui/app-header/components/header-actions";
+import HeaderActions from "@/shared/ui/app-header/components/header-actions";
 import HeaderMenu from "@/shared/ui/app-header/components/header-menu";
 import { appColors } from "@/shared/theme";
-import { scrollToPurchaseForm } from "@/shared/utils/scroll";
 import type { HeaderMobileMenuProps } from "./types";
 
 export default function HeaderMobileMenu({ isOpen, onClose, onToggle, activeId }: HeaderMobileMenuProps) {
-  const t = useTranslations("HomePage.header.mobileMenu");
   const [isMounted, setIsMounted] = useState(false);
   const menuId = useId();
 
@@ -68,25 +65,20 @@ export default function HeaderMobileMenu({ isOpen, onClose, onToggle, activeId }
     };
   }, [isOpen, onClose]);
 
-  function handlePurchaseClick() {
-    onClose();
-    requestAnimationFrame(scrollToPurchaseForm);
-  }
-
   const mobileMenuLayer =
     isMounted && typeof document !== "undefined"
       ? createPortal(
           <div
             className={clsx(
-              "fixed inset-x-0 bottom-0 top-20.5 z-60 xl:hidden",
+              "fixed inset-x-0 bottom-0 top-20 z-60",
               isOpen ? "pointer-events-auto" : "pointer-events-none"
             )}
           >
             <button
               type="button"
-              aria-label={t("close")}
+              aria-label="Đóng"
               className={clsx(
-                "absolute inset-0 bg-app-neutral-900/20 backdrop-blur-md transition-opacity duration-300",
+                "absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity duration-300",
                 isOpen ? "opacity-100" : "opacity-0"
               )}
               onClick={onClose}
@@ -95,15 +87,15 @@ export default function HeaderMobileMenu({ isOpen, onClose, onToggle, activeId }
             <div
               id={menuId}
               className={clsx(
-                "absolute inset-x-0 top-0 border-t border-app-neutral-900/10 bg-white px-4 pb-6 pt-5",
-                "shadow-[0_24px_48px_rgba(15,23,42,0.12)] transition-all duration-300 ease-out sm:px-6",
+                "absolute inset-x-0 top-0 border-t border-[rgba(255,255,255,0.15)] bg-gradient-to-br from-[rgba(15,23,42,0.95)] to-[rgba(30,41,59,0.8)] px-4 pb-6 pt-5",
+                "shadow-[0px_8px_32px_0px_rgba(0,0,0,0.4)] transition-all duration-300 ease-out sm:px-6",
                 isOpen ? "translate-y-0 opacity-100" : "-translate-y-6 opacity-0"
               )}
             >
               <HeaderMenu mobile activeId={activeId} onNavigate={onClose} />
 
-              <div className="mt-5 border-t border-app-neutral-900/10 pt-5">
-                <HeaderPurchaseButton mobile onPurchaseClick={handlePurchaseClick} />
+              <div className="mt-5 border-t border-[rgba(255,255,255,0.1)] pt-5">
+                <HeaderActions />
               </div>
             </div>
           </div>,
@@ -113,19 +105,19 @@ export default function HeaderMobileMenu({ isOpen, onClose, onToggle, activeId }
 
   return (
     <>
-      <div className="relative z-80 flex shrink-0 items-center gap-3 xl:hidden">
+      <div className="relative z-80 flex shrink-0 items-center gap-3">
         <AppBorderRadius
           cornerRadius={10}
           borderWidth={1}
           borderColor={appColors.appNeutral[300]}
-          classNameBorder={clsx("bg-white h-full")}
+          classNameBorder={clsx("bg-white/10 h-full")}
         >
           <button
             type="button"
             aria-expanded={isOpen}
             aria-controls={menuId}
-            aria-label={isOpen ? t("closeNavigation") : t("openNavigation")}
-            className="flex h-9.5 w-10 shrink-0 items-center justify-center text-app-neutral-900"
+            aria-label={isOpen ? "Đóng menu" : "Mở menu"}
+            className="flex h-9.5 w-10 shrink-0 items-center justify-center text-white"
             onClick={onToggle}
           >
             {isOpen ? <CloseMenuIcon /> : <MobileMenuIcon />}

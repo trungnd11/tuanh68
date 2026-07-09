@@ -1,10 +1,10 @@
-import globals from 'globals';
-import { baseConfig } from './base.js';
+import globals from "globals";
+import { baseConfig } from "./base.js";
 
 export const nodeConfig = [
   ...baseConfig,
   {
-    files: ['**/*.ts'],
+    files: ["**/*.ts"],
     languageOptions: {
       globals: globals.node,
     },

@@ -1,47 +1,19 @@
 "use client";
 
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
-import AppButton from "@/shared/ui/app-button";
-import { scrollToPurchaseForm } from "@/shared/utils/scroll";
-import { isCurrentDateInRange } from "@/shared/utils/date-util";
+import Image from "next/image";
 
-type HeaderActionsProps = {
-  mobile?: boolean;
-  onPurchaseClick?: () => void;
-};
-
-function HeaderPurchaseButton({ mobile = false, onPurchaseClick }: HeaderActionsProps) {
-  const t = useTranslations("HomePage.header.actions");
-  const tCountdown = useTranslations("HomePage.banner.countdown");
-  const dateRangeLabel = tCountdown("dateRangeLabel");
-  const isInRange = isCurrentDateInRange(dateRangeLabel);
-
+export default function HeaderActions() {
   return (
-    <AppButton
-      disabled={!isInRange}
-      cornerRadius={mobile ? 7 : 8}
+    <a
+      href="tel:0983570760"
       className={clsx(
-        "tracking-[-0.15px] inline-flex items-center justify-center text-white",
-        mobile ? "h-10 w-full px-4 text-body-sm-semibold" : "h-12 px-5.5 text-body-base-semibold"
+        "inline-flex items-center gap-2 rounded-[6px] bg-app-brand-teal px-[20px] py-[8px]",
+        "shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
       )}
-      borderRadiusProps={{
-        classNameContainer: clsx("inline-flex drop-shadow-[0_1px_0.5px_rgba(2,49,25,1)]"),
-        classNameBorder: clsx("inline-flex bg-app-primary-500"),
-      }}
-      onClick={onPurchaseClick ?? scrollToPurchaseForm}
     >
-      {t("purchase")}
-    </AppButton>
+      <Image src="/assets/header/phone-icon.png" alt="" width={14} height={14} className="size-[14px]" />
+      <span className="text-[14px] font-bold leading-[20px] text-white">0983 570 760</span>
+    </a>
   );
 }
-
-export default function HeaderActions({ mobile = false, onPurchaseClick }: HeaderActionsProps) {
-  if (mobile) {
-    return <HeaderPurchaseButton mobile onPurchaseClick={onPurchaseClick} />;
-  }
-
-  return <HeaderPurchaseButton />;
-}
-
-export { HeaderPurchaseButton };

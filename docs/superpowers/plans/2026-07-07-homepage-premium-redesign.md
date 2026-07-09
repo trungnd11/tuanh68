@@ -23,6 +23,7 @@
 ### Task 1: Animation Infrastructure — useInView hook + CSS keyframes
 
 **Files:**
+
 - Create: `apps/web/src/features/home/hooks/useInView.ts`
 - Create: `apps/web/src/features/home/hooks/index.ts`
 - Modify: `apps/web/src/styles/globals.css` — add keyframes
@@ -30,9 +31,9 @@
 - [ ] **Step 1: Create useInView hook**
 
 ```tsx
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 interface UseInViewOptions {
   threshold?: number;
@@ -41,7 +42,7 @@ interface UseInViewOptions {
 }
 
 export function useInView(options: UseInViewOptions = {}) {
-  const { threshold = 0.1, rootMargin = '0px 0px -50px 0px', triggerOnce = true } = options;
+  const { threshold = 0.1, rootMargin = "0px 0px -50px 0px", triggerOnce = true } = options;
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -60,7 +61,7 @@ export function useInView(options: UseInViewOptions = {}) {
           setInView(false);
         }
       },
-      { threshold, rootMargin },
+      { threshold, rootMargin }
     );
 
     observer.observe(el);
@@ -74,7 +75,7 @@ export function useInView(options: UseInViewOptions = {}) {
 - [ ] **Step 2: Create hooks index**
 
 ```tsx
-export { useInView } from './useInView';
+export { useInView } from "./useInView";
 ```
 
 - [ ] **Step 3: Add animation keyframes to globals.css**
@@ -136,7 +137,8 @@ Add before the `@layer base` block:
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -145,7 +147,8 @@ Add before the `@layer base` block:
 }
 
 @keyframes glow-pulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 8px var(--color-primary-500);
   }
   50% {
@@ -157,12 +160,24 @@ Add before the `@layer base` block:
 Also add a utility class for animation delay (used by all sections):
 
 ```css
-.animate-delay-100 { animation-delay: 100ms; }
-.animate-delay-200 { animation-delay: 200ms; }
-.animate-delay-300 { animation-delay: 300ms; }
-.animate-delay-400 { animation-delay: 400ms; }
-.animate-delay-500 { animation-delay: 500ms; }
-.animate-delay-600 { animation-delay: 600ms; }
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+.animate-delay-400 {
+  animation-delay: 400ms;
+}
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+.animate-delay-600 {
+  animation-delay: 600ms;
+}
 ```
 
 ---
@@ -170,26 +185,22 @@ Also add a utility class for animation delay (used by all sections):
 ### Task 2: Hero Section — Premium Full-Screen
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Hero/Hero.tsx` — full rewrite
 
 **Interfaces:**
+
 - Consumes: `useInView` from hooks, `QuoteForm` from `../QuoteForm`
 - Produces: `<HeroSection />` export
 
 - [ ] **Step 1: Rewrite Hero.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import {
-  AppContainer,
-  AppHeading,
-  AppText,
-  AppButton,
-  AppSurface,
-} from '@tuanh68/ui';
-import { useInView } from '../../hooks';
-import { QuoteForm } from '../QuoteForm';
+import { AppContainer, AppHeading, AppText, AppButton, AppSurface } from "@tuanh68/ui";
+import { useInView } from "../../hooks";
+import { QuoteForm } from "../QuoteForm";
 
 export function HeroSection() {
   const { ref, inView } = useInView({ threshold: 0, triggerOnce: true });
@@ -212,7 +223,7 @@ export function HeroSection() {
               linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px',
+            backgroundSize: "60px 60px",
           }}
         />
       </div>
@@ -224,7 +235,7 @@ export function HeroSection() {
             {/* Badge */}
             <div
               className={`inline-flex items-center gap-2 transition-all duration-700 ease-[var(--ease-standard)] ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             >
               <span className="h-px w-8 bg-[var(--color-primary-400)]" />
@@ -236,7 +247,7 @@ export function HeroSection() {
             {/* Heading */}
             <div
               className={`space-y-2 transition-all duration-700 ease-[var(--ease-standard)] delay-100 ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             >
               <AppHeading level="display" display="lg" as="h1">
@@ -255,19 +266,19 @@ export function HeroSection() {
             {/* Description */}
             <div
               className={`max-w-[45ch] transition-all duration-700 ease-[var(--ease-standard)] delay-200 ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             >
               <AppText variant="body" size="lg" color="secondary">
-                Cung cấp coffa, ván ép phủ phim cho các công trình xây dựng lớn trên toàn quốc. 
-                Đối tác tin cậy của các nhà thầu hàng đầu Việt Nam.
+                Cung cấp coffa, ván ép phủ phim cho các công trình xây dựng lớn trên toàn quốc. Đối tác tin cậy của các
+                nhà thầu hàng đầu Việt Nam.
               </AppText>
             </div>
 
             {/* CTA */}
             <div
               className={`flex flex-wrap gap-4 pt-4 transition-all duration-700 ease-[var(--ease-standard)] delay-300 ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             >
               <AppButton variant="primary" size="xl">
@@ -285,7 +296,7 @@ export function HeroSection() {
           {/* Right column — Quote Form */}
           <div
             className={`w-full laptop:w-[440px] shrink-0 transition-all duration-800 ease-[var(--ease-standard)] delay-300 ${
-              inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
             <AppSurface variant="glass" padding="lg" radius="2xl">
@@ -304,6 +315,7 @@ export function HeroSection() {
 ### Task 3: Statistics Section — Large Numbers with Count-Up
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Statistics/Statistics.tsx` — full rewrite
 
 - [ ] **Step 1: Create CountUp component**
@@ -311,10 +323,10 @@ export function HeroSection() {
 Create `apps/web/src/features/home/components/Statistics/CountUp.tsx`:
 
 ```tsx
-'use client';
+"use client";
 
-import { useEffect, useState, useRef } from 'react';
-import { useInView } from '../../hooks';
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "../../hooks";
 
 interface CountUpProps {
   end: number;
@@ -322,7 +334,7 @@ interface CountUpProps {
   duration?: number;
 }
 
-export function CountUp({ end, suffix = '', duration = 2000 }: CountUpProps) {
+export function CountUp({ end, suffix = "", duration = 2000 }: CountUpProps) {
   const [count, setCount] = useState(0);
   const { ref, inView } = useInView({ threshold: 0.3 });
   const started = useRef(false);
@@ -346,32 +358,49 @@ export function CountUp({ end, suffix = '', duration = 2000 }: CountUpProps) {
     requestAnimationFrame(step);
   }, [inView, end, duration]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
 }
 ```
 
 - [ ] **Step 2: Rewrite Statistics.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import { AppContainer, AppText } from '@tuanh68/ui';
-import { useInView } from '../../hooks';
-import { CountUp } from './CountUp';
-import { statistics } from '../../mock/statistics';
+import { AppContainer, AppText } from "@tuanh68/ui";
+import { useInView } from "../../hooks";
+import { CountUp } from "./CountUp";
+import { statistics } from "../../mock/statistics";
 
 const statIcons = [
   <svg key="years" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>,
   <svg key="projects" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-18v18M3 7h7.5M3 11h7.5m3-4.5H21M3 15h7.5m3-4.5H21M3 19h7.5m3-4.5H21" />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-18v18M3 7h7.5M3 11h7.5m3-4.5H21M3 15h7.5m3-4.5H21M3 19h7.5m3-4.5H21"
+    />
   </svg>,
   <svg key="partners" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
+    />
   </svg>,
   <svg key="coverage" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"
+    />
   </svg>,
 ];
 
@@ -389,22 +418,15 @@ export function StatisticsSection() {
             <div
               key={stat.id}
               className={`relative flex flex-col items-center tablet:items-start text-center tablet:text-left transition-all duration-700 ease-[var(--ease-standard)] ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Icon */}
-              <div className="text-[var(--color-primary-300)] opacity-60 mb-3">
-                {statIcons[index] ?? statIcons[0]}
-              </div>
+              <div className="text-[var(--color-primary-300)] opacity-60 mb-3">{statIcons[index] ?? statIcons[0]}</div>
               {/* Value */}
-              <span
-                className="text-[4rem] tablet:text-[5rem] leading-none font-[650] tracking-[-0.02em] text-[var(--color-text-primary)]"
-              >
-                <CountUp
-                  end={parseInt(stat.value.replace(/[^0-9]/g, ''))}
-                  suffix={stat.value.replace(/[0-9]/g, '')}
-                />
+              <span className="text-[4rem] tablet:text-[5rem] leading-none font-[650] tracking-[-0.02em] text-[var(--color-text-primary)]">
+                <CountUp end={parseInt(stat.value.replace(/[^0-9]/g, ""))} suffix={stat.value.replace(/[0-9]/g, "")} />
               </span>
               {/* Label */}
               <AppText variant="body" size="sm" color="muted" className="mt-1 tracking-[0.05em]">
@@ -432,23 +454,16 @@ Update the `CountUp` end value parsing in the component. The mock data has value
 ### Task 4: About Factory Section — Layered Images
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/AboutFactory/AboutFactory.tsx` — full rewrite
 
 - [ ] **Step 1: Rewrite AboutFactory.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import {
-  AppContainer,
-  AppSection,
-  AppHeading,
-  AppText,
-  AppButton,
-  AppStack,
-  AppFlex,
-} from '@tuanh68/ui';
-import { useInView } from '../../hooks';
+import { AppContainer, AppSection, AppHeading, AppText, AppButton, AppStack, AppFlex } from "@tuanh68/ui";
+import { useInView } from "../../hooks";
 
 export function AboutFactorySection() {
   const { ref, inView } = useInView();
@@ -458,9 +473,11 @@ export function AboutFactorySection() {
       <AppContainer size="2xl">
         <div className="flex flex-col laptop:flex-row items-center gap-12">
           {/* Left — Text */}
-          <div className={`w-full laptop:w-[40%] space-y-6 transition-all duration-700 ease-[var(--ease-standard)] ${
-            inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-          }`}>
+          <div
+            className={`w-full laptop:w-[40%] space-y-6 transition-all duration-700 ease-[var(--ease-standard)] ${
+              inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            }`}
+          >
             <AppText variant="overline" color="accent" as="div">
               Về nhà máy
             </AppText>
@@ -472,12 +489,12 @@ export function AboutFactorySection() {
             </AppHeading>
             <div className="space-y-4 max-w-[45ch]">
               <AppText variant="body" size="lg" color="secondary">
-                Với gần 30 năm kinh nghiệm, nhà máy Tuấn Anh 68 tọa lạc tại Bình Dương
-                trên diện tích hơn 30.000 m² với dây chuyền sản xuất hiện đại.
+                Với gần 30 năm kinh nghiệm, nhà máy Tuấn Anh 68 tọa lạc tại Bình Dương trên diện tích hơn 30.000 m² với
+                dây chuyền sản xuất hiện đại.
               </AppText>
               <AppText variant="body" size="md" color="muted">
-                Sở hữu đội ngũ kỹ sư giàu kinh nghiệm, máy móc nhập khẩu từ châu Âu,
-                đảm bảo mỗi sản phẩm đạt tiêu chuẩn chất lượng cao nhất.
+                Sở hữu đội ngũ kỹ sư giàu kinh nghiệm, máy móc nhập khẩu từ châu Âu, đảm bảo mỗi sản phẩm đạt tiêu chuẩn
+                chất lượng cao nhất.
               </AppText>
             </div>
             {/* Signature */}
@@ -496,9 +513,11 @@ export function AboutFactorySection() {
           </div>
 
           {/* Right — Images */}
-          <div className={`w-full laptop:w-[60%] relative transition-all duration-700 ease-[var(--ease-standard)] delay-100 ${
-            inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-          }`}>
+          <div
+            className={`w-full laptop:w-[60%] relative transition-all duration-700 ease-[var(--ease-standard)] delay-100 ${
+              inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+            }`}
+          >
             {/* Main image placeholder */}
             <div className="aspect-[4/3] rounded-[var(--radius-2xl)] overflow-hidden bg-[var(--color-surface-tertiary)] shadow-[var(--shadow-lg)] relative">
               <div className="absolute inset-0 flex items-center justify-center">
@@ -509,9 +528,11 @@ export function AboutFactorySection() {
             </div>
 
             {/* Overlay image */}
-            <div className={`absolute -bottom-6 -right-6 w-[35%] aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden border-2 border-[var(--color-border-glass)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-lg)] transition-all duration-700 ease-[var(--ease-standard)] delay-200 ${
-              inView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-            }`}>
+            <div
+              className={`absolute -bottom-6 -right-6 w-[35%] aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden border-2 border-[var(--color-border-glass)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-lg)] transition-all duration-700 ease-[var(--ease-standard)] delay-200 ${
+                inView ? "opacity-100 scale-100" : "opacity-0 scale-90"
+              }`}
+            >
               <div className="absolute inset-0 flex items-center justify-center">
                 <AppText variant="body" size="sm" color="muted">
                   TODO: Ảnh máy ép
@@ -520,10 +541,14 @@ export function AboutFactorySection() {
             </div>
 
             {/* Floating glass tag */}
-            <div className={`absolute top-4 right-4 px-3 py-1.5 rounded-[var(--radius-md)] bg-[var(--color-surface-glass)] backdrop-blur-[var(--blur-glass)] border border-[var(--color-border-glass)] transition-all duration-700 ease-[var(--ease-standard)] delay-300 ${
-              inView ? 'opacity-100' : 'opacity-0'
-            }`}>
-              <AppText variant="label" color="accent" as="span">Est. 1995</AppText>
+            <div
+              className={`absolute top-4 right-4 px-3 py-1.5 rounded-[var(--radius-md)] bg-[var(--color-surface-glass)] backdrop-blur-[var(--blur-glass)] border border-[var(--color-border-glass)] transition-all duration-700 ease-[var(--ease-standard)] delay-300 ${
+                inView ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <AppText variant="label" color="accent" as="span">
+                Est. 1995
+              </AppText>
             </div>
           </div>
         </div>
@@ -538,24 +563,17 @@ export function AboutFactorySection() {
 ### Task 5: Product Showcase — Premium Cards
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/FeaturedProducts/FeaturedProducts.tsx` — full rewrite
 
 - [ ] **Step 1: Rewrite FeaturedProducts.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import {
-  AppContainer,
-  AppSection,
-  AppGrid,
-  AppCard,
-  AppHeading,
-  AppText,
-  AppBadge,
-} from '@tuanh68/ui';
-import { useInView } from '../../hooks';
-import { products } from '../../mock/products';
+import { AppContainer, AppSection, AppGrid, AppCard, AppHeading, AppText, AppBadge } from "@tuanh68/ui";
+import { useInView } from "../../hooks";
+import { products } from "../../mock/products";
 
 export function FeaturedProductsSection() {
   const { ref, inView } = useInView();
@@ -582,7 +600,7 @@ export function FeaturedProductsSection() {
             <div
               key={product.id}
               className={`transition-all duration-700 ease-[var(--ease-standard)] ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
@@ -599,9 +617,7 @@ export function FeaturedProductsSection() {
 
                 {/* Content */}
                 <div className="space-y-3">
-                  <AppBadge variant="primary">
-                    {product.category}
-                  </AppBadge>
+                  <AppBadge variant="primary">{product.category}</AppBadge>
                   <AppHeading level="title" title="lg" as="h3">
                     {product.name}
                   </AppHeading>
@@ -652,29 +668,28 @@ export function FeaturedProductsSection() {
 ### Task 6: Manufacturing Process — Horizontal Timeline
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Manufacturing/Manufacturing.tsx` — full rewrite
 
 - [ ] **Step 1: Rewrite Manufacturing.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import {
-  AppContainer,
-  AppSection,
-  AppHeading,
-  AppText,
-  AppCard,
-  AppStack,
-} from '@tuanh68/ui';
-import { useInView } from '../../hooks';
+import { AppContainer, AppSection, AppHeading, AppText, AppCard, AppStack } from "@tuanh68/ui";
+import { useInView } from "../../hooks";
 
 const steps = [
-  { id: '1', title: 'Chọn Gỗ', desc: 'Nguyên liệu gỗ keo, bạch đàn được chọn lọc từ vùng nguyên liệu bền vững.', icon: '🌲' },
-  { id: '2', title: 'Bóc & Sấy', desc: 'Gỗ được bóc thành từng lớp mỏng và sấy đến độ ẩm tiêu chuẩn.', icon: '🔥' },
-  { id: '3', title: 'Ép Nhiệt', desc: 'Các lớp ván được phết keo chịu nước và ép nhiệt ở nhiệt độ cao.', icon: '⚙️' },
-  { id: '4', title: 'Phủ Phim', desc: 'Bề mặt được phủ phim chất lượng cao, chống thấm và chịu lực.', icon: '🛡️' },
-  { id: '5', title: 'Kiểm Định', desc: 'Sản phẩm được kiểm tra nghiêm ngặt trước khi xuất xưởng.', icon: '✅' },
+  {
+    id: "1",
+    title: "Chọn Gỗ",
+    desc: "Nguyên liệu gỗ keo, bạch đàn được chọn lọc từ vùng nguyên liệu bền vững.",
+    icon: "🌲",
+  },
+  { id: "2", title: "Bóc & Sấy", desc: "Gỗ được bóc thành từng lớp mỏng và sấy đến độ ẩm tiêu chuẩn.", icon: "🔥" },
+  { id: "3", title: "Ép Nhiệt", desc: "Các lớp ván được phết keo chịu nước và ép nhiệt ở nhiệt độ cao.", icon: "⚙️" },
+  { id: "4", title: "Phủ Phim", desc: "Bề mặt được phủ phim chất lượng cao, chống thấm và chịu lực.", icon: "🛡️" },
+  { id: "5", title: "Kiểm Định", desc: "Sản phẩm được kiểm tra nghiêm ngặt trước khi xuất xưởng.", icon: "✅" },
 ];
 
 export function ManufacturingSection() {
@@ -703,7 +718,7 @@ export function ManufacturingSection() {
             <div className="absolute top-6 left-[10%] right-[10%] h-0.5 bg-[var(--color-border-default)]" />
             <div
               className={`absolute top-6 left-[10%] h-0.5 bg-gradient-to-r from-[var(--color-primary-500)] to-[var(--color-primary-400)] transition-all duration-1000 ease-[var(--ease-standard)] ${
-                inView ? 'w-[80%]' : 'w-0'
+                inView ? "w-[80%]" : "w-0"
               }`}
             />
 
@@ -713,7 +728,7 @@ export function ManufacturingSection() {
                 <div
                   key={step.id}
                   className={`flex flex-col items-center text-center transition-all duration-700 ease-[var(--ease-standard)] ${
-                    inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
@@ -721,13 +736,11 @@ export function ManufacturingSection() {
                   <div
                     className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-full border-2 bg-[var(--color-background-secondary)] transition-all duration-500 ${
                       inView
-                        ? 'border-[var(--color-primary-500)] shadow-[0_0_12px_var(--color-primary-500)]'
-                        : 'border-[var(--color-border-default)]'
+                        ? "border-[var(--color-primary-500)] shadow-[0_0_12px_var(--color-primary-500)]"
+                        : "border-[var(--color-border-default)]"
                     }`}
                   >
-                    <span className="text-title-sm font-semibold text-[var(--color-primary-300)]">
-                      {index + 1}
-                    </span>
+                    <span className="text-title-sm font-semibold text-[var(--color-primary-300)]">{index + 1}</span>
                   </div>
 
                   {/* Glass card */}
@@ -756,14 +769,10 @@ export function ManufacturingSection() {
                 <div className="flex flex-col items-center">
                   <div
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 bg-[var(--color-background-secondary)] z-10 ${
-                      inView
-                        ? 'border-[var(--color-primary-500)]'
-                        : 'border-[var(--color-border-default)]'
+                      inView ? "border-[var(--color-primary-500)]" : "border-[var(--color-border-default)]"
                     }`}
                   >
-                    <span className="text-label font-semibold text-[var(--color-primary-300)]">
-                      {index + 1}
-                    </span>
+                    <span className="text-label font-semibold text-[var(--color-primary-300)]">{index + 1}</span>
                   </div>
                   {index < steps.length - 1 && (
                     <div className="mt-2 w-0.5 flex-1 bg-[var(--color-border-default)] min-h-[40px]" />
@@ -796,21 +805,17 @@ export function ManufacturingSection() {
 ### Task 7: Projects — Cinematic Overlay Cards
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Projects/Projects.tsx` — full rewrite
 
 - [ ] **Step 1: Rewrite Projects.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import {
-  AppContainer,
-  AppSection,
-  AppHeading,
-  AppText,
-} from '@tuanh68/ui';
-import { useInView } from '../../hooks';
-import { projects } from '../../mock/projects';
+import { AppContainer, AppSection, AppHeading, AppText } from "@tuanh68/ui";
+import { useInView } from "../../hooks";
+import { projects } from "../../mock/projects";
 
 export function ProjectsSection() {
   const { ref, inView } = useInView();
@@ -846,7 +851,7 @@ export function ProjectsSection() {
         {projects.length > 0 && (
           <div
             className={`mb-6 transition-all duration-700 ease-[var(--ease-standard)] ${
-              inView ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.98]'
+              inView ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
             }`}
           >
             <div className="relative aspect-[16/9] laptop:aspect-[21/9] rounded-[var(--radius-2xl)] overflow-hidden bg-[var(--color-surface-tertiary)] group cursor-pointer">
@@ -879,7 +884,7 @@ export function ProjectsSection() {
             <div
               key={project.id}
               className={`relative aspect-[4/3] rounded-[var(--radius-2xl)] overflow-hidden bg-[var(--color-surface-tertiary)] group cursor-pointer transition-all duration-700 ease-[var(--ease-standard)] ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${(index + 1) * 100}ms` }}
             >
@@ -918,22 +923,17 @@ export function ProjectsSection() {
 ### Task 8: Partners — Glass Logo Wall
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Partners/Partners.tsx` — full rewrite
 
 - [ ] **Step 1: Rewrite Partners.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import {
-  AppContainer,
-  AppSection,
-  AppHeading,
-  AppText,
-  AppCard,
-} from '@tuanh68/ui';
-import { useInView } from '../../hooks';
-import { partners } from '../../mock/partners';
+import { AppContainer, AppSection, AppHeading, AppText, AppCard } from "@tuanh68/ui";
+import { useInView } from "../../hooks";
+import { partners } from "../../mock/partners";
 
 export function PartnersSection() {
   const { ref, inView } = useInView();
@@ -957,7 +957,7 @@ export function PartnersSection() {
             <div
               key={partner.id}
               className={`transition-all duration-700 ease-[var(--ease-standard)] ${
-                inView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+                inView ? "opacity-100 scale-100" : "opacity-0 scale-90"
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
@@ -984,21 +984,16 @@ export function PartnersSection() {
 ### Task 9: FAQ — Glass Accordion
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Faq/Faq.tsx` — enhance with glass cards
 
 - [ ] **Step 1: Rewrite Faq.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import {
-  AppContainer,
-  AppSection,
-  AppHeading,
-  AppText,
-  Accordion,
-} from '@tuanh68/ui';
-import { faqItems } from '../../mock/faq';
+import { AppContainer, AppSection, AppHeading, AppText, Accordion } from "@tuanh68/ui";
+import { faqItems } from "../../mock/faq";
 
 export function FaqSection() {
   return (
@@ -1034,21 +1029,16 @@ export function FaqSection() {
 ### Task 10: CTA Section — Bold Gradient with Floating Decorations
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/CallToAction/CallToAction.tsx` — full rewrite
 
 - [ ] **Step 1: Rewrite CallToAction.tsx**
 
 ```tsx
-'use client';
+"use client";
 
-import {
-  AppContainer,
-  AppSection,
-  AppHeading,
-  AppText,
-  AppButton,
-} from '@tuanh68/ui';
-import { useInView } from '../../hooks';
+import { AppContainer, AppSection, AppHeading, AppText, AppButton } from "@tuanh68/ui";
+import { useInView } from "../../hooks";
 
 export function CallToActionSection() {
   const { ref, inView } = useInView();
@@ -1067,9 +1057,11 @@ export function CallToActionSection() {
       <div className="absolute top-1/3 right-[8%] w-24 h-6 rounded-full bg-[var(--color-surface-glass)] backdrop-blur-[var(--blur-glass)] border border-[var(--color-border-glass)] animate-[float_7s_ease-in-out_infinite_0.5s]" />
 
       <AppContainer size="2xl" className="relative z-10">
-        <div className={`text-center py-16 laptop:py-24 space-y-8 transition-all duration-700 ease-[var(--ease-standard)] ${
-          inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div
+          className={`text-center py-16 laptop:py-24 space-y-8 transition-all duration-700 ease-[var(--ease-standard)] ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <AppHeading level="display" display="md" as="h2" align="center">
             Sẵn Sàng Hợp Tác?
           </AppHeading>
@@ -1099,6 +1091,7 @@ export function CallToActionSection() {
 ### Task 11: HomePage — Wire Everything Together
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/index.tsx` — add TestimonialsSection import if missing, ensure all sections
 
 - [ ] **Step 1: Verify HomePage index.tsx**
@@ -1106,62 +1099,62 @@ export function CallToActionSection() {
 Read the current `apps/web/src/features/home/index.tsx`. It already imports all sections including TestimonialsSection. No changes needed unless imports change. Verify all sections are present:
 
 ```tsx
-'use client';
+"use client";
 
-import { Navbar, Footer, AppButton } from '@tuanh68/ui';
-import { HeroSection } from './components/Hero';
-import { StatisticsSection } from './components/Statistics';
-import { AboutFactorySection } from './components/AboutFactory';
-import { FeaturedProductsSection } from './components/FeaturedProducts';
-import { ManufacturingSection } from './components/Manufacturing';
-import { ProjectsSection } from './components/Projects';
-import { PartnersSection } from './components/Partners';
-import { TestimonialsSection } from './components/Testimonials';
-import { FaqSection } from './components/Faq';
-import { CallToActionSection } from './components/CallToAction';
+import { Navbar, Footer, AppButton } from "@tuanh68/ui";
+import { HeroSection } from "./components/Hero";
+import { StatisticsSection } from "./components/Statistics";
+import { AboutFactorySection } from "./components/AboutFactory";
+import { FeaturedProductsSection } from "./components/FeaturedProducts";
+import { ManufacturingSection } from "./components/Manufacturing";
+import { ProjectsSection } from "./components/Projects";
+import { PartnersSection } from "./components/Partners";
+import { TestimonialsSection } from "./components/Testimonials";
+import { FaqSection } from "./components/Faq";
+import { CallToActionSection } from "./components/CallToAction";
 
 const navLinks = [
-  { label: 'Trang chủ', href: '/' },
-  { label: 'Sản phẩm', href: '/products' },
-  { label: 'Dự án', href: '/projects' },
-  { label: 'Về chúng tôi', href: '/about' },
-  { label: 'Liên hệ', href: '/contact' },
+  { label: "Trang chủ", href: "/" },
+  { label: "Sản phẩm", href: "/products" },
+  { label: "Dự án", href: "/projects" },
+  { label: "Về chúng tôi", href: "/about" },
+  { label: "Liên hệ", href: "/contact" },
 ];
 
 const footerColumns = [
   {
-    title: 'Sản phẩm',
+    title: "Sản phẩm",
     links: [
-      { label: 'Ván ép phủ phim 12mm', href: '/products/van-ep-phu-phim-12mm' },
-      { label: 'Ván ép phủ phim 15mm', href: '/products/van-ep-phu-phim-15mm' },
-      { label: 'Ván ép phủ phim 18mm', href: '/products/van-ep-phu-phim-18mm' },
-      { label: 'Coffa đỏ Tuấn Anh 68', href: '/products/coffa-do-tuan-anh-68' },
+      { label: "Ván ép phủ phim 12mm", href: "/products/van-ep-phu-phim-12mm" },
+      { label: "Ván ép phủ phim 15mm", href: "/products/van-ep-phu-phim-15mm" },
+      { label: "Ván ép phủ phim 18mm", href: "/products/van-ep-phu-phim-18mm" },
+      { label: "Coffa đỏ Tuấn Anh 68", href: "/products/coffa-do-tuan-anh-68" },
     ],
   },
   {
-    title: 'Về chúng tôi',
+    title: "Về chúng tôi",
     links: [
-      { label: 'Giới thiệu', href: '/about' },
-      { label: 'Nhà máy', href: '/about#factory' },
-      { label: 'Quy trình sản xuất', href: '/about#process' },
-      { label: 'Tin tức', href: '/news' },
+      { label: "Giới thiệu", href: "/about" },
+      { label: "Nhà máy", href: "/about#factory" },
+      { label: "Quy trình sản xuất", href: "/about#process" },
+      { label: "Tin tức", href: "/news" },
     ],
   },
   {
-    title: 'Hỗ trợ',
+    title: "Hỗ trợ",
     links: [
-      { label: 'Câu hỏi thường gặp', href: '/faq' },
-      { label: 'Chính sách bảo hành', href: '/warranty' },
-      { label: 'Chính sách vận chuyển', href: '/shipping' },
-      { label: 'Liên hệ', href: '/contact' },
+      { label: "Câu hỏi thường gặp", href: "/faq" },
+      { label: "Chính sách bảo hành", href: "/warranty" },
+      { label: "Chính sách vận chuyển", href: "/shipping" },
+      { label: "Liên hệ", href: "/contact" },
     ],
   },
   {
-    title: 'Liên hệ',
+    title: "Liên hệ",
     links: [
-      { label: 'Hotline: 1900 XXXX', href: 'tel:1900XXXX' },
-      { label: 'Email: info@tuananh68.vn', href: 'mailto:info@tuananh68.vn' },
-      { label: 'Bình Dương, Việt Nam', href: '#' },
+      { label: "Hotline: 1900 XXXX", href: "tel:1900XXXX" },
+      { label: "Email: info@tuananh68.vn", href: "mailto:info@tuananh68.vn" },
+      { label: "Bình Dương, Việt Nam", href: "#" },
     ],
   },
 ];
@@ -1171,14 +1164,12 @@ export function HomePage() {
     <>
       <Navbar
         variant="glass"
-        logo={
-          <span className="text-title-lg font-bold text-[var(--color-primary-300)]">
-            Tuấn Anh 68
-          </span>
-        }
+        logo={<span className="text-title-lg font-bold text-[var(--color-primary-300)]">Tuấn Anh 68</span>}
         links={navLinks}
         actions={
-          <AppButton variant="primary" size="sm">Báo giá</AppButton>
+          <AppButton variant="primary" size="sm">
+            Báo giá
+          </AppButton>
         }
       />
       <main>
@@ -1200,9 +1191,7 @@ export function HomePage() {
             <span className="text-body-sm text-[var(--color-text-muted)]">
               &copy; {new Date().getFullYear()} Tuấn Anh 68. All rights reserved.
             </span>
-            <span className="text-body-sm text-[var(--color-text-subtle)]">
-              Địa chỉ: Bình Dương, Việt Nam
-            </span>
+            <span className="text-body-sm text-[var(--color-text-subtle)]">Địa chỉ: Bình Dương, Việt Nam</span>
           </div>
         }
       />
@@ -1233,6 +1222,7 @@ Expected: Build succeeds.
 
 Run: `cd apps/web && pnpm dev`
 Expected: Dev server starts at localhost:3000. Open browser and verify:
+
 - Hero loads with animation (gradient background, glass form panel)
 - Statistics count-up on scroll
 - About Factory with layout and image placeholders

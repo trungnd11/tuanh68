@@ -46,6 +46,10 @@ export const appColors = {
   appFuchsia: colors.fuchsia,
   appPink: colors.pink,
   appRose: colors.rose,
+  appDark: "#1a2b42",
+  appBrandTeal: "#48a6a7",
+  appAccentBlue: "#2973b2",
+  appHeroOverlay: "rgb(41 115 178 / 0.7)",
   appNeutral: {
     50: colors.gray[50],
     100: colors.gray[100],

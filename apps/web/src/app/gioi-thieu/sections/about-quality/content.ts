@@ -1,0 +1,81 @@
+export const aboutQualityContent = {
+  id: "chat-luong-cam-ket",
+  badge: "CAM KẾT CHẤT LƯỢNG",
+  title: "TIÊU CHUẨN TU ANH 68",
+  titleHighlight: "TU ANH 68",
+  description: "Mỗi tấm ván xuất xưởng đều phải đạt đủ các tiêu chí kỹ thuật nghiêm ngặt.",
+  mainCards: [
+    {
+      icon: "/assets/about/quality-iso.svg",
+      iconBg: "rgba(41,115,178,0.1)",
+      title: "Tiêu Chuẩn ISO",
+      description: [
+        "Sản phẩm đạt tiêu chuẩn ISO",
+        "9001:2015, đáp ứng yêu cầu chất",
+        "lượng quốc tế và các công trình",
+        "xuất khẩu.",
+      ],
+      tag: "ISO 9001:2015",
+      tagColor: "#2973b2",
+    },
+    {
+      icon: "/assets/about/quality-reuse.svg",
+      iconBg: "rgba(122,156,89,0.1)",
+      title: "Tái Sử Dụng 5–10 Lần",
+      description: [
+        "Lớp phim phenolic chất lượng",
+        "cao giúp ván có thể tái sử dụng",
+        "từ 5 đến 10 lần, tiết kiệm chi phí",
+        "vật liệu đáng kể.",
+      ],
+      tag: "Tiết kiệm tối đa 70%",
+      tagColor: "#7a9c59",
+    },
+    {
+      icon: "/assets/about/quality-water.svg",
+      iconBg: "rgba(72,166,167,0.1)",
+      title: "Chịu Nước Tuyệt Đối",
+      description: [
+        "Keo WBP chống thấm cấp độ I,",
+        "bề mặt phủ phim toàn diện —",
+        "chịu thời tiết khắc nghiệt, không",
+        "cong vênh trong môi trường ẩm.",
+      ],
+      tag: "WBP Phenolic Glue",
+      tagColor: "#48a6a7",
+    },
+    {
+      icon: "/assets/about/quality-smooth.svg",
+      iconBg: "rgba(41,115,178,0.1)",
+      title: "Bề Mặt Nhẵn Bóng",
+      description: [
+        "Lớp phủ phenolic 120g/m² đảm",
+        "bảo bề mặt bê tông sau đổ",
+        "khuôn hoàn toàn phẳng mịn,",
+        "giảm thiểu công trát vữa.",
+      ],
+      tag: "120g/m² Film Coating",
+      tagColor: "#2973b2",
+    },
+  ],
+  extraCards: [
+    {
+      icon: "/assets/about/quality-pressure.svg",
+      iconBg: "rgba(41,115,178,0.1)",
+      title: "Ép Nhiệt Cao Áp",
+      description: "Nhiệt độ ép 185°C, áp suất 30kg/cm² — liên kết lớp gỗ bền vĩnh cửu.",
+    },
+    {
+      icon: "/assets/about/quality-size.svg",
+      iconBg: "rgba(72,166,167,0.1)",
+      title: "Kích Thước Đa Dạng",
+      description: "1220×2440mm, độ dày từ 12mm đến 21mm — đáp ứng mọi yêu cầu công trình.",
+    },
+    {
+      icon: "/assets/about/quality-eco.svg",
+      iconBg: "rgba(122,156,89,0.1)",
+      title: "Thân Thiện Môi Trường",
+      description: "Gỗ nguyên liệu từ rừng trồng bền vững, phát thải formaldehyde cấp E1.",
+    },
+  ],
+} as const;

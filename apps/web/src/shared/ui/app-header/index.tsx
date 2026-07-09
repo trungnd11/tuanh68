@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
-import AppContent from "@/shared/ui/app-content";
 import HeaderMenu, { navigationItems } from "@/shared/ui/app-header/components/header-menu";
 import HeaderLogo from "@/shared/ui/app-header/components/header-logo";
 import HeaderActions from "@/shared/ui/app-header/components/header-actions";
@@ -60,23 +59,19 @@ export default function AppHeader() {
         "app-header",
         isMobileMenuOpen && "shadow-none",
         "transition-transform duration-300",
-        "xl:shadow-[0_10px_30px_rgba(15,23,42,0.08),0_2px_10px_rgba(15,23,42,0.04)]",
         !isHeaderVisible && !isMobileMenuOpen && "-translate-y-full"
       )}
     >
-      <AppContent className="hidden h-full items-center justify-between gap-4 px-4 sm:px-6 xl:flex xl:px-0">
+      <div className="mx-auto hidden h-full w-full max-w-[1280px] items-center justify-between gap-4 px-4 sm:px-6 xl:flex xl:px-8">
         <HeaderLogo />
-        <HeaderMenu activeId={activeId} />
-        <HeaderActions />
-      </AppContent>
+        <div className="hidden items-center gap-8 xl:flex">
+          <HeaderMenu activeId={activeId} />
+          <HeaderActions />
+        </div>
+      </div>
 
-      <div
-        className={clsx(
-          "bg-white flex h-full w-full items-center justify-between",
-          "gap-3 overflow-x-clip px-5 xl:hidden"
-        )}
-      >
-        <HeaderLogo className={clsx("w-20! h-8.25!")} />
+      <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between gap-3 px-5 xl:hidden">
+        <HeaderLogo />
         <HeaderMobileMenu
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}

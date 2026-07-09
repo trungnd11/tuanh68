@@ -1,14 +1,16 @@
 export const appBreakpoint = {
-  xs: { max: "575px" },
-  sm: "576px",
-  md: "768px",
-  lg: "992px",
-  xl: "1200px",
-  xxl: "1600px",
+  xxs: { min: "320px", max: "375px" },
+  xs: { min: "376px", max: "575px" },
+  sm: { min: "576px" },
+  md: { min: "768px" },
+  lg: { min: "992px" },
+  xl: { min: "1200px" },
+  xxl: { min: "1600px" },
 } as const;
 
 export const appBreakpointValue = {
-  xs: 0,
+  xxs: 320,
+  xs: 376,
   sm: 576,
   md: 768,
   lg: 992,

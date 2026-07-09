@@ -20,10 +20,12 @@
 ### Task 1: Add CSS token variables + update contract tests
 
 **Files:**
+
 - Modify: `apps/web/src/styles/tokens/colors.css`
 - Modify: `apps/web/src/features/home/components/layout-spacing.test.ts`
 
 **Interfaces:**
+
 - Consumes: existing token system conventions in `colors.css`
 - Produces: 7 new CSS variables for header use
 
@@ -32,13 +34,13 @@
 Insert before the closing `}` of `:root`:
 
 ```css
-  --color-accent-teal: #48a6a7;
-  --color-accent-teal-hover: #3d9293;
-  --color-text-nav-inactive: #e5e7eb;
-  --color-header-bg-from: rgb(15 23 42 / 0.8);
-  --color-header-bg-to: rgb(30 41 59 / 0.5);
-  --color-header-border: rgb(255 255 255 / 0.15);
-  --color-header-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.4);
+--color-accent-teal: #48a6a7;
+--color-accent-teal-hover: #3d9293;
+--color-text-nav-inactive: #e5e7eb;
+--color-header-bg-from: rgb(15 23 42 / 0.8);
+--color-header-bg-to: rgb(30 41 59 / 0.5);
+--color-header-border: rgb(255 255 255 / 0.15);
+--color-header-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.4);
 ```
 
 - [ ] **Step 2: Update test assertions for changed selectors**
@@ -71,24 +73,30 @@ git commit -m "feat(tokens): add header Figma color tokens and update test asser
 ### Task 2: Update AppHeader.tsx visuals
 
 **Files:**
+
 - Modify: `packages/ui/src/navigation/AppHeader.tsx`
 
 **Interfaces:**
+
 - Consumes: `--color-header-*`, `--color-accent-teal` tokens from Task 1
 - Produces: visually updated header component
 
 - [ ] **Step 1: Replace background gradient layers**
 
 In the first gradient div (line 60-61), change:
+
 ```
 bg-[linear-gradient(180deg,rgb(8_17_29/0.82),rgb(8_17_29/0.62))] backdrop-blur-glass
 ```
+
 to:
+
 ```
 bg-[linear-gradient(134.29deg,var(--color-header-bg-from),var(--color-header-bg-to))] backdrop-blur-[12px]
 ```
 
 In the second (scroll-based) gradient div (line 64-66), change the gradient to use the new tokens so the scroll layer also matches the Figma palette:
+
 ```
 bg-[linear-gradient(180deg,var(--color-header-bg-from)_30%,var(--color-header-bg-to)_80%)]
 ```
@@ -104,6 +112,7 @@ On line 53, change `scrolled && 'shadow-xs'` to `scrolled && 'shadow-[var(--colo
 - [ ] **Step 4: Add inset top highlight div**
 
 After the second gradient div (after line 68), add:
+
 ```tsx
 <div
   aria-hidden="true"
@@ -131,9 +140,11 @@ git commit -m "feat(header): update gradient, blur, shadow, border, add inset hi
 ### Task 3: Update NavItem desktop styling
 
 **Files:**
+
 - Modify: `packages/ui/src/navigation/NavItem.tsx`
 
 **Interfaces:**
+
 - Consumes: `--color-text-nav-inactive` token from Task 1
 - Produces: updated desktop nav item rendering
 
@@ -145,15 +156,15 @@ Change the desktop `<a>` element's className block (lines 36-53):
 <a
   href={href}
   onClick={onClick}
-  aria-current={active ? 'page' : undefined}
+  aria-current={active ? "page" : undefined}
   className={cn(
-    'group relative rounded-md px-3 py-2 transition-colors duration-fast ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring drop-shadow-[0px_1px_0.5px_rgba(0,0,0,0.05)]',
+    "group relative rounded-md px-3 py-2 transition-colors duration-fast ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring drop-shadow-[0px_1px_0.5px_rgba(0,0,0,0.05)]"
   )}
 >
   <span
     className={cn(
-      'text-[14px] font-medium uppercase tracking-[0.35px] transition-colors duration-fast ease-standard',
-      active ? 'text-white' : 'text-[var(--color-text-nav-inactive)] group-hover:text-white',
+      "text-[14px] font-medium uppercase tracking-[0.35px] transition-colors duration-fast ease-standard",
+      active ? "text-white" : "text-[var(--color-text-nav-inactive)] group-hover:text-white"
     )}
   >
     {label}
@@ -162,6 +173,7 @@ Change the desktop `<a>` element's className block (lines 36-53):
 ```
 
 Key changes from current:
+
 - Removed `active && 'bg-primary-500/8'` from anchor
 - Added `drop-shadow-[0px_1px_0.5px_rgba(0,0,0,0.05)]` to anchor
 - Changed `text-body-sm` to `text-[14px]`
@@ -191,6 +203,7 @@ git commit -m "feat(navitem): apply Figma typography and color styling to deskto
 ### Task 4: Update DesktopMenu gap
 
 **Files:**
+
 - Modify: `packages/ui/src/navigation/DesktopMenu.tsx`
 
 - [ ] **Step 1: Change gap from 2px to 32px**
@@ -209,9 +222,11 @@ git commit -m "fix(desktopmenu): increase nav item gap to 32px per Figma"
 ### Task 5: Update SiteChrome CTA and nav label
 
 **Files:**
+
 - Modify: `apps/web/src/app/SiteChrome.tsx`
 
 **Interfaces:**
+
 - Consumes: `--color-accent-teal`, `--color-accent-teal-hover` tokens from Task 1
 - Produces: updated CTA (phone link) and nav label
 
@@ -222,12 +237,17 @@ Line 9: change `{ label: 'Sản phẩm', href: '/products' },` to `{ label: 'Vá
 - [ ] **Step 2: Replace CTA content**
 
 Lines 73-76: replace:
+
 ```tsx
 <HeaderCTA>
-  <AppButton variant="primary" size="lg">Báo giá</AppButton>
+  <AppButton variant="primary" size="lg">
+    Báo giá
+  </AppButton>
 </HeaderCTA>
 ```
+
 with:
+
 ```tsx
 <HeaderCTA>
   <a
@@ -235,7 +255,13 @@ with:
     className="inline-flex items-center gap-2 rounded-[6px] bg-[var(--color-accent-teal)] px-5 py-2 text-[14px] font-bold text-white shadow-lg transition-colors duration-fast ease-standard hover:bg-[var(--color-accent-teal-hover)]"
   >
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-      <path d="M13 10.08v1.77a1.18 1.18 0 0 1-1.29 1.18 11.66 11.66 0 0 1-5.07-1.81 11.5 11.5 0 0 1-3.53-3.52A11.67 11.67 0 0 1 1.3 2.29 1.18 1.18 0 0 1 2.47 1h1.77a1.18 1.18 0 0 1 1.18.95 7.57 7.57 0 0 0 .41 1.67 1.18 1.18 0 0 1-.27 1.25l-.75.75a9.44 9.44 0 0 0 3.53 3.52l.75-.75a1.18 1.18 0 0 1 1.25-.27 7.57 7.57 0 0 0 1.67.41A1.18 1.18 0 0 1 13 10.08z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path
+        d="M13 10.08v1.77a1.18 1.18 0 0 1-1.29 1.18 11.66 11.66 0 0 1-5.07-1.81 11.5 11.5 0 0 1-3.53-3.52A11.67 11.67 0 0 1 1.3 2.29 1.18 1.18 0 0 1 2.47 1h1.77a1.18 1.18 0 0 1 1.18.95 7.57 7.57 0 0 0 .41 1.67 1.18 1.18 0 0 1-.27 1.25l-.75.75a9.44 9.44 0 0 0 3.53 3.52l.75-.75a1.18 1.18 0 0 1 1.25-.27 7.57 7.57 0 0 0 1.67.41A1.18 1.18 0 0 1 13 10.08z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
     0983 570 760
   </a>

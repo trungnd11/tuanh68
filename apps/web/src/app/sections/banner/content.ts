@@ -1,13 +1,15 @@
-export const bannerActionItems = [
-  {
-    labelKey: "purchase",
-    className: "bg-main-app-yellow text-app-neutral-900 shadow-lg shadow-black/30",
-  },
-  {
-    labelKey: "roadshow",
-    className: "gap-3 bg-main-app-red text-white",
-    hasPlayIcon: true,
-  },
-] as const;
+import { appSectionIds } from "@/shared/config/app";
 
-export const bannerCountdownLabelKeys = ["days", "hours", "minutes", "seconds"] as const;
+export const bannerContent = {
+  id: appSectionIds.home,
+  title: ["NHÀ MÁY SẢN XUẤT", "VÁN PHỦ PHIM"],
+  subtitle: "Tu Anh 68 Manufacturing CO.,LTD",
+  primaryCta: {
+    label: "XEM SẢN PHẨM",
+    href: `#${appSectionIds.products}`,
+  },
+  secondaryCta: {
+    label: "LIÊN HỆ NGAY",
+    href: `#${appSectionIds.contact}`,
+  },
+} as const;

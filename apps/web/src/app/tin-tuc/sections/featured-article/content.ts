@@ -1,0 +1,27 @@
+export const featuredArticleContent = {
+  badge: "TIÊU ĐIỂM NGÀNH",
+  article: {
+    category: "KỸ THUẬT SẢN XUẤT",
+    readingTime: "8 phút đọc",
+    title: ["CÔNG NGHỆ ÉP NHIỆT CAO", "ÁP THẾ HỆ MỚI — NÂNG", "TẦM CHẤT LƯỢNG VÁN", "PHỦ PHIM VIỆT NAM"],
+    description: [
+      "Tu Anh 68 vừa hoàn tất nâng cấp dây chuyền ép",
+      "nhiệt thế hệ thứ tư với nhiệt độ đồng đều 185°C, áp",
+      "suất lên đến 35kg/cm². Công nghệ mới này giúp tăng",
+      "40% độ bám dính lớp phim phenolic và kéo dài tuổi",
+      "thọ sản vượt trội so với tiêu chuẩn cũ, đồng",
+      "thời giảm đáng kể lượng khí thải trong quá trình sản",
+      "xuất.",
+    ],
+    author: "Phòng Kỹ Thuật Tu Anh 68",
+    views: "2,847 lượt xem",
+    shares: "124 chia sẻ",
+    date: { day: "15", month: "TH.7", year: "2025" },
+    authorName: "Nguyễn Văn Hùng",
+    featuredBadge: "TIÊU ĐIỂM",
+    featuredBadgeSub: "KỸ THUẬT",
+    imageAlt: "high-tech automated hot press plywood production line in a modern Vietnamese factory, orange heating",
+    backgroundImage: "/assets/news/featured/hero-image.jpg",
+    authorAvatar: "/assets/news/featured/author-avatar.jpg",
+  },
+} as const;

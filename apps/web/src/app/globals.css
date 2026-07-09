@@ -61,6 +61,13 @@ section[id] {
   scroll-margin-top: 5.3125rem;
 }
 
+@media (min-width: 768px) {
+  .quote-faq-grid {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+  }
+}
+
 @media (min-width: 1200px) {
   section[id] {
     scroll-margin-top: 5.9375rem;

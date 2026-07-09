@@ -1,5 +1,6 @@
 import { SquircleNoScript } from "@squircle-js/react";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import AppFooter from "@/shared/ui/app-footer";
@@ -17,28 +18,28 @@ if (!siteUrl) {
 }
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "F88 - Cổ phiếu",
-    template: "%s | F88 - Cổ phiếu",
+    default: "Tú Anh 68",
+    template: "%s | Tú Anh 68",
   },
   description:
-    "Landing page giới thiệu cổ phiếu F88 với thông tin doanh nghiệp, lộ trình IPO, tài liệu nhà đầu tư và hướng dẫn đăng ký mua cổ phiếu.",
+    "Tú Anh 68 - Công ty sản xuất và cung cấp ván ép, ván phủ phim chất lượng cao. Giới thiệu sản phẩm, dự án và tin tức ngành gỗ.",
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
   },
   alternates: {
     canonical: "/",
   },
   openGraph: {
     locale: "vi_VN",
-    siteName: "F88",
+    siteName: "Tú Anh 68",
     type: "website",
   },
 };
@@ -51,11 +52,9 @@ export default async function RootLayout({
   return (
     <html lang="vi" className="h-full antialiased">
       <body className={`${inter.className} bg-main-app-bg-content`} suppressHydrationWarning>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{new MutationObserver(function(m){m.forEach(function(r){if(r.type==="attributes"&&(r.attributeName==="bis_skin_checked"||r.attributeName==="bis_register")){r.target.removeAttribute(r.attributeName)}})}).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:["bis_skin_checked","bis_register"]})}catch(e){}})()`,
-          }}
-        />
+        <Script id="cleanup-ext-attrs" strategy="afterInteractive">
+          {`(function(){try{new MutationObserver(function(m){m.forEach(function(r){if(r.type==="attributes"&&(r.attributeName==="bis_skin_checked"||r.attributeName==="bis_register")){r.target.removeAttribute(r.attributeName)}})}).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:["bis_skin_checked","bis_register"]})}catch(e){}})()`}
+        </Script>
         <SquircleNoScript />
         <ReactQueryProvider>
           <AppScrollReset />

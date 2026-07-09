@@ -23,6 +23,7 @@
 ### Task 1: Container Tokens And Base Overflow
 
 **Files:**
+
 - Modify: `apps/web/src/styles/theme.css`
 - Modify: `apps/web/src/styles/tokens/spacing.css`
 - Modify: `apps/web/src/styles/tokens/layout.css`
@@ -30,6 +31,7 @@
 - Verify: `packages/ui/src/layout/AppContainer.tsx`
 
 **Interfaces:**
+
 - Consumes: existing `AppContainer` class `mx-auto w-full px-[var(--spacing-container-x)]`.
 - Produces: stable `--spacing-container-x` and `--container-2xl` values used by Header/Homepage sections.
 
@@ -70,7 +72,7 @@ body {
 Confirm `packages/ui/src/layout/AppContainer.tsx` keeps:
 
 ```tsx
-'mx-auto w-full px-[var(--spacing-container-x)]'
+"mx-auto w-full px-[var(--spacing-container-x)]";
 ```
 
 Expected: no component-specific horizontal page padding is needed outside `AppContainer`.
@@ -80,9 +82,11 @@ Expected: no component-specific horizontal page padding is needed outside `AppCo
 ### Task 2: Header Container And Responsive Spacing
 
 **Files:**
+
 - Modify: `packages/ui/src/navigation/Navbar.tsx`
 
 **Interfaces:**
+
 - Consumes: `AppContainer size="2xl"`.
 - Produces: full-width header shell with contained nav content and mobile hamburger.
 
@@ -91,7 +95,7 @@ Expected: no component-specific horizontal page padding is needed outside `AppCo
 Header root must keep:
 
 ```tsx
-'sticky top-0 z-[var(--z-header)] w-full'
+"sticky top-0 z-[var(--z-header)] w-full";
 ```
 
 - [ ] **Step 2: Keep content in AppContainer**
@@ -107,7 +111,7 @@ The desktop nav and mobile menu must both be wrapped with:
 Use this nav class:
 
 ```tsx
-className="flex h-16 items-center justify-between laptop:h-20"
+className = "flex h-16 items-center justify-between laptop:h-20";
 ```
 
 Expected: `64px` mobile, `80px` desktop.
@@ -133,9 +137,11 @@ Expected: logo never sticks to viewport edge because `AppContainer` supplies hor
 ### Task 3: Hero Layout And Hierarchy
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Hero/Hero.tsx`
 
 **Interfaces:**
+
 - Consumes: `AppContainer`, `AppButton`, `AppSurface`, `QuoteForm`, `useInView`.
 - Produces: contained hero with two-column desktop layout and stacked mobile layout.
 
@@ -144,7 +150,8 @@ Expected: logo never sticks to viewport edge because `AppContainer` supplies hor
 Use this section class:
 
 ```tsx
-className="relative flex min-h-[calc(100vh-64px)] items-center overflow-hidden bg-[var(--color-background-primary)] laptop:min-h-[calc(100vh-80px)]"
+className =
+  "relative flex min-h-[calc(100vh-64px)] items-center overflow-hidden bg-[var(--color-background-primary)] laptop:min-h-[calc(100vh-80px)]";
 ```
 
 - [ ] **Step 2: Add layered premium background**
@@ -189,7 +196,8 @@ Expected: badge to headline `24px`, headline to description `24px`, description 
 Use these heading classes:
 
 ```tsx
-className="text-[2.625rem] font-extrabold leading-[1.05] tracking-[-0.04em] text-[var(--color-text-primary)] tablet:text-[3.5rem] laptop:text-[4rem] desktop:text-[5rem]"
+className =
+  "text-[2.625rem] font-extrabold leading-[1.05] tracking-[-0.04em] text-[var(--color-text-primary)] tablet:text-[3.5rem] laptop:text-[4rem] desktop:text-[5rem]";
 ```
 
 Use matching secondary line classes with slightly smaller scale and gold gradient.
@@ -199,13 +207,13 @@ Use matching secondary line classes with slightly smaller scale and gold gradien
 Primary button class:
 
 ```tsx
-"bg-[var(--color-primary-500)] px-[22px] py-[14px] text-[var(--color-text-inverse)] rounded-[14px] text-button font-bold shadow-[0_4px_24px_rgb(216_168_74_/_0.3)] hover:bg-[var(--color-primary-400)]"
+"bg-[var(--color-primary-500)] px-[22px] py-[14px] text-[var(--color-text-inverse)] rounded-[14px] text-button font-bold shadow-[0_4px_24px_rgb(216_168_74_/_0.3)] hover:bg-[var(--color-primary-400)]";
 ```
 
 Secondary button class:
 
 ```tsx
-"border border-[var(--color-border-default)] bg-[var(--color-surface-glass)] px-[22px] py-[14px] text-[var(--color-text-primary)] backdrop-blur-[var(--blur-glass)] rounded-[14px] text-button font-semibold"
+"border border-[var(--color-border-default)] bg-[var(--color-surface-glass)] px-[22px] py-[14px] text-[var(--color-text-primary)] backdrop-blur-[var(--blur-glass)] rounded-[14px] text-button font-semibold";
 ```
 
 ---
@@ -213,10 +221,12 @@ Secondary button class:
 ### Task 4: Quote Form Spacing
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Hero/Hero.tsx`
 - Modify: `apps/web/src/features/home/components/QuoteForm/QuoteForm.tsx`
 
 **Interfaces:**
+
 - Consumes: existing quote form state and submit handler.
 - Produces: `440px` desktop glass form with correct internal spacing.
 
@@ -225,7 +235,7 @@ Secondary button class:
 Use this form column class in `Hero.tsx`:
 
 ```tsx
-className="w-full min-w-0 laptop:w-[440px] laptop:justify-self-end"
+className = "w-full min-w-0 laptop:w-[440px] laptop:justify-self-end";
 ```
 
 - [ ] **Step 2: Style form surface**
@@ -233,7 +243,8 @@ className="w-full min-w-0 laptop:w-[440px] laptop:justify-self-end"
 Use this surface class:
 
 ```tsx
-className="rounded-[28px] border border-[var(--color-border-glass)] bg-[var(--color-surface-glass)] p-6 shadow-[var(--shadow-glass)] backdrop-blur-[var(--blur-glass)] tablet:p-8"
+className =
+  "rounded-[28px] border border-[var(--color-border-glass)] bg-[var(--color-surface-glass)] p-6 shadow-[var(--shadow-glass)] backdrop-blur-[var(--blur-glass)] tablet:p-8";
 ```
 
 - [ ] **Step 3: Preserve business logic**
@@ -251,7 +262,7 @@ Use:
 Inputs/selects keep `className="h-12"`. Submit button keeps:
 
 ```tsx
-className="h-[52px] text-[15px] font-bold"
+className = "h-[52px] text-[15px] font-bold";
 ```
 
 ---
@@ -259,9 +270,11 @@ className="h-[52px] text-[15px] font-bold"
 ### Task 5: Stats Section Container And Cards
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/Statistics/Statistics.tsx`
 
 **Interfaces:**
+
 - Consumes: existing `statistics`, `CountUp`, and icon list.
 - Produces: contained stats grid with premium glass cards.
 
@@ -270,7 +283,7 @@ className="h-[52px] text-[15px] font-bold"
 Use section class:
 
 ```tsx
-className="bg-[var(--color-background-primary)] py-14 laptop:py-20"
+className = "bg-[var(--color-background-primary)] py-14 laptop:py-20";
 ```
 
 Expected: `56px` mobile and `80px` desktop.
@@ -289,7 +302,8 @@ Use:
 Use:
 
 ```tsx
-className="h-full rounded-[24px] border border-[var(--color-border-glass)] bg-[var(--color-surface-glass)] p-[28px] backdrop-blur-[var(--blur-glass)]"
+className =
+  "h-full rounded-[24px] border border-[var(--color-border-glass)] bg-[var(--color-surface-glass)] p-[28px] backdrop-blur-[var(--blur-glass)]";
 ```
 
 Expected: consistent card height, no edge sticking, glass treatment.
@@ -299,9 +313,11 @@ Expected: consistent card height, no edge sticking, glass treatment.
 ### Task 6: Verification
 
 **Files:**
+
 - Verify: package scripts and changed files.
 
 **Interfaces:**
+
 - Consumes: completed Tasks 1-5.
 - Produces: passing lint, typecheck, and build evidence.
 

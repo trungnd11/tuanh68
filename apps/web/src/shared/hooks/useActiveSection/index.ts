@@ -9,12 +9,26 @@ export function useActiveSection(sectionIds: readonly string[]) {
     let frameId = 0;
     const menuSectionIds = new Set(sectionIds);
 
+    function updateFromHash() {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && menuSectionIds.has(hash)) {
+        setActiveId(hash);
+        return true;
+      }
+      return false;
+    }
+
     function updateActiveSection() {
       cancelAnimationFrame(frameId);
 
       frameId = requestAnimationFrame(() => {
         if (window.scrollY <= 8) {
-          setActiveId(null);
+          const hash = window.location.hash.replace("#", "");
+          if (hash && menuSectionIds.has(hash)) {
+            setActiveId(hash);
+          } else {
+            setActiveId(sectionIds[0] ?? null);
+          }
           return;
         }
 
@@ -37,15 +51,18 @@ export function useActiveSection(sectionIds: readonly string[]) {
       });
     }
 
+    updateFromHash();
     updateActiveSection();
 
     window.addEventListener("scroll", updateActiveSection, { passive: true });
     window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("hashchange", updateActiveSection);
 
     return () => {
       cancelAnimationFrame(frameId);
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
+      window.removeEventListener("hashchange", updateActiveSection);
     };
   }, [sectionIds]);
 

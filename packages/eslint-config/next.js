@@ -1,11 +1,11 @@
-import nextPlugin from '@next/eslint-plugin-next';
-import globals from 'globals';
-import { baseConfig } from './base.js';
+import nextPlugin from "@next/eslint-plugin-next";
+import globals from "globals";
+import { baseConfig } from "./base.js";
 
 export const nextConfig = [
   ...baseConfig,
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -13,11 +13,11 @@ export const nextConfig = [
       },
     },
     plugins: {
-      '@next/next': nextPlugin,
+      "@next/next": nextPlugin,
     },
     rules: {
       ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs['core-web-vitals'].rules,
+      ...nextPlugin.configs["core-web-vitals"].rules,
     },
   },
 ];

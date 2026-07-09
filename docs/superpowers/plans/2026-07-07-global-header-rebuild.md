@@ -28,9 +28,11 @@
 ### Task 1: Lock The Rebuild Contract In Tests
 
 **Files:**
+
 - Modify: `apps/web/src/features/home/components/layout-spacing.test.ts`
 
 **Interfaces:**
+
 - Consumes: source contents for `packages/ui/src/navigation/AppHeader.tsx` and `apps/web/src/app/SiteChrome.tsx`.
 - Produces: failing source-contract assertions that describe the rebuilt header before implementation.
 
@@ -39,22 +41,22 @@
 Update the existing header test block so it checks the rebuilt source contract instead of the current generic implementation:
 
 ```ts
-it('keeps header content inside AppContainer with premium responsive height', () => {
-  const header = read('packages/ui/src/navigation/AppHeader.tsx');
+it("keeps header content inside AppContainer with premium responsive height", () => {
+  const header = read("packages/ui/src/navigation/AppHeader.tsx");
 
   expect(header).toContain('<AppContainer size="2xl">');
-  expect(header).toContain('flex h-16 tablet:h-[72px] desktop:h-20 items-center justify-between');
-  expect(header).toContain('absolute left-1/2 -translate-x-1/2 hidden desktop:flex');
-  expect(header).toContain('fixed top-0 left-0 right-0');
+  expect(header).toContain("flex h-16 tablet:h-[72px] desktop:h-20 items-center justify-between");
+  expect(header).toContain("absolute left-1/2 -translate-x-1/2 hidden desktop:flex");
+  expect(header).toContain("fixed top-0 left-0 right-0");
 });
 
-it('renders mobile navigation as logo plus hamburger with drawer CTA content', () => {
-  const header = read('packages/ui/src/navigation/AppHeader.tsx');
+it("renders mobile navigation as logo plus hamburger with drawer CTA content", () => {
+  const header = read("packages/ui/src/navigation/AppHeader.tsx");
 
-  expect(header).toContain('flex desktop:hidden items-center');
-  expect(header).toContain('<MobileDrawer');
-  expect(header).toContain('hideCloseButton');
-  expect(header).toContain('drawerBottom');
+  expect(header).toContain("flex desktop:hidden items-center");
+  expect(header).toContain("<MobileDrawer");
+  expect(header).toContain("hideCloseButton");
+  expect(header).toContain("drawerBottom");
 });
 ```
 
@@ -63,8 +65,8 @@ it('renders mobile navigation as logo plus hamburger with drawer CTA content', (
 Extend the existing `SiteChrome` contract test with these assertions:
 
 ```ts
-expect(chrome).toContain('<AppHeader');
-expect(chrome).toContain('currentPath={pathname}');
+expect(chrome).toContain("<AppHeader");
+expect(chrome).toContain("currentPath={pathname}");
 expect(chrome).toContain("{ label: 'Giới thiệu', href: '/about' }");
 expect(chrome).toContain("{ label: 'Tin tức', href: '/news' }");
 ```
@@ -80,6 +82,7 @@ Expected: FAIL because the current implementation still reflects the old header 
 ### Task 2: Rebuild Navigation File Structure
 
 **Files:**
+
 - Create: `packages/ui/src/navigation/HeaderLogo.tsx`
 - Create: `packages/ui/src/navigation/DesktopNavigation.tsx`
 - Create: `packages/ui/src/navigation/DesktopMenu.tsx`
@@ -92,6 +95,7 @@ Expected: FAIL because the current implementation still reflects the old header 
 - Modify: `packages/ui/src/navigation/index.ts`
 
 **Interfaces:**
+
 - Consumes: `cn`, `AppContainer`, `AppButton`, `Divider`, `MobileDrawer`, and the existing token-based Tailwind classes.
 - Produces:
   - `HeaderLogoProps { children?: React.ReactNode; href?: string; className?: string }`
@@ -109,7 +113,7 @@ Expected: FAIL because the current implementation still reflects the old header 
 Add a single-responsibility link component with desktop and mobile variants:
 
 ```tsx
-import { cn } from '../utils/cn';
+import { cn } from "../utils/cn";
 
 export interface NavItemProps {
   href: string;
@@ -125,10 +129,12 @@ export function NavItem({ href, label, active = false, onClick, mobile = false }
       <a
         href={href}
         onClick={onClick}
-        aria-current={active ? 'page' : undefined}
+        aria-current={active ? "page" : undefined}
         className={cn(
-          'flex items-center rounded-md px-3 py-3 text-body-md font-medium transition-colors duration-fast ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring',
-          active ? 'bg-primary-500/10 text-primary-300' : 'text-text-secondary hover:bg-hover-surface hover:text-text-primary',
+          "flex items-center rounded-md px-3 py-3 text-body-md font-medium transition-colors duration-fast ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring",
+          active
+            ? "bg-primary-500/10 text-primary-300"
+            : "text-text-secondary hover:bg-hover-surface hover:text-text-primary"
         )}
       >
         {label}
@@ -140,16 +146,26 @@ export function NavItem({ href, label, active = false, onClick, mobile = false }
     <a
       href={href}
       onClick={onClick}
-      aria-current={active ? 'page' : undefined}
+      aria-current={active ? "page" : undefined}
       className={cn(
-        'group relative rounded-md px-3 py-2 transition-colors duration-fast ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring',
-        active && 'bg-primary-500/8',
+        "group relative rounded-md px-3 py-2 transition-colors duration-fast ease-standard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring",
+        active && "bg-primary-500/8"
       )}
     >
-      <span className={cn('text-body-sm font-medium transition-colors duration-fast ease-standard', active ? 'text-primary-300' : 'text-text-secondary group-hover:text-text-primary')}>
+      <span
+        className={cn(
+          "text-body-sm font-medium transition-colors duration-fast ease-standard",
+          active ? "text-primary-300" : "text-text-secondary group-hover:text-text-primary"
+        )}
+      >
         {label}
       </span>
-      <span className={cn('absolute left-1/2 top-[calc(100%-2px)] h-0.5 -translate-x-1/2 rounded-full bg-primary-400 transition-all duration-fast ease-standard', active ? 'w-4 opacity-100' : 'w-0 opacity-70 group-hover:w-4')} />
+      <span
+        className={cn(
+          "absolute left-1/2 top-[calc(100%-2px)] h-0.5 -translate-x-1/2 rounded-full bg-primary-400 transition-all duration-fast ease-standard",
+          active ? "w-4 opacity-100" : "w-0 opacity-70 group-hover:w-4"
+        )}
+      />
     </a>
   );
 }
@@ -160,8 +176,8 @@ export function NavItem({ href, label, active = false, onClick, mobile = false }
 Render the approved desktop links and compute active state locally:
 
 ```tsx
-import type { HeaderLink } from './AppHeader';
-import { NavItem } from './NavItem';
+import type { HeaderLink } from "./AppHeader";
+import { NavItem } from "./NavItem";
 
 export interface DesktopMenuProps {
   links: HeaderLink[];
@@ -169,7 +185,7 @@ export interface DesktopMenuProps {
 }
 
 const isActivePath = (currentPath: string | undefined, href: string) =>
-  currentPath === href || (href !== '/' && Boolean(currentPath?.startsWith(href)));
+  currentPath === href || (href !== "/" && Boolean(currentPath?.startsWith(href)));
 
 export function DesktopMenu({ links, currentPath }: DesktopMenuProps) {
   return (
@@ -187,8 +203,8 @@ export function DesktopMenu({ links, currentPath }: DesktopMenuProps) {
 Wrap the centered desktop menu and right-aligned CTA:
 
 ```tsx
-import type { HeaderLink } from './AppHeader';
-import { DesktopMenu } from './DesktopMenu';
+import type { HeaderLink } from "./AppHeader";
+import { DesktopMenu } from "./DesktopMenu";
 
 export interface DesktopNavigationProps {
   links: HeaderLink[];
@@ -213,7 +229,7 @@ export function DesktopNavigation({ links, currentPath, cta }: DesktopNavigation
 Move the icon morph out of `AppHeader`:
 
 ```tsx
-import { cn } from '../utils/cn';
+import { cn } from "../utils/cn";
 
 export interface HamburgerButtonProps {
   open: boolean;
@@ -226,13 +242,28 @@ export function HamburgerButton({ open, onClick }: HamburgerButtonProps) {
       type="button"
       onClick={onClick}
       aria-expanded={open}
-      aria-label={open ? 'Đóng menu' : 'Mở menu'}
+      aria-label={open ? "Đóng menu" : "Mở menu"}
       className="flex h-10 w-10 items-center justify-center rounded-md text-text-secondary transition-colors duration-fast ease-standard hover:bg-hover-surface hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
     >
       <div className="relative flex h-[18px] w-6 flex-col justify-between">
-        <span className={cn('block h-[2px] w-full origin-center rounded-full bg-current transition-all duration-300 ease-standard', open && 'translate-y-[8px] -rotate-45')} />
-        <span className={cn('block h-[2px] w-full rounded-full bg-current transition-all duration-300 ease-standard', open && 'scale-0 opacity-0')} />
-        <span className={cn('block h-[2px] w-full origin-center rounded-full bg-current transition-all duration-300 ease-standard', open && '-translate-y-[8px] rotate-45')} />
+        <span
+          className={cn(
+            "block h-[2px] w-full origin-center rounded-full bg-current transition-all duration-300 ease-standard",
+            open && "translate-y-[8px] -rotate-45"
+          )}
+        />
+        <span
+          className={cn(
+            "block h-[2px] w-full rounded-full bg-current transition-all duration-300 ease-standard",
+            open && "scale-0 opacity-0"
+          )}
+        />
+        <span
+          className={cn(
+            "block h-[2px] w-full origin-center rounded-full bg-current transition-all duration-300 ease-standard",
+            open && "-translate-y-[8px] rotate-45"
+          )}
+        />
       </div>
     </button>
   );
@@ -244,7 +275,7 @@ export function HamburgerButton({ open, onClick }: HamburgerButtonProps) {
 Render only the mobile trigger area:
 
 ```tsx
-import { HamburgerButton } from './HamburgerButton';
+import { HamburgerButton } from "./HamburgerButton";
 
 export interface MobileNavigationProps {
   open: boolean;
@@ -265,20 +296,15 @@ export function MobileNavigation({ open, onToggle }: MobileNavigationProps) {
 Keep the shared wrappers small and composable:
 
 ```tsx
-import { cn } from '../utils/cn';
+import { cn } from "../utils/cn";
 
 export interface HeaderLogoProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string;
 }
 
-export function HeaderLogo({ href = '/', className, children, ...props }: HeaderLogoProps) {
+export function HeaderLogo({ href = "/", className, children, ...props }: HeaderLogoProps) {
   return (
-    <a
-      href={href}
-      aria-label="Trang chủ"
-      className={cn('flex items-center gap-2', className)}
-      {...props}
-    >
+    <a href={href} aria-label="Trang chủ" className={cn("flex items-center gap-2", className)} {...props}>
       {children}
     </a>
   );
@@ -292,7 +318,7 @@ export interface HeaderCTAProps {
 }
 
 export function HeaderCTA({ children, mobile = false }: HeaderCTAProps) {
-  return <div className={mobile ? 'w-full' : undefined}>{children}</div>;
+  return <div className={mobile ? "w-full" : undefined}>{children}</div>;
 }
 ```
 
@@ -301,11 +327,11 @@ export function HeaderCTA({ children, mobile = false }: HeaderCTAProps) {
 Build the drawer content shell around `MobileDrawer`:
 
 ```tsx
-import type { HeaderLink } from './AppHeader';
-import { Divider } from '../display/Divider';
-import { MobileDrawer } from './MobileDrawer';
-import { NavItem } from './NavItem';
-import { HeaderLogo } from './HeaderLogo';
+import type { HeaderLink } from "./AppHeader";
+import { Divider } from "../display/Divider";
+import { MobileDrawer } from "./MobileDrawer";
+import { NavItem } from "./NavItem";
+import { HeaderLogo } from "./HeaderLogo";
 
 export interface HeaderDrawerProps {
   open: boolean;
@@ -318,20 +344,40 @@ export interface HeaderDrawerProps {
 }
 
 const isActivePath = (currentPath: string | undefined, href: string) =>
-  currentPath === href || (href !== '/' && Boolean(currentPath?.startsWith(href)));
+  currentPath === href || (href !== "/" && Boolean(currentPath?.startsWith(href)));
 
 export function HeaderDrawer({ open, onClose, logo, links, currentPath, cta, drawerBottom }: HeaderDrawerProps) {
   return (
-    <MobileDrawer open={open} onClose={onClose} side="right" hideCloseButton className="w-[85vw] max-w-sm bg-[linear-gradient(180deg,rgb(8_17_29/0.95),rgb(16_24_39/0.92))] backdrop-blur-modal">
+    <MobileDrawer
+      open={open}
+      onClose={onClose}
+      side="right"
+      hideCloseButton
+      className="w-[85vw] max-w-sm bg-[linear-gradient(180deg,rgb(8_17_29/0.95),rgb(16_24_39/0.92))] backdrop-blur-modal"
+    >
       <div className="flex h-full flex-col">
         <div className="flex items-center justify-between px-4 pt-6 pb-4">
           {logo ? <HeaderLogo onClick={onClose}>{logo}</HeaderLogo> : <div />}
-          <button type="button" onClick={onClose} aria-label="Đóng menu" className="flex h-10 w-10 items-center justify-center rounded-md text-text-secondary transition-colors duration-fast ease-standard hover:bg-hover-surface hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring">×</button>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Đóng menu"
+            className="flex h-10 w-10 items-center justify-center rounded-md text-text-secondary transition-colors duration-fast ease-standard hover:bg-hover-surface hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
+          >
+            ×
+          </button>
         </div>
         <Divider />
         <nav className="flex-1 space-y-1 overflow-y-auto px-4 py-6" aria-label="Mobile navigation">
           {links.map((link) => (
-            <NavItem key={link.href} href={link.href} label={link.label} active={isActivePath(currentPath, link.href)} onClick={onClose} mobile />
+            <NavItem
+              key={link.href}
+              href={link.href}
+              label={link.label}
+              active={isActivePath(currentPath, link.href)}
+              onClick={onClose}
+              mobile
+            />
           ))}
         </nav>
         <div className="space-y-6 px-4 pb-8">
@@ -349,10 +395,25 @@ export function HeaderDrawer({ open, onClose, logo, links, currentPath, cta, dra
 Replace the current monolithic implementation with a composition shell that imports the new subcomponents and owns only `scrolled` and `menuOpen` state. The key JSX shape should be:
 
 ```tsx
-<header className={cn('fixed top-0 left-0 right-0 z-(--z-header)', scrolled && 'shadow-xs', className)}>
-  <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(8_17_29/0.72),rgb(8_17_29/0.45))]" />
-  <div aria-hidden="true" className={cn('absolute inset-0 bg-[linear-gradient(180deg,rgb(8_17_29/0.22),rgb(8_17_29/0.38))] transition-opacity duration-300 ease-standard backdrop-blur-glass', scrolled ? 'opacity-100' : 'opacity-0')} />
-  <div aria-hidden="true" className={cn('absolute bottom-0 left-0 right-0 h-px bg-border-subtle transition-opacity duration-300 ease-standard', scrolled ? 'opacity-100' : 'opacity-0')} />
+<header className={cn("fixed top-0 left-0 right-0 z-(--z-header)", scrolled && "shadow-xs", className)}>
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 bg-[linear-gradient(180deg,rgb(8_17_29/0.72),rgb(8_17_29/0.45))]"
+  />
+  <div
+    aria-hidden="true"
+    className={cn(
+      "absolute inset-0 bg-[linear-gradient(180deg,rgb(8_17_29/0.22),rgb(8_17_29/0.38))] transition-opacity duration-300 ease-standard backdrop-blur-glass",
+      scrolled ? "opacity-100" : "opacity-0"
+    )}
+  />
+  <div
+    aria-hidden="true"
+    className={cn(
+      "absolute bottom-0 left-0 right-0 h-px bg-border-subtle transition-opacity duration-300 ease-standard",
+      scrolled ? "opacity-100" : "opacity-0"
+    )}
+  />
 
   <div className="relative z-10">
     <AppContainer size="2xl">
@@ -364,7 +425,15 @@ Replace the current monolithic implementation with a composition shell that impo
     </AppContainer>
   </div>
 
-  <HeaderDrawer open={menuOpen} onClose={() => setMenuOpen(false)} logo={logo} links={links} currentPath={currentPath} cta={cta} drawerBottom={drawerBottom} />
+  <HeaderDrawer
+    open={menuOpen}
+    onClose={() => setMenuOpen(false)}
+    logo={logo}
+    links={links}
+    currentPath={currentPath}
+    cta={cta}
+    drawerBottom={drawerBottom}
+  />
 </header>
 ```
 
@@ -375,24 +444,24 @@ Keep the scroll listener and body scroll lock inside `AppHeader`.
 Export the new components and their types:
 
 ```ts
-export { AppHeader } from './AppHeader';
-export type { AppHeaderProps, HeaderLink } from './AppHeader';
-export { HeaderLogo } from './HeaderLogo';
-export type { HeaderLogoProps } from './HeaderLogo';
-export { DesktopNavigation } from './DesktopNavigation';
-export type { DesktopNavigationProps } from './DesktopNavigation';
-export { DesktopMenu } from './DesktopMenu';
-export type { DesktopMenuProps } from './DesktopMenu';
-export { NavItem } from './NavItem';
-export type { NavItemProps } from './NavItem';
-export { HeaderCTA } from './HeaderCTA';
-export type { HeaderCTAProps } from './HeaderCTA';
-export { MobileNavigation } from './MobileNavigation';
-export type { MobileNavigationProps } from './MobileNavigation';
-export { HamburgerButton } from './HamburgerButton';
-export type { HamburgerButtonProps } from './HamburgerButton';
-export { HeaderDrawer } from './HeaderDrawer';
-export type { HeaderDrawerProps } from './HeaderDrawer';
+export { AppHeader } from "./AppHeader";
+export type { AppHeaderProps, HeaderLink } from "./AppHeader";
+export { HeaderLogo } from "./HeaderLogo";
+export type { HeaderLogoProps } from "./HeaderLogo";
+export { DesktopNavigation } from "./DesktopNavigation";
+export type { DesktopNavigationProps } from "./DesktopNavigation";
+export { DesktopMenu } from "./DesktopMenu";
+export type { DesktopMenuProps } from "./DesktopMenu";
+export { NavItem } from "./NavItem";
+export type { NavItemProps } from "./NavItem";
+export { HeaderCTA } from "./HeaderCTA";
+export type { HeaderCTAProps } from "./HeaderCTA";
+export { MobileNavigation } from "./MobileNavigation";
+export type { MobileNavigationProps } from "./MobileNavigation";
+export { HamburgerButton } from "./HamburgerButton";
+export type { HamburgerButtonProps } from "./HamburgerButton";
+export { HeaderDrawer } from "./HeaderDrawer";
+export type { HeaderDrawerProps } from "./HeaderDrawer";
 ```
 
 - [ ] **Step 10: Run the focused test suite**
@@ -406,9 +475,11 @@ Expected: either PASS or reveal the next missing integration requirement before 
 ### Task 3: Rebuild The App-Layer Branding And Integration
 
 **Files:**
+
 - Modify: `apps/web/src/app/SiteChrome.tsx`
 
 **Interfaces:**
+
 - Consumes: `AppHeader`, `HeaderCTA`, `usePathname`, approved desktop links, footer data.
 - Produces: app-owned branding, CTA content, drawer contact content, and current path wiring.
 
@@ -418,12 +489,12 @@ Make sure the header links are exactly:
 
 ```ts
 const navLinks = [
-  { label: 'Trang chủ', href: '/' },
-  { label: 'Giới thiệu', href: '/about' },
-  { label: 'Sản phẩm', href: '/products' },
-  { label: 'Dự án', href: '/projects' },
-  { label: 'Tin tức', href: '/news' },
-  { label: 'Liên hệ', href: '/contact' },
+  { label: "Trang chủ", href: "/" },
+  { label: "Giới thiệu", href: "/about" },
+  { label: "Sản phẩm", href: "/products" },
+  { label: "Dự án", href: "/projects" },
+  { label: "Tin tức", href: "/news" },
+  { label: "Liên hệ", href: "/contact" },
 ];
 ```
 
@@ -492,9 +563,11 @@ Expected: PASS.
 ### Task 4: Polish Drawer Primitive Support
 
 **Files:**
+
 - Modify: `packages/ui/src/navigation/MobileDrawer.tsx`
 
 **Interfaces:**
+
 - Consumes: existing `MobileDrawerProps`, ESC handling, backdrop click handling.
 - Produces: drawer primitive that supports the rebuilt header composition cleanly.
 
@@ -503,9 +576,7 @@ Expected: PASS.
 Ensure the prop stays in the interface and the inner content wrapper becomes:
 
 ```tsx
-<div className={cn(hideCloseButton ? 'p-0' : 'px-4 pb-4')}>
-  {children}
-</div>
+<div className={cn(hideCloseButton ? "p-0" : "px-4 pb-4")}>{children}</div>
 ```
 
 - [ ] **Step 2: Upgrade the overlay transition class to feel more premium**
@@ -513,7 +584,7 @@ Ensure the prop stays in the interface and the inner content wrapper becomes:
 Adjust the overlay classes to include blur perception and a shorter UI-oriented duration than the current generic slow timing:
 
 ```tsx
-'fixed inset-0 z-[250] bg-overlay/90 backdrop-blur-sm transition-opacity duration-300 ease-standard'
+"fixed inset-0 z-[250] bg-overlay/90 backdrop-blur-sm transition-opacity duration-300 ease-standard";
 ```
 
 - [ ] **Step 3: Tighten the panel transition timing to match the approved motion tone**
@@ -521,7 +592,7 @@ Adjust the overlay classes to include blur perception and a shorter UI-oriented 
 Use:
 
 ```tsx
-'transition-transform duration-300 ease-standard'
+"transition-transform duration-300 ease-standard";
 ```
 
 instead of the generic slower value.
@@ -537,9 +608,11 @@ Expected: PASS.
 ### Task 5: Full Verification
 
 **Files:**
+
 - Verify all changed navigation, app, and test files.
 
 **Interfaces:**
+
 - Consumes: completed Tasks 1-4.
 - Produces: verified rebuilt header with passing quality gates.
 

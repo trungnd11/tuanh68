@@ -4,6 +4,7 @@ import { appBreakpoint } from "./breakpoint";
 import { appBorderRadius } from "./border-radius";
 import { appBorderWidth } from "./border-width";
 import { appBlur } from "./blur";
+import { appDropShadow } from "./drop-shadow";
 import { appShadow } from "./shadow";
 import { appFontWeight } from "./font-weight";
 import { combinedUtils } from "./typography";
@@ -40,6 +41,7 @@ const tailwindConfig: Config = {
         "app-lime": appColors.appLime,
         "app-emerald": appColors.appEmerald,
         "app-teal": appColors.appTeal,
+        "app-brand-teal": appColors.appBrandTeal,
         "app-cyan": appColors.appCyan,
         "app-sky": appColors.appSky,
         "app-blue": appColors.appBlue,
@@ -49,11 +51,15 @@ const tailwindConfig: Config = {
         "app-fuchsia": appColors.appFuchsia,
         "app-pink": appColors.appPink,
         "app-rose": appColors.appRose,
+        "app-dark": appColors.appDark,
+        "app-accent-blue": appColors.appAccentBlue,
+        "app-hero-overlay": appColors.appHeroOverlay,
       },
       fontWeight: appFontWeight,
       borderRadius: appBorderRadius,
       borderWidth: appBorderWidth,
       boxShadow: appShadow,
+      dropShadow: appDropShadow,
       blur: appBlur,
       fontSize: {
         xxs: ["10px", "14px"],
