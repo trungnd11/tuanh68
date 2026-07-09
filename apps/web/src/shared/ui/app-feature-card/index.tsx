@@ -4,7 +4,7 @@ interface AppFeatureCardProps {
   icon: ReactNode;
   iconBg: string;
   title: string;
-  description: string[];
+  description: readonly string[];
   className?: string;
 }
 
