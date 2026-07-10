@@ -28,13 +28,13 @@ export default function AppResponsiveTimelineNav({
   counterClassName,
   currentIndex,
   nextDisabledClassName = "cursor-not-allowed text-app-neutral-400",
-  nextEnabledClassName = "text-app-primary-500",
+  nextEnabledClassName = "text-app-accent-blue",
   nextLabel,
   nextLabelClassName,
   onNext,
   onPrev,
   prevDisabledClassName = "cursor-not-allowed text-app-neutral-400",
-  prevEnabledClassName = "text-app-primary-500",
+  prevEnabledClassName = "text-app-accent-blue",
   prevLabel,
   prevLabelClassName,
   showDivider = false,
@@ -58,13 +58,13 @@ export default function AppResponsiveTimelineNav({
             prevLabelClassName
           )}
         >
-          <span aria-hidden="true" className="text-base leading-none">
+          <span aria-hidden="true" className={clsx("text-base leading-none")}>
             &larr;
           </span>
           {prevLabel}
         </button>
 
-        {showDivider ? <span className="h-4 w-px bg-[#969696]" /> : null}
+        {showDivider ? <span className={clsx("h-4 w-px bg-app-neutral-300")} /> : null}
 
         <button
           type="button"
@@ -77,7 +77,7 @@ export default function AppResponsiveTimelineNav({
           )}
         >
           {nextLabel}
-          <span aria-hidden="true" className="text-base leading-none">
+          <span aria-hidden="true" className={clsx("text-base leading-none")}>
             &rarr;
           </span>
         </button>

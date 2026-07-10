@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { SquircleNoScript } from "@squircle-js/react";
 import { Inter } from "next/font/google";
 import Script from "next/script";
@@ -50,8 +51,8 @@ export default async function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="vi" className="h-full antialiased">
-      <body className={`${inter.className} bg-main-app-bg-content`} suppressHydrationWarning>
+    <html lang="vi" className={clsx("h-full antialiased")}>
+      <body className={clsx(inter.className, " bg-main-app-bg-content")} suppressHydrationWarning>
         <Script id="cleanup-ext-attrs" strategy="afterInteractive">
           {`(function(){try{new MutationObserver(function(m){m.forEach(function(r){if(r.type==="attributes"&&(r.attributeName==="bis_skin_checked"||r.attributeName==="bis_register")){r.target.removeAttribute(r.attributeName)}})}).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:["bis_skin_checked","bis_register"]})}catch(e){}})()`}
         </Script>

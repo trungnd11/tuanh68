@@ -5,7 +5,13 @@ import clsx from "clsx";
 
 function ArrowUpIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-5" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={clsx("size-5")}
+      aria-hidden="true"
+    >
       <path
         d="M12 18V6M12 6L7 11M12 6L17 11"
         stroke="currentColor"

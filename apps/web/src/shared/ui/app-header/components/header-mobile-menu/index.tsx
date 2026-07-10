@@ -94,7 +94,7 @@ export default function HeaderMobileMenu({ isOpen, onClose, onToggle, activeId }
             >
               <HeaderMenu mobile activeId={activeId} onNavigate={onClose} />
 
-              <div className="mt-5 border-t border-[rgba(255,255,255,0.1)] pt-5">
+              <div className={clsx("mt-5 border-t border-[rgba(255,255,255,0.1)] pt-5")}>
                 <HeaderActions />
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function HeaderMobileMenu({ isOpen, onClose, onToggle, activeId }
 
   return (
     <>
-      <div className="relative z-80 flex shrink-0 items-center gap-3">
+      <div className={clsx("relative z-80 flex shrink-0 items-center gap-3")}>
         <AppBorderRadius
           cornerRadius={10}
           borderWidth={1}
@@ -117,7 +117,7 @@ export default function HeaderMobileMenu({ isOpen, onClose, onToggle, activeId }
             aria-expanded={isOpen}
             aria-controls={menuId}
             aria-label={isOpen ? "Đóng menu" : "Mở menu"}
-            className="flex h-9.5 w-10 shrink-0 items-center justify-center text-white"
+            className={clsx("flex h-9.5 w-10 shrink-0 items-center justify-center text-white")}
             onClick={onToggle}
           >
             {isOpen ? <CloseMenuIcon /> : <MobileMenuIcon />}

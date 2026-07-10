@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { TextareaHTMLAttributes } from "react";
 
 export interface AppTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -7,13 +8,18 @@ export interface AppTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaEle
 
 export default function AppTextarea({ label, error, className, ...rest }: AppTextareaProps) {
   return (
-    <div className="flex flex-col gap-1">
-      {label && <label className="text-[14px] leading-[20px] font-medium text-[#374151]">{label}</label>}
+    <div className={clsx("flex flex-col gap-1")}>
+      {label && <label className={clsx("text-[14px] leading-[20px] font-medium text-[#374151]")}>{label}</label>}
       <textarea
         {...rest}
-        className={`min-h-[120px] rounded-[6px] border border-[#d1d5db] bg-white px-[17px] py-[9px] text-[16px] text-[#1f2937] outline-none transition-colors placeholder:text-[#9ca3af] focus:border-app-accent-blue ${className ?? ""}`}
+        className={clsx(
+          "min-h-[120px] rounded-[6px] border border-[#d1d5db] bg-white px-[17px]",
+          "py-[9px] text-[16px] text-[#1f2937] outline-none transition-colors",
+          "placeholder:text-[#9ca3af] focus:border-app-accent-blue",
+          className ?? ""
+        )}
       />
-      {error && <p className="text-[12px] text-red-500">{error}</p>}
+      {error && <p className={clsx("text-[12px] text-red-500")}>{error}</p>}
     </div>
   );
 }

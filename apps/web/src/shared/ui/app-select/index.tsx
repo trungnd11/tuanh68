@@ -219,18 +219,22 @@ export default function AppSelect({
               width: menuGeometry.width,
             }}
           >
-            <div className="border-b border-white/10 p-3">
+            <div className={clsx("border-b border-white/10 p-3")}>
               <input
                 ref={searchInputRef}
                 type="text"
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder={searchPlaceholder}
-                className="h-11 w-full rounded-xl border border-white/12 bg-white/8 px-4 text-body-sm-medium text-white placeholder:text-white/45 outline-none transition-colors focus:border-white/24"
+                className={clsx(
+                  "h-11 w-full rounded-xl border border-white/12 bg-white/8 px-4",
+                  "text-body-sm-medium text-white placeholder:text-white/45 outline-none",
+                  "transition-colors focus:border-white/24"
+                )}
               />
             </div>
 
-            <div className="overflow-y-auto p-2" style={{ maxHeight: menuGeometry.maxHeight }}>
+            <div className={clsx("overflow-y-auto p-2")} style={{ maxHeight: menuGeometry.maxHeight }}>
               {filteredOptions.length ? (
                 filteredOptions.map((option) => {
                   const isSelected = option.value === selectedValue;
@@ -246,12 +250,12 @@ export default function AppSelect({
                       )}
                     >
                       <span>{option.label}</span>
-                      {isSelected ? <span className="text-body-xs-bold text-app-primary-600">Chọn</span> : null}
+                      {isSelected ? <span className={clsx("text-body-xs-bold text-app-primary-600")}>Chọn</span> : null}
                     </button>
                   );
                 })
               ) : (
-                <div className="px-4 py-6 text-center text-body-sm-medium text-white/55">
+                <div className={clsx("px-4 py-6 text-center text-body-sm-medium text-white/55")}>
                   Không tìm thây lựa chọn phù hợp.
                 </div>
               )}
@@ -295,7 +299,7 @@ export default function AppSelect({
                   setIsOpen(true);
                 })()
           }
-          className="flex h-16.5 w-full flex-col items-start gap-1 px-5 py-3.25 text-left"
+          className={clsx("flex h-16.5 w-full flex-col items-start gap-1 px-5 py-3.25 text-left")}
         >
           <span className={clsx("text-xxs font-semibold text-white", labelClassName)}>{label}</span>
 
@@ -306,7 +310,7 @@ export default function AppSelect({
               selectClassName
             )}
           >
-            <span className="truncate">{selectedOption?.label ?? placeholder}</span>
+            <span className={clsx("truncate")}>{selectedOption?.label ?? placeholder}</span>
 
             <span className={clsx("shrink-0 transition-transform duration-200")}>
               {endAdornment ?? <SelectedIcon className={clsx(isOpen && "text-app-primary-500")} />}

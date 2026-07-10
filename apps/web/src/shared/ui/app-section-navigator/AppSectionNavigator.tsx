@@ -45,7 +45,7 @@ export default function AppSectionNavigator({ headerOffset = 95, logo, className
       aria-label="Section navigator"
     >
       <div
-        className="relative flex items-stretch"
+        className={clsx("relative flex items-stretch")}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
         onFocusCapture={() => setIsOpen(true)}
@@ -57,7 +57,7 @@ export default function AppSectionNavigator({ headerOffset = 95, logo, className
           setIsOpen(false);
         }}
       >
-        <span aria-hidden="true" className="absolute inset-y-0 left-0 w-6" />
+        <span aria-hidden="true" className={clsx("absolute inset-y-0 left-0 w-6")} />
 
         <div
           className={clsx(
@@ -68,9 +68,9 @@ export default function AppSectionNavigator({ headerOffset = 95, logo, className
             isOpen || currentBg === "dark" ? "bg-white/95" : "bg-app-primary-500"
           )}
         >
-          {logo ? <div className="pt-1">{logo}</div> : null}
+          {logo ? <div className={clsx("pt-1")}>{logo}</div> : null}
 
-          <nav className="flex flex-col items-start gap-1.75">
+          <nav className={clsx("flex flex-col items-start gap-1.75")}>
             {items.map((item) => {
               const isActive = item.id === activeId;
 
@@ -103,7 +103,12 @@ export default function AppSectionNavigator({ headerOffset = 95, logo, className
                       "group-focus-visible/item:translate-x-0 group-focus-visible/item:opacity-100"
                     )}
                   >
-                    <span className="absolute -left-1.5 top-1/2 size-3 -translate-y-1/2 rotate-45 rounded-[2px] bg-[#3E3E3E]" />
+                    <span
+                      className={clsx(
+                        "absolute -left-1.5 top-1/2 size-3 -translate-y-1/2 rotate-45",
+                        "rounded-[2px] bg-[#3E3E3E]"
+                      )}
+                    />
                     <AppBorderRadius cornerRadius={8}>
                       <span
                         className={clsx(

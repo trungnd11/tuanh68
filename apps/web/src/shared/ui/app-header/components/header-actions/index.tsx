@@ -12,8 +12,8 @@ export default function HeaderActions() {
         "shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
       )}
     >
-      <Image src="/assets/header/phone-icon.png" alt="" width={14} height={14} className="size-[14px]" />
-      <span className="text-[14px] font-bold leading-[20px] text-white">0983 570 760</span>
+      <Image src="/assets/header/phone-icon.png" alt="" width={14} height={14} className={clsx("size-[14px]")} />
+      <span className={clsx("text-[14px] font-bold leading-[20px] text-white")}>0983 570 760</span>
     </a>
   );
 }

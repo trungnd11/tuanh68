@@ -1,6 +1,7 @@
 "use client";
 
 import { type ReactNode, useEffect, useState } from "react";
+import clsx from "clsx";
 
 type RevealBlockProps = {
   children: ReactNode;
@@ -17,9 +18,9 @@ export default function RevealBlock({ children, delay = 0, className = "" }: Rev
   }, [delay]);
 
   return (
-    <div className={className}>
+    <div className={clsx(className)}>
       <div
-        className="transition-all duration-700 ease-out"
+        className={clsx("transition-all duration-700 ease-out")}
         style={{
           opacity: show ? 1 : 0,
           transform: show ? "translateY(0)" : "translateY(24px)",

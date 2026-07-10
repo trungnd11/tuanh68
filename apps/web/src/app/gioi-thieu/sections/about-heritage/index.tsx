@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import { aboutHeritageContent } from "./content";
 
@@ -37,49 +38,55 @@ function MissionIcon({ type }: { type: string }) {
 
 export default function AboutHeritageSection() {
   return (
-    <section className="bg-white">
-      <div className="flex min-h-[600px] flex-col lg:flex-row">
-        <div className="relative flex-1 overflow-clip">
-          <div className="h-[500px] w-full lg:h-full lg:min-h-[792px]">
+    <section className={clsx("bg-white")}>
+      <div className={clsx("flex min-h-150 flex-col", "lg:flex-row")}>
+        <div className={clsx("relative flex-1 overflow-clip")}>
+          <div className={clsx("h-125 w-full", "lg:h-full lg:min-h-198")}>
             <Image
               src="/assets/about/timber-logs.jpg"
               alt="Nguyên liệu gỗ tại nhà máy Tu Anh 68"
               fill
-              className="object-cover"
+              className={clsx("object-cover")}
               sizes="(min-width: 1024px) 50vw, 100vw"
             />
           </div>
           <div
-            className="absolute inset-0"
+            className={clsx("absolute inset-0")}
             style={{
               background: "linear-gradient(to right, rgba(41,115,178,0) 0%, rgba(41,115,178,0.2) 100%)",
             }}
           />
-          <div className="absolute bottom-[32px] left-[32px] rounded-[8px] bg-[#2973b2] px-[24px] py-[16px] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
-            <span className="block text-[30px] font-black leading-[36px] text-white">1994</span>
-            <span className="block text-[14px] font-medium leading-[20px] text-[#bfdbfe]">Năm thành lập</span>
+          <div
+            className={clsx(
+              "absolute bottom-8 left-8",
+              "rounded-lg bg-app-accent-blue px-6 py-4",
+              "shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
+            )}
+          >
+            <span className={clsx("block text-3xl font-black leading-9 text-white")}>1994</span>
+            <span className={clsx("block text-sm font-medium leading-5 text-blue-200")}>Năm thành lập</span>
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col justify-center bg-white px-6 py-12 sm:px-10 md:px-[64px] md:py-[64px]">
-          <div className="mb-6 flex items-center gap-[12px]">
-            <div className="h-[2px] w-[40px] bg-app-brand-teal" />
-            <span className="text-[14px] font-semibold uppercase tracking-[1.4px] text-app-brand-teal">
+        <div className={clsx("flex flex-1 flex-col justify-center bg-white", "px-4 py-12 lg:px-16 lg:py-16")}>
+          <div className={clsx("mb-6 flex items-center gap-3")}>
+            <div className={clsx("h-0.5 w-10 bg-app-brand-teal")} />
+            <span className={clsx("text-sm font-semibold uppercase tracking-[1.4px] text-app-brand-teal")}>
               {aboutHeritageContent.badge}
             </span>
           </div>
 
-          <h2 className="mb-6 text-[36px] font-black leading-[40px] uppercase text-[#333]">
+          <h2 className={clsx("mb-6 text-2xl lg:text-4xl font-black leading-8 lg:leading-10 uppercase", "text-[#333]")}>
             {aboutHeritageContent.title[0]}
             <br />
-            <span className="text-app-accent-blue">{aboutHeritageContent.title[1]}</span>
+            <span className={clsx("text-app-accent-blue")}>{aboutHeritageContent.title[1]}</span>
           </h2>
 
           {aboutHeritageContent.paragraphs.map((para, i) => (
-            <p key={i} className="mb-6 text-[16px] leading-[26px] text-[#4b5563] last:mb-8">
+            <p key={i} className={clsx("mb-6 text-sm lg:text-base leading-6.5 text-gray-600", "last:mb-8")}>
               {para.boldParts.map((part, j) =>
                 part.bold ? (
-                  <strong key={j} className="font-bold text-[#333]">
+                  <strong key={j} className={clsx("font-bold text-[#333]")}>
                     {part.text}
                   </strong>
                 ) : (
@@ -89,18 +96,18 @@ export default function AboutHeritageSection() {
             </p>
           ))}
 
-          <div className="flex flex-col gap-4">
+          <div className={clsx("flex flex-col gap-4")}>
             {aboutHeritageContent.missionValues.map((item) => (
-              <div key={item.title} className="flex gap-4">
+              <div key={item.title} className={clsx("flex gap-4")}>
                 <div
-                  className="mt-[2px] flex size-[40px] shrink-0 items-center justify-center rounded-full"
+                  className={clsx("mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-full")}
                   style={{ backgroundColor: item.iconBg, color: item.iconColor }}
                 >
                   <MissionIcon type={item.icon} />
                 </div>
-                <div className="flex flex-col gap-[2.875px]">
-                  <h3 className="text-[16px] font-bold leading-[24px] text-[#333]">{item.title}</h3>
-                  <p className="text-[14px] leading-[22.75px] text-[#4b5563]">
+                <div className={clsx("flex flex-col gap-[2.875px]")}>
+                  <h3 className={clsx("text-sm lg:text-base font-bold leading-6 text-[#333]")}>{item.title}</h3>
+                  <p className={clsx("text-sm leading-[22.75px] text-gray-600")}>
                     {item.description[0]}
                     <br />
                     {item.description[1]}

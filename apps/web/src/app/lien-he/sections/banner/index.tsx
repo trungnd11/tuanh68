@@ -58,24 +58,24 @@ const statItemClasses = clsx(
 
 export default function BannerSection() {
   return (
-    <section id={bannerContent.id} className={sectionClasses}>
-      <div className="absolute inset-0 flex flex-col items-start justify-center overflow-clip">
+    <section id={bannerContent.id} className={clsx(sectionClasses)}>
+      <div className={clsx("absolute inset-0 flex flex-col items-start justify-center overflow-clip")}>
         <Image
           src={bannerContent.backgroundImage}
           alt="Nhà máy sản xuất ván ép Tu Anh 68"
           fill
           priority
-          className="object-cover"
+          className={clsx("object-cover")}
           sizes="100vw"
         />
         <div
-          className="absolute inset-0"
+          className={clsx("absolute inset-0")}
           style={{
             background:
               "linear-gradient(124deg, rgba(41,115,178,0.88) 0%, rgba(30,41,59,0.82) 60%, rgba(15,23,42,0.75) 100%)",
           }}
         />
-        <div className="absolute inset-0 bg-linear-to-t from-[rgba(15,23,42,0.5)] to-60% to-transparent" />
+        <div className={clsx("absolute inset-0 bg-linear-to-t from-[rgba(15,23,42,0.5)] to-60%", "to-transparent")} />
       </div>
 
       <AppBreadcrumb
@@ -83,56 +83,61 @@ export default function BannerSection() {
           { href: bannerContent.breadcrumb.homeHref, label: bannerContent.breadcrumb.home },
           { href: "#", label: bannerContent.breadcrumb.current },
         ]}
-        className={breadcrumbClasses}
+        className={clsx(breadcrumbClasses)}
       />
 
-      <div className={contentWrapperClasses}>
-        <div className="flex w-full max-w-3xl flex-col gap-6">
-          <div className="flex items-center gap-3">
-            <div className="h-0.5 w-12 bg-app-brand-teal" />
-            <span className="text-[14px] font-semibold uppercase tracking-[1.4px] text-app-brand-teal">
+      <div className={clsx(contentWrapperClasses)}>
+        <div className={clsx("flex w-full max-w-3xl flex-col gap-6")}>
+          <div className={clsx("flex items-center gap-3")}>
+            <div className={clsx("h-0.5 w-12 bg-app-brand-teal")} />
+            <span className={clsx("text-[14px] font-semibold uppercase tracking-[1.4px] text-app-brand-teal")}>
               {bannerContent.badge}
             </span>
           </div>
 
-          <h1 className={headingClasses}>
+          <h1 className={clsx(headingClasses)}>
             {bannerContent.title[0]}
             <br />
-            <span className="text-app-brand-teal">{bannerContent.title[1]}</span>
+            <span className={clsx("text-app-brand-teal")}>{bannerContent.title[1]}</span>
           </h1>
 
-          <p className="max-w-2xl text-[20px] font-medium leading-7 text-[#e5e7eb] max-md:text-base max-md:leading-6">
+          <p
+            className={clsx(
+              "max-w-2xl text-[20px] font-medium leading-7 text-[#e5e7eb]",
+              "max-md:text-base max-md:leading-6"
+            )}
+          >
             {bannerContent.description[0]}
             <br />
             {bannerContent.description[1]}
           </p>
 
-          <div className="flex flex-wrap items-start gap-4 pt-4 sm:gap-6 max-sm:flex-col">
-            <a href={bannerContent.buttons.primary.href} className={primaryBtnClasses}>
-              <BannerPhone className="size-3.5 shrink-0" />
+          <div className={clsx("flex flex-wrap items-start gap-4 pt-4 sm:gap-6 max-sm:flex-col")}>
+            <a href={bannerContent.buttons.primary.href} className={clsx(primaryBtnClasses)}>
+              <BannerPhone className={clsx("size-3.5 shrink-0")} />
               {bannerContent.buttons.primary.label}
             </a>
-            <a href={bannerContent.buttons.secondary.href} className={secondaryBtnClasses}>
-              <BannerMessage className="size-3.5 shrink-0" />
+            <a href={bannerContent.buttons.secondary.href} className={clsx(secondaryBtnClasses)}>
+              <BannerMessage className={clsx("size-3.5 shrink-0")} />
               {bannerContent.buttons.secondary.label}
             </a>
           </div>
         </div>
       </div>
 
-      <div className={statsWrapperClasses}>
-        <div className={statsBarClasses}>
+      <div className={clsx(statsWrapperClasses)}>
+        <div className={clsx(statsBarClasses)}>
           {bannerContent.stats.map((stat) => (
-            <div key={stat.icon} className={statItemClasses}>
-              <span className="flex shrink-0 items-center text-white/80">
-                {stat.icon === "clock" && <BannerClock className="size-4.5 shrink-0" />}
-                {stat.icon === "location" && <BannerLocation className="size-4.5 shrink-0" />}
-                {stat.icon === "truck" && <BannerTruck className="size-4.5 shrink-0" />}
-                {stat.icon === "chat" && <BannerChat className="size-4.5 shrink-0" />}
+            <div key={stat.icon} className={clsx(statItemClasses)}>
+              <span className={clsx("flex shrink-0 items-center text-white/80")}>
+                {stat.icon === "clock" && <BannerClock className={clsx("size-4.5 shrink-0")} />}
+                {stat.icon === "location" && <BannerLocation className={clsx("size-4.5 shrink-0")} />}
+                {stat.icon === "truck" && <BannerTruck className={clsx("size-4.5 shrink-0")} />}
+                {stat.icon === "chat" && <BannerChat className={clsx("size-4.5 shrink-0")} />}
               </span>
-              <div className="flex flex-col">
-                <span className="text-[14px] font-bold leading-5 text-white">{stat.label}</span>
-                <span className="text-[12px] text-[#9ca3af]">{stat.value}</span>
+              <div className={clsx("flex flex-col")}>
+                <span className={clsx("text-[14px] font-bold leading-5 text-white")}>{stat.label}</span>
+                <span className={clsx("text-[12px] text-[#9ca3af]")}>{stat.value}</span>
               </div>
             </div>
           ))}

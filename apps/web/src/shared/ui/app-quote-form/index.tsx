@@ -3,6 +3,7 @@
 import { createPortal } from "react-dom";
 import { useState, useRef, useEffect } from "react";
 import type { ReactNode } from "react";
+import clsx from "clsx";
 import AppInput from "@/shared/ui/app-input";
 import AppTextarea from "@/shared/ui/app-textarea";
 import AppButton from "@/shared/ui/app-button";
@@ -101,7 +102,7 @@ export default function AppQuoteForm({
   }
   return (
     <form
-      className={`flex w-full flex-col gap-6 ${className}`.trim()}
+      className={clsx("flex w-full flex-col gap-6", className)}
       onSubmit={(e) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -120,44 +121,57 @@ export default function AppQuoteForm({
       }}
     >
       {variant === "quote" && (
-        <h3 className="w-full text-xl font-black uppercase leading-7 text-[#333]">{content.title}</h3>
+        <h3 className={clsx("w-full text-xl font-black uppercase leading-7 text-[#333]")}>{content.title}</h3>
       )}
 
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-semibold leading-5 text-gray-700">
+      <div className={clsx("flex flex-col gap-4")}>
+        <div className={clsx("flex flex-col gap-1.5")}>
+          <label className={clsx("text-sm font-semibold leading-5 text-gray-700")}>
             {content.nameLabel}
-            <span className="text-[#b20000]"> *</span>
+            <span className={clsx("text-[#b20000]")}> *</span>
           </label>
-          <AppInput name="name" placeholder={content.namePlaceholder} required className="w-full" />
+          <AppInput name="name" placeholder={content.namePlaceholder} required className={clsx("w-full")} />
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-semibold leading-5 text-gray-700">
+        <div className={clsx("flex flex-col gap-1.5")}>
+          <label className={clsx("text-sm font-semibold leading-5 text-gray-700")}>
             {content.phoneLabel}
-            <span className="text-[#b20000]"> *</span>
+            <span className={clsx("text-[#b20000]")}> *</span>
           </label>
-          <AppInput name="phone" type="tel" placeholder={content.phonePlaceholder} required className="w-full" />
+          <AppInput
+            name="phone"
+            type="tel"
+            placeholder={content.phonePlaceholder}
+            required
+            className={clsx("w-full")}
+          />
         </div>
 
         {variant === "quote" && products && (
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold leading-5 text-gray-700">{content.productLabel}</label>
-            <div className="relative">
+          <div className={clsx("flex flex-col gap-1.5")}>
+            <label className={clsx("text-sm font-semibold leading-5 text-gray-700")}>{content.productLabel}</label>
+            <div className={clsx("relative")}>
               <input type="hidden" name="product" value={selectedProduct} />
               <button
                 ref={triggerRef}
                 type="button"
                 onClick={() => (isOpen ? setIsOpen(false) : openMenu())}
-                className="flex w-full items-center justify-between rounded-[8px] border border-[#d1d5db] bg-white py-[11px] pl-[17px] pr-[33px] text-[14px] font-normal leading-[17px] outline-none"
+                className={clsx(
+                  "flex w-full items-center justify-between rounded-[8px]",
+                  "border border-[#d1d5db] bg-white py-[11px] pl-[17px] pr-[33px]",
+                  "text-[14px] font-normal leading-[17px] outline-none"
+                )}
               >
-                <span className={selectedProduct ? "text-[#333]" : "text-[#9ca3af]"}>
+                <span className={clsx(selectedProduct ? "text-[#333]" : "text-[#9ca3af]")}>
                   {selectedProduct
                     ? products.find((p) => p.id === selectedProduct)?.label || content.productPlaceholder
                     : content.productPlaceholder}
                 </span>
                 <svg
-                  className={`shrink-0 text-[#333] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                  className={clsx(
+                    "shrink-0 text-[#333] transition-transform duration-200 ",
+                    isOpen ? "rotate-180" : ""
+                  )}
                   width="10"
                   height="6"
                   viewBox="0 0 10 6"
@@ -180,7 +194,11 @@ export default function AppQuoteForm({
                   <div
                     ref={menuRef}
                     style={menuStyle}
-                    className="z-[100] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
+                    className={clsx(
+                      "z-[100] overflow-hidden rounded-xl",
+                      "border border-gray-200 bg-white",
+                      "shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
+                    )}
                   >
                     {products.map((p) => {
                       const isSelected = p.id === selectedProduct;
@@ -192,11 +210,12 @@ export default function AppQuoteForm({
                             setSelectedProduct(p.id);
                             setIsOpen(false);
                           }}
-                          className={`flex w-full px-4 py-3 text-left text-[14px] leading-5 transition-colors ${
+                          className={clsx(
+                            "flex w-full px-4 py-3 text-left text-[14px] leading-5 transition-colors ",
                             isSelected
                               ? "bg-[rgba(41,115,178,0.08)] font-semibold text-[#2973b2]"
                               : "text-[#374151] hover:bg-gray-50"
-                          }`}
+                          )}
                         >
                           {p.label}
                         </button>
@@ -210,20 +229,30 @@ export default function AppQuoteForm({
         )}
 
         {variant === "quote" ? (
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold leading-5 text-gray-700">{content.quantityLabel}</label>
-            <AppInput name="quantity" placeholder={content.quantityPlaceholder} className="w-full" />
+          <div className={clsx("flex flex-col gap-1.5")}>
+            <label className={clsx("text-sm font-semibold leading-5 text-gray-700")}>{content.quantityLabel}</label>
+            <AppInput name="quantity" placeholder={content.quantityPlaceholder} className={clsx("w-full")} />
           </div>
         ) : (
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold leading-5 text-gray-700">{content.messageLabel}</label>
-            <AppTextarea name="message" placeholder={content.messagePlaceholder} rows={3} className="w-full" />
+          <div className={clsx("flex flex-col gap-1.5")}>
+            <label className={clsx("text-sm font-semibold leading-5 text-gray-700")}>{content.messageLabel}</label>
+            <AppTextarea name="message" placeholder={content.messagePlaceholder} rows={3} className={clsx("w-full")} />
           </div>
         )}
 
         <AppButton
           type="submit"
-          className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#2973b2] py-4 text-sm font-black uppercase leading-5 tracking-[0.35px] text-white shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
+          cornerRadius={6}
+          className={clsx(
+            "flex w-full items-center justify-center gap-3",
+            "bg-app-accent-blue py-4",
+            "text-sm font-extrabold uppercase leading-5 tracking-[0.35px] text-white"
+          )}
+          borderRadiusProps={{
+            classNameContainer: clsx(
+              "drop-shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
+            ),
+          }}
         >
           {submitIcon}
           <span>{content.submitLabel}</span>

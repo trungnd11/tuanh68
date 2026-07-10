@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 
 interface AppBreadcrumbItem {
@@ -23,22 +24,22 @@ function ChevronIcon() {
 
 export default function AppBreadcrumb({ items, className = "" }: AppBreadcrumbProps) {
   return (
-    <div className={`app-breadcrumb flex items-center gap-2 ${className}`.trim()}>
+    <div className={clsx(`app-breadcrumb flex items-center gap-2 ${className}`.trim())}>
       {items.map((item, i) => {
         const isLast = i === items.length - 1;
         return (
-          <div key={item.href} className="flex items-center gap-2">
+          <div key={item.href} className={clsx("flex items-center gap-2")}>
             {i > 0 && (
-              <span className="flex shrink-0 pb-[2.5px] pt-[1.5px] text-[rgba(255,255,255,0.6)]">
+              <span className={clsx("flex shrink-0 pb-[2.5px] pt-[1.5px] text-[rgba(255,255,255,0.6)]")}>
                 <ChevronIcon />
               </span>
             )}
             {isLast ? (
-              <span className="text-sm font-medium leading-5 text-app-brand-teal">{item.label}</span>
+              <span className={clsx("text-sm font-medium leading-5 text-app-brand-teal")}>{item.label}</span>
             ) : (
               <Link
                 href={item.href}
-                className="text-sm font-normal leading-5 text-[rgba(255,255,255,0.6)] no-underline"
+                className={clsx("text-sm font-normal leading-5 text-[rgba(255,255,255,0.6)] no-underline")}
               >
                 {item.label}
               </Link>

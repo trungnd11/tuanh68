@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { ReactNode } from "react";
 
 interface AppSectionBadgeProps {
@@ -13,10 +14,10 @@ export default function AppSectionBadge({ children, centered = false, className 
   const dividerClass = `${centered ? "h-0.5 w-10" : "h-0.5 w-12"} shrink-0 bg-app-brand-teal`;
 
   return (
-    <div className={`${baseClasses} ${alignClasses} ${className}`.trim()}>
-      <div className={dividerClass} />
+    <div className={clsx(`${baseClasses} ${alignClasses} ${className}`.trim())}>
+      <div className={clsx(dividerClass)} />
       {children}
-      {centered && <div className={dividerClass} />}
+      {centered && <div className={clsx(dividerClass)} />}
     </div>
   );
 }

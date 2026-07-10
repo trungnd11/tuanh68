@@ -70,7 +70,7 @@ export default function AppModal({
             {customLayout ? (
               children
             ) : (
-              <div className="relative flex flex-col items-center gap-3 text-center">
+              <div className={clsx("relative flex flex-col items-center gap-3 text-center")}>
                 <AppButton
                   aria-label="Dong"
                   className={clsx(
@@ -83,8 +83,8 @@ export default function AppModal({
                   x
                 </AppButton>
 
-                <h3 className="text-heading-base-bold">{title}</h3>
-                <div className="text-body-sm-medium text-white/78">{children}</div>
+                <h3 className={clsx("text-heading-base-bold")}>{title}</h3>
+                <div className={clsx("text-body-sm-medium text-white/78")}>{children}</div>
               </div>
             )}
           </div>

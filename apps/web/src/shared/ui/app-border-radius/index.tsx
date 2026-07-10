@@ -23,7 +23,7 @@ export default function AppBorderRadius({
       asChild={asChild}
       cornerRadius={cornerRadius}
       cornerSmoothing={resolvedCornerSmoothing}
-      className={classNameBorder}
+      className={clsx(classNameBorder)}
       style={styleBorder}
     >
       {children}
@@ -36,7 +36,7 @@ export default function AppBorderRadius({
     const innerCornerRadius = typeof cornerRadius === "number" ? Math.max(cornerRadius - borderWidth, 0) : cornerRadius;
 
     return (
-      <span className={classNameContainer} style={styleContainer}>
+      <span className={clsx(classNameContainer)} style={styleContainer}>
         <Squircle
           cornerRadius={cornerRadius}
           cornerSmoothing={resolvedCornerSmoothing}
@@ -62,7 +62,7 @@ export default function AppBorderRadius({
   }
 
   return (
-    <span className={classNameContainer} style={styleContainer}>
+    <span className={clsx(classNameContainer)} style={styleContainer}>
       {content}
     </span>
   );

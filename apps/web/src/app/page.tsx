@@ -9,9 +9,7 @@ export default function HomePage() {
   return (
     <>
       <BannerSection />
-      <AppScrollReveal variant="fade-in-up" delayMs={100}>
-        <ProductsSection />
-      </AppScrollReveal>
+      <ProductsSection />
       <AppScrollReveal variant="fade-in-up" delayMs={200}>
         <PartnersSection />
       </AppScrollReveal>

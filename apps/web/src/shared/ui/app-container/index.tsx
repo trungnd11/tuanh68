@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { ReactNode } from "react";
 
 type AppContainerProps = {
@@ -6,5 +7,5 @@ type AppContainerProps = {
 };
 
 export default function AppContainer({ children, className = "" }: AppContainerProps) {
-  return <div className={`mx-auto w-full max-w-[1280px] px-4 sm:px-6 xl:px-8 ${className}`.trim()}>{children}</div>;
+  return <div className={clsx(`mx-auto w-full max-w-7xl px-4 lg:px-0 ${className}`.trim())}>{children}</div>;
 }

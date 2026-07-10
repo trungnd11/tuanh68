@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import type { ReactNode, RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -169,7 +170,7 @@ export default function AppResponsiveTimeline({
   const nav = renderNav ? renderNav(state) : null;
 
   return (
-    <div className={mobileClassName}>
+    <div className={clsx(mobileClassName)}>
       {navPosition === "top" ? nav : null}
       {renderTrack(state)}
       {navPosition === "bottom" ? nav : null}

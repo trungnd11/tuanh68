@@ -25,13 +25,15 @@ function FieldGroup({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex w-full flex-col gap-2">
-      <label className="text-sm font-semibold leading-5 text-[#333]">
+    <div className={clsx("flex w-full flex-col gap-2")}>
+      <label className={clsx("text-sm font-semibold leading-5 text-[#333]")}>
         {label}
-        {required && <span className="text-[#b20000]"> *</span>}
+        {required && <span className={clsx("text-[#b20000]")}> *</span>}
       </label>
-      <div className="relative">
-        <div className="pointer-events-none absolute bottom-[23.91%] left-[14px] top-[23.91%] flex items-center">
+      <div className={clsx("relative")}>
+        <div
+          className={clsx("pointer-events-none absolute bottom-[23.91%] left-[14px] top-[23.91%]", "flex items-center")}
+        >
           {icon}
         </div>
         {children}
@@ -78,36 +80,61 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="relative flex flex-col gap-8 overflow-clip rounded-[16px] border border-[#f3f4f6] bg-white p-[41px] shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)]">
-      <div className="absolute left-0 right-[0.01px] top-0 h-1 bg-gradient-to-r from-app-accent-blue to-app-brand-teal" />
-      <div className="flex items-center gap-3">
-        <div className="flex size-8 items-center justify-center rounded-full bg-[rgba(41,115,178,0.1)]">
-          <IconMessage className="shrink-0" />
+    <div
+      className={clsx(
+        "relative flex flex-col gap-8 overflow-clip rounded-[16px] border",
+        "border-[#f3f4f6] bg-white p-[41px]",
+        "shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)]"
+      )}
+    >
+      <div
+        className={clsx(
+          "absolute left-0 right-[0.01px] top-0 h-1 bg-gradient-to-r",
+          "from-app-accent-blue to-app-brand-teal"
+        )}
+      />
+      <div className={clsx("flex items-center gap-3")}>
+        <div className={clsx("flex size-8 items-center justify-center rounded-full", "bg-[rgba(41,115,178,0.1)]")}>
+          <IconMessage className={clsx("shrink-0")} />
         </div>
-        <h3 className="text-xl font-black uppercase tracking-[0.5px] text-[#333]">{contactFaqContent.form.title}</h3>
+        <h3 className={clsx("text-xl font-black uppercase tracking-[0.5px] text-[#333]")}>
+          {contactFaqContent.form.title}
+        </h3>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-6">
-        <div className="flex gap-5 max-md:flex-col">
-          <FieldGroup label={contactFaqContent.form.nameLabel} required icon={<IconUser className="shrink-0" />}>
+      <form onSubmit={handleSubmit} className={clsx("flex w-full flex-col gap-6")}>
+        <div className={clsx("flex gap-5 max-md:flex-col")}>
+          <FieldGroup
+            label={contactFaqContent.form.nameLabel}
+            required
+            icon={<IconUser className={clsx("shrink-0")} />}
+          >
             <InputField name="name" placeholder={contactFaqContent.form.namePlaceholder} required />
           </FieldGroup>
-          <FieldGroup label={contactFaqContent.form.companyLabel} icon={<Building className="shrink-0" />}>
+          <FieldGroup label={contactFaqContent.form.companyLabel} icon={<Building className={clsx("shrink-0")} />}>
             <InputField name="company" placeholder={contactFaqContent.form.companyPlaceholder} />
           </FieldGroup>
         </div>
 
-        <div className="flex gap-5 max-md:flex-col">
-          <FieldGroup label={contactFaqContent.form.phoneLabel} required icon={<IconPhone className="shrink-0" />}>
+        <div className={clsx("flex gap-5 max-md:flex-col")}>
+          <FieldGroup
+            label={contactFaqContent.form.phoneLabel}
+            required
+            icon={<IconPhone className={clsx("shrink-0")} />}
+          >
             <InputField name="phone" type="tel" placeholder={contactFaqContent.form.phonePlaceholder} required />
           </FieldGroup>
-          <FieldGroup label={contactFaqContent.form.emailLabel} icon={<Mail className="shrink-0" />}>
+          <FieldGroup label={contactFaqContent.form.emailLabel} icon={<Mail className={clsx("shrink-0")} />}>
             <InputField name="email" type="email" placeholder={contactFaqContent.form.emailPlaceholder} />
           </FieldGroup>
         </div>
 
-        <FieldGroup label={contactFaqContent.form.subjectLabel} required icon={<IconTag className="shrink-0" />}>
-          <div className="relative">
+        <FieldGroup
+          label={contactFaqContent.form.subjectLabel}
+          required
+          icon={<IconTag className={clsx("shrink-0")} />}
+        >
+          <div className={clsx("relative")}>
             <input type="hidden" name="subject" value={selectedSubject} />
             <select
               value={selectedSubject}
@@ -129,14 +156,14 @@ export default function ContactForm() {
                 </option>
               ))}
             </select>
-            <div className="pointer-events-none absolute right-[14px] top-1/2 -translate-y-1/2">
+            <div className={clsx("pointer-events-none absolute right-[14px] top-1/2 -translate-y-1/2")}>
               <svg
                 width="12"
                 height="8"
                 viewBox="0 0 12 8"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="shrink-0"
+                className={clsx("shrink-0")}
               >
                 <path
                   d="M1 1.5L6 6.5L11 1.5"
@@ -150,11 +177,15 @@ export default function ContactForm() {
           </div>
         </FieldGroup>
 
-        <FieldGroup label={contactFaqContent.form.quantityLabel} icon={<IconBox className="shrink-0" />}>
+        <FieldGroup label={contactFaqContent.form.quantityLabel} icon={<IconBox className={clsx("shrink-0")} />}>
           <InputField name="quantity" placeholder={contactFaqContent.form.quantityPlaceholder} />
         </FieldGroup>
 
-        <FieldGroup label={contactFaqContent.form.messageLabel} required icon={<IconMessage className="shrink-0" />}>
+        <FieldGroup
+          label={contactFaqContent.form.messageLabel}
+          required
+          icon={<IconMessage className={clsx("shrink-0")} />}
+        >
           <textarea
             name="message"
             required
@@ -169,7 +200,7 @@ export default function ContactForm() {
           />
         </FieldGroup>
 
-        <div className="flex items-center gap-4 pt-2 max-sm:flex-col">
+        <div className={clsx("flex items-center gap-4 pt-2 max-sm:flex-col")}>
           <button
             type="submit"
             disabled={isSubmitting}
@@ -180,11 +211,11 @@ export default function ContactForm() {
               "transition-opacity hover:opacity-90 disabled:opacity-50"
             )}
           >
-            <IconSend className="shrink-0" />
+            <IconSend className={clsx("shrink-0")} />
             <span>{contactFaqContent.form.submitLabel}</span>
           </button>
-          <div className="flex items-center gap-1 text-xs text-[#9ca3af]">
-            <IconShield className="shrink-0" />
+          <div className={clsx("flex items-center gap-1 text-xs text-[#9ca3af]")}>
+            <IconShield className={clsx("shrink-0")} />
             <span>{contactFaqContent.form.securityNote}</span>
           </div>
         </div>

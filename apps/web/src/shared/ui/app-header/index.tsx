@@ -62,15 +62,25 @@ export default function AppHeader() {
         !isHeaderVisible && !isMobileMenuOpen && "-translate-y-full"
       )}
     >
-      <div className="mx-auto hidden h-full w-full max-w-[1280px] items-center justify-between gap-4 px-4 sm:px-6 xl:flex xl:px-8">
+      <div
+        className={clsx(
+          "mx-auto hidden h-full w-full max-w-[1280px] items-center justify-between",
+          "gap-4 px-4 sm:px-6 xl:flex xl:px-8"
+        )}
+      >
         <HeaderLogo />
-        <div className="hidden items-center gap-8 xl:flex">
+        <div className={clsx("hidden items-center gap-8 xl:flex")}>
           <HeaderMenu activeId={activeId} />
           <HeaderActions />
         </div>
       </div>
 
-      <div className="mx-auto flex h-full w-full max-w-[1280px] items-center justify-between gap-3 px-5 xl:hidden">
+      <div
+        className={clsx(
+          "mx-auto flex h-full w-full max-w-[1280px] items-center justify-between",
+          "gap-3 px-5 xl:hidden"
+        )}
+      >
         <HeaderLogo />
         <HeaderMobileMenu
           isOpen={isMobileMenuOpen}
