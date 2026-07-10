@@ -1,6 +1,5 @@
-import Image from "next/image";
 import clsx from "clsx";
-import AppBreadcrumb from "@/shared/ui/app-breadcrumb";
+import PageHeroBanner from "@/shared/ui/page-hero-banner";
 import BannerPhone from "@/assets/icons/banner-phone.svg";
 import BannerMessage from "@/assets/icons/banner-message.svg";
 import BannerClock from "@/assets/icons/banner-clock.svg";
@@ -9,85 +8,57 @@ import BannerTruck from "@/assets/icons/banner-truck.svg";
 import BannerChat from "@/assets/icons/banner-chat.svg";
 import { bannerContent } from "./content";
 
-const sectionClasses = clsx(
-  "relative flex -mt-20.5 min-h-175 items-center justify-center overflow-hidden text-white",
-  "max-md:flex-col max-md:justify-start max-md:min-h-screen max-md:pt-24"
-);
-
-const breadcrumbClasses = clsx(
-  "absolute left-20 right-20 top-24",
-  "max-sm:left-4 max-sm:right-4",
-  "max-md:w-full max-md:max-w-7xl max-md:mx-auto max-md:px-4"
-);
-
-const contentWrapperClasses = clsx(
-  "relative z-10 mx-auto flex w-full max-w-7xl flex-col items-start px-4 sm:px-8",
-  "max-md:z-auto max-md:flex-1 max-md:flex max-md:items-center max-md:justify-center"
-);
-
-const statsWrapperClasses = clsx("absolute bottom-0 left-0 right-0 px-4 sm:px-8 lg:px-28", "max-md:w-full max-md:pb-4");
-
 const headingClasses = clsx(
-  "text-[60px] font-black uppercase leading-15 tracking-[1.5px] text-white",
-  "drop-shadow-[0px_4px_1.5px_rgba(0,0,0,0.1),0px_10px_4px_rgba(0,0,0,0.04)]",
-  "max-md:text-[42px] max-md:leading-[44px] max-sm:text-[32px] max-sm:leading-[36px]"
+  "text-[32px] font-black uppercase leading-10 tracking-[1.5px] text-white lg:text-[60px] lg:leading-15",
+  "drop-shadow-[0px_4px_1.5px_rgba(0,0,0,0.1),0px_10px_4px_rgba(0,0,0,0.04)]"
 );
 
 const primaryBtnClasses = clsx(
-  "inline-flex items-center gap-3 rounded-lg bg-app-brand-teal px-7 py-3.5",
+  "inline-flex w-full items-center justify-center gap-3 rounded-lg bg-app-brand-teal px-7 py-3.5 sm:w-auto",
   "text-[14px] font-bold uppercase tracking-[0.35px] text-white",
   "shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)]",
   "transition-opacity hover:opacity-90"
 );
 
 const secondaryBtnClasses = clsx(
-  "inline-flex items-center gap-3 rounded-lg border-2 border-[rgba(255,255,255,0.6)]",
+  "inline-flex w-full items-center justify-center gap-3 rounded-lg border-2 border-[rgba(255,255,255,0.6)] sm:w-auto",
   "px-[30px] py-4 text-[14px] font-bold uppercase tracking-[0.35px] text-white",
   "transition-colors hover:border-white hover:bg-white hover:text-app-accent-blue"
 );
 
 const statsBarClasses = clsx(
-  "flex flex-wrap overflow-clip rounded-t-2xl border-t border-[rgba(255,255,255,0.1)]",
+  "grid overflow-clip rounded-t-2xl border-t border-l border-[rgba(255,255,255,0.1)] md:grid-cols-2 lg:grid-cols-4",
   "bg-[rgba(0,0,0,0.4)] backdrop-blur-[6px]"
 );
 
 const statItemClasses = clsx(
-  "flex min-w-40 flex-1 items-center gap-3 px-4 py-4",
-  "border-l border-[rgba(255,255,255,0.1)] first:border-l-0 sm:px-7"
+  "flex min-w-0 items-center gap-3 border-b border-r border-[rgba(255,255,255,0.1)] px-4 py-4 sm:px-7"
 );
 
 export default function BannerSection() {
   return (
-    <section id={bannerContent.id} className={clsx(sectionClasses)}>
-      <div className={clsx("absolute inset-0 flex flex-col items-start justify-center overflow-clip")}>
-        <Image
-          src={bannerContent.backgroundImage}
-          alt="Nhà máy sản xuất ván ép Tu Anh 68"
-          fill
-          priority
-          className={clsx("object-cover")}
-          sizes="100vw"
-        />
-        <div
-          className={clsx("absolute inset-0")}
-          style={{
-            background:
-              "linear-gradient(124deg, rgba(41,115,178,0.88) 0%, rgba(30,41,59,0.82) 60%, rgba(15,23,42,0.75) 100%)",
-          }}
-        />
-        <div className={clsx("absolute inset-0 bg-linear-to-t from-[rgba(15,23,42,0.5)] to-60%", "to-transparent")} />
-      </div>
-
-      <AppBreadcrumb
-        items={[
-          { href: bannerContent.breadcrumb.homeHref, label: bannerContent.breadcrumb.home },
-          { href: "#", label: bannerContent.breadcrumb.current },
-        ]}
-        className={clsx(breadcrumbClasses)}
-      />
-
-      <div className={clsx(contentWrapperClasses)}>
-        <div className={clsx("flex w-full max-w-3xl flex-col gap-6")}>
+    <PageHeroBanner
+      id={bannerContent.id}
+      backgroundImage={bannerContent.backgroundImage}
+      imageAlt="Nhà máy sản xuất ván ép Tu Anh 68"
+      breadcrumb={bannerContent.breadcrumb}
+      className={clsx("min-h-175")}
+      contentClassName={clsx("pb-6")}
+      backgroundChildren={
+        <>
+          <div
+            className={clsx("absolute inset-0")}
+            style={{
+              background:
+                "linear-gradient(124deg, rgba(41,115,178,0.88) 0%, rgba(30,41,59,0.82) 60%, rgba(15,23,42,0.75) 100%)",
+            }}
+          />
+          <div className={clsx("absolute inset-0 bg-linear-to-t from-[rgba(15,23,42,0.5)] to-60%", "to-transparent")} />
+        </>
+      }
+    >
+      <div className={clsx("relative flex w-full max-w-7xl lg:px-8")}>
+        <div className={clsx("flex w-full max-w-3xl flex-col gap-3 lg:gap-6")}>
           <div className={clsx("flex items-center gap-3")}>
             <div className={clsx("h-0.5 w-12 bg-app-brand-teal")} />
             <span className={clsx("text-[14px] font-semibold uppercase tracking-[1.4px] text-app-brand-teal")}>
@@ -101,18 +72,13 @@ export default function BannerSection() {
             <span className={clsx("text-app-brand-teal")}>{bannerContent.title[1]}</span>
           </h1>
 
-          <p
-            className={clsx(
-              "max-w-2xl text-[20px] font-medium leading-7 text-[#e5e7eb]",
-              "max-md:text-base max-md:leading-6"
-            )}
-          >
+          <p className={clsx("max-w-2xl font-medium leading-7 text-[#e5e7eb] lg:text-[20px]")}>
             {bannerContent.description[0]}
             <br />
             {bannerContent.description[1]}
           </p>
 
-          <div className={clsx("flex flex-wrap items-start gap-4 pt-4 sm:gap-6 max-sm:flex-col")}>
+          <div className={clsx("flex flex-col items-start gap-4 pt-4 sm:flex-row sm:flex-wrap sm:gap-6")}>
             <a href={bannerContent.buttons.primary.href} className={clsx(primaryBtnClasses)}>
               <BannerPhone className={clsx("size-3.5 shrink-0")} />
               {bannerContent.buttons.primary.label}
@@ -125,7 +91,7 @@ export default function BannerSection() {
         </div>
       </div>
 
-      <div className={clsx(statsWrapperClasses)}>
+      <div className={clsx("relative")}>
         <div className={clsx(statsBarClasses)}>
           {bannerContent.stats.map((stat) => (
             <div key={stat.icon} className={clsx(statItemClasses)}>
@@ -135,7 +101,7 @@ export default function BannerSection() {
                 {stat.icon === "truck" && <BannerTruck className={clsx("size-4.5 shrink-0")} />}
                 {stat.icon === "chat" && <BannerChat className={clsx("size-4.5 shrink-0")} />}
               </span>
-              <div className={clsx("flex flex-col")}>
+              <div className={clsx("flex min-w-0 flex-col")}>
                 <span className={clsx("text-[14px] font-bold leading-5 text-white")}>{stat.label}</span>
                 <span className={clsx("text-[12px] text-[#9ca3af]")}>{stat.value}</span>
               </div>
@@ -143,6 +109,6 @@ export default function BannerSection() {
           ))}
         </div>
       </div>
-    </section>
+    </PageHeroBanner>
   );
 }

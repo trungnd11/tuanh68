@@ -1,75 +1,36 @@
 import clsx from "clsx";
-import Image from "next/image";
+import AppContainer from "@/shared/ui/app-container";
 import AppSectionBadge from "@/shared/ui/app-section-badge";
-import IconColumnBeam from "@/assets/icons/icon-column-beam.svg";
-import IconFloorSlab from "@/assets/icons/icon-floor-slab.svg";
-import IconHighRise from "@/assets/icons/icon-high-rise.svg";
-import IconBridge from "@/assets/icons/icon-bridge.svg";
 import { applicationContent } from "./content";
-
-const iconMap = {
-  "column-beam": <IconColumnBeam className={clsx("text-white")} />,
-  "floor-slab": <IconFloorSlab className={clsx("text-white")} />,
-  "high-rise": <IconHighRise className={clsx("text-white")} />,
-  bridge: <IconBridge className={clsx("text-white")} />,
-} as const;
+import ApplicationGrid from "./application-grid";
 
 export default function ApplicationSection() {
   return (
-    <section className={clsx("flex flex-col items-start bg-[#111827] py-20 max-md:py-12")}>
-      <div className={clsx("mx-auto flex w-full max-w-7xl flex-col items-start gap-14 px-8", "max-md:px-4")}>
-        <div className={clsx("flex w-full flex-col items-center gap-4")}>
+    <section className={clsx("bg-[#111827] py-6 lg:py-20")}>
+      <AppContainer className={clsx("flex flex-col items-start gap-6 lg:gap-14")}>
+        <div className={clsx("flex w-full flex-col items-center gap-3 lg:gap-4")}>
           <AppSectionBadge centered>{applicationContent.badge}</AppSectionBadge>
           <h2
             className={clsx(
-              "w-full text-center text-4xl font-black uppercase leading-10 text-white",
-              "max-md:text-[28px] max-md:leading-9"
+              "w-full text-center text-2xl font-black uppercase leading-8 text-white",
+              "sm:text-[28px] sm:leading-9 lg:text-4xl lg:leading-10"
             )}
           >
             {applicationContent.titleParts[0]}
             <span className={clsx("text-app-brand-teal")}>{applicationContent.titleParts[1]}</span>
           </h2>
-          <p className={clsx("w-full max-w-[576px] text-center text-sm font-normal leading-5", "text-gray-400")}>
+          <p
+            className={clsx(
+              "w-full max-w-xl text-center text-sm font-normal leading-[22.75px]",
+              "text-gray-400 lg:text-base lg:leading-7"
+            )}
+          >
             {applicationContent.description}
           </p>
         </div>
 
-        <div className={clsx("flex w-full items-start justify-center gap-4 max-md:flex-wrap")}>
-          {applicationContent.cards.map((card) => (
-            <div
-              key={card.title}
-              className={clsx(
-                "relative flex h-64 min-w-px flex-1 flex-col items-start justify-center",
-                "overflow-hidden rounded-2xl"
-              )}
-            >
-              <Image
-                src={card.image}
-                alt={card.title}
-                fill
-                className={clsx("object-cover")}
-                sizes="(min-width: 1024px) 25vw, 50vw"
-              />
-              <div
-                className={clsx(
-                  "absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.85)]",
-                  "via-[rgba(0,0,0,0.2)] to-[rgba(0,0,0,0)]"
-                )}
-              />
-              <div className={clsx("absolute bottom-0 left-0 right-0 flex flex-col gap-1 p-5")}>
-                <div
-                  className={clsx("flex size-8 shrink-0 items-center justify-center rounded-lg")}
-                  style={{ background: card.iconBg }}
-                >
-                  {iconMap[card.icon as keyof typeof iconMap]}
-                </div>
-                <h4 className={clsx("w-full pt-1 text-sm font-bold leading-5 text-white")}>{card.title}</h4>
-                <p className={clsx("w-full text-xs font-normal leading-4 text-gray-400")}>{card.subtitle}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+        <ApplicationGrid />
+      </AppContainer>
     </section>
   );
 }
