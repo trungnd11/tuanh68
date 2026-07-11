@@ -1,30 +1,23 @@
 import clsx from "clsx";
 import { statsBarContent } from "./content";
+import StatItem from "./stat-item";
+
+const TOTAL = statsBarContent.length;
 
 export default function StatsBarSection() {
   return (
-    <div className={clsx("flex flex-col items-start bg-[#2973b2] px-[112px] max-lg:px-8")}>
-      <div className={clsx("flex w-full items-start justify-center max-md:flex-col", "max-md:items-stretch")}>
+    <div className={clsx("flex flex-col items-start bg-[#2973b2] px-4 lg:px-[112px]")}>
+      <div className={clsx("grid w-full grid-cols-2 lg:flex lg:items-start lg:justify-center")}>
         {statsBarContent.map((stat, i) => (
-          <div
+          <StatItem
             key={stat.label}
-            className={clsx(
-              "flex min-w-px flex-1 flex-col items-center justify-center py-14 ",
-              i > 0 ? "border-l border-[rgba(255,255,255,0.2)] pl-[25px]" : "",
-              " pr-[24px]"
-            )}
-          >
-            <div className={clsx("pb-2 text-[60px] font-extrabold leading-[60px] text-white")}>
-              {stat.value}
-              <span className={clsx("text-app-brand-teal")}>{stat.suffix}</span>
-            </div>
-            <div className={clsx("pt-1 text-sm font-semibold uppercase leading-5 tracking-[1.4px]", "text-[#bfdbfe]")}>
-              {stat.label}
-            </div>
-            <div className={clsx("h-[14px] w-10 pt-3")}>
-              <div className={clsx("h-0.5 w-10 bg-app-brand-teal")} />
-            </div>
-          </div>
+            value={stat.value}
+            suffix={stat.suffix}
+            label={stat.label}
+            isFirst={i === 0}
+            borderRightMobile={i % 2 === 0 && i < TOTAL - 1}
+            borderBottomMobile={i < TOTAL - 2}
+          />
         ))}
       </div>
     </div>

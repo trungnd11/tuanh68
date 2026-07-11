@@ -10,6 +10,7 @@ export default function AppBorderRadius({
   cornerRadius,
   cornerSmoothing,
   classNameBorder,
+  classNameBorderOuter,
   classNameContainer,
   styleContainer,
   styleBorder,
@@ -44,7 +45,7 @@ export default function AppBorderRadius({
             backgroundColor: borderColor,
             padding: borderWidth,
           }}
-          className={clsx("h-full")}
+          className={clsx("h-full w-full", classNameBorderOuter)}
         >
           <AppBorderRadius
             {...restProps}
@@ -53,6 +54,7 @@ export default function AppBorderRadius({
             cornerSmoothing={resolvedCornerSmoothing}
             classNameBorder={classNameBorder}
             styleBorder={styleBorder}
+            classNameContainer="flex w-full"
           >
             {children}
           </AppBorderRadius>

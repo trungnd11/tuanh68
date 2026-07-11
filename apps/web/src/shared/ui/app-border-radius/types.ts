@@ -7,6 +7,7 @@ export interface AppBorderRadiusProps extends SquircleProps {
   children?: ReactNode;
   classNameContainer?: string;
   classNameBorder?: string;
+  classNameBorderOuter?: string;
   styleContainer?: CSSProperties;
   styleBorder?: CSSProperties;
 }
