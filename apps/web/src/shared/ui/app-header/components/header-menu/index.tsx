@@ -35,7 +35,7 @@ export default function HeaderMenu({ className, mobile = false, onNavigate, acti
               "relative transition-colors duration-200",
               mobile
                 ? "rounded-2xl px-4 py-3 text-[16px] text-white hover:bg-white/5"
-                : "inline-flex px-3 pt-2 pb-[10px] text-[14px] leading-[20px] tracking-[0.35px] uppercase drop-shadow-[0px_1px_0.5px_rgba(0,0,0,0.05)]",
+                : "inline-flex px-3 pt-2 pb-2.5 text-[14px] leading-5 tracking-[0.35px] uppercase drop-shadow-[0px_1px_0.5px_rgba(0,0,0,0.05)]",
               !isActive && mobile && "font-medium text-app-neutral-200",
               isActive && mobile && "font-semibold text-white bg-white/10 rounded-2xl",
               !mobile &&

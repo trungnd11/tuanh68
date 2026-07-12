@@ -1,126 +1,23 @@
 import clsx from "clsx";
 import AppScrollReveal from "@/shared/ui/app-scroll-reveal";
 import { mapSectionContent } from "./content";
-
-function NavigateIcon() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={clsx("shrink-0")}
-    >
-      <path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z" fill="#48a6a7" />
-    </svg>
-  );
-}
-
-function PinIcon() {
-  return (
-    <svg
-      width="15"
-      height="24"
-      viewBox="0 0 15 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={clsx("shrink-0")}
-    >
-      <path
-        d="M7.5 0C3.36 0 0 3.36 0 7.5C0 13.13 7.5 24 7.5 24C7.5 24 15 13.13 15 7.5C15 3.36 11.64 0 7.5 0ZM7.5 10.5C5.84 10.5 4.5 9.16 4.5 7.5C4.5 5.84 5.84 4.5 7.5 4.5C9.16 4.5 10.5 5.84 10.5 7.5C10.5 9.16 9.16 10.5 7.5 10.5Z"
-        fill="#48a6a7"
-      />
-    </svg>
-  );
-}
-
-function FactoryIcon() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={clsx("shrink-0")}
-    >
-      <path
-        d="M22 10V12L18 14V10L22 10ZM2 22V8L10 12V10L18 14V22H2ZM20 22V16L22 14V22H20ZM10 12V22H8V14L10 12ZM4 20H6V14H4V20ZM8 20H10V14L8 12V20ZM14 20H16V16L14 18V20Z"
-        fill="#48a6a7"
-      />
-    </svg>
-  );
-}
-
-function InfoIcon({ icon }: { icon: string }) {
-  switch (icon) {
-    case "navigate":
-      return <NavigateIcon />;
-    case "pin":
-      return <PinIcon />;
-    case "factory":
-      return <FactoryIcon />;
-    default:
-      return null;
-  }
-}
+import MapSectionHeader from "./map-section-header";
+import MapSectionInfoCards from "./map-section-info-cards";
 
 export default function MapSection() {
   return (
-    <section id={mapSectionContent.id} className={clsx("bg-[#111827]")}>
-      <div className={clsx("mx-auto flex max-w-[1280px] flex-col gap-10 px-8 pb-[72px] pt-16")}>
-        <div className={clsx("flex flex-col items-center gap-3")}>
-          <AppScrollReveal variant="fade-in-up">
-            <div className={clsx("flex items-center gap-3")}>
-              <div className={clsx("h-0.5 w-10 bg-app-brand-teal")} />
-              <span className={clsx("text-sm font-semibold uppercase tracking-[1.4px] text-app-brand-teal")}>
-                {mapSectionContent.badge}
-              </span>
-              <div className={clsx("h-0.5 w-10 bg-app-brand-teal")} />
-            </div>
-          </AppScrollReveal>
-          <AppScrollReveal variant="fade-in-up" delayMs={50}>
-            <h2 className={clsx("pt-1 text-center text-[36px] font-black uppercase leading-10 text-white")}>
-              {mapSectionContent.heading}{" "}
-              <span className={clsx("text-app-brand-teal")}>{mapSectionContent.headingHighlight}</span>
-            </h2>
-          </AppScrollReveal>
-          <AppScrollReveal variant="fade-in-up" delayMs={100}>
-            <p className={clsx("max-w-[512px] text-center text-sm leading-5 text-[#9ca3af]")}>
-              {mapSectionContent.description[0]}
-              <br />
-              {mapSectionContent.description[1]}
-            </p>
-          </AppScrollReveal>
-        </div>
+    <section id={mapSectionContent.id} className={clsx("bg-[#111827] py-6 lg:py-20")}>
+      <div className={clsx("mx-auto flex max-w-7xl flex-col gap-10 px-4 lg:px-8")}>
+        <AppScrollReveal variant="fade-in-up">
+          <MapSectionHeader />
+        </AppScrollReveal>
 
-        <div className={clsx("flex justify-center gap-4 max-lg:flex-col")}>
-          {mapSectionContent.cards.map((card, i) => {
-            const icons = ["navigate", "pin", "factory"];
-            return (
-              <AppScrollReveal key={card.label} variant="fade-in-up" delayMs={150 + i * 50}>
-                <div
-                  className={clsx(
-                    "flex items-center gap-4 rounded-[12px] border border-[#374151]",
-                    "bg-[#1f2937] px-[25px] py-[17px]"
-                  )}
-                >
-                  <InfoIcon icon={icons[i]} />
-                  <div className={clsx("flex flex-col gap-[2px]")}>
-                    <span className={clsx("text-xs font-normal uppercase tracking-[0.3px] text-[#9ca3af]")}>
-                      {card.label}
-                    </span>
-                    <span className={clsx("text-sm font-bold leading-5 text-white")}>{card.value}</span>
-                  </div>
-                </div>
-              </AppScrollReveal>
-            );
-          })}
-        </div>
+        <AppScrollReveal variant="fade-in-up" delayMs={150}>
+          <MapSectionInfoCards cards={mapSectionContent.cards} />
+        </AppScrollReveal>
       </div>
 
-      <div className={clsx("relative h-[420px] w-full overflow-clip")}>
+      <div className={clsx("relative mt-10 h-[300px] w-full overflow-clip lg:h-[420px]")}>
         <iframe
           src={mapSectionContent.mapEmbedUrl}
           width="100%"
@@ -142,7 +39,7 @@ export default function MapSection() {
             "hover:opacity-90"
           )}
         >
-          <span>Mở trong Maps</span>
+          Mở trong Maps
           <svg
             width="16"
             height="16"

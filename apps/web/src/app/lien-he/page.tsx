@@ -1,3 +1,4 @@
+import AppScrollReveal from "@/shared/ui/app-scroll-reveal";
 import BannerSection from "./sections/banner";
 import ContactFaqSection from "./sections/contact-faq";
 import WhyContactUsSection from "./sections/why-contact-us";
@@ -8,10 +9,18 @@ export default function ContactPage() {
   return (
     <>
       <BannerSection />
-      <ContactFaqSection />
-      <WhyContactUsSection />
-      <MapSection />
-      <AppCtaSection />
+      <AppScrollReveal variant="fade-in-up" delayMs={100}>
+        <ContactFaqSection />
+      </AppScrollReveal>
+      <AppScrollReveal variant="fade-in-up" delayMs={200}>
+        <WhyContactUsSection />
+      </AppScrollReveal>
+      <AppScrollReveal variant="fade-in-up" delayMs={300}>
+        <MapSection />
+      </AppScrollReveal>
+      <AppScrollReveal variant="fade-in-up" delayMs={400}>
+        <AppCtaSection />
+      </AppScrollReveal>
     </>
   );
 }

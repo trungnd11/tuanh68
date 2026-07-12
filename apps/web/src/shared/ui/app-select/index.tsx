@@ -71,6 +71,7 @@ export default function AppSelect({
   errorClassName,
   required,
   containerClassName,
+  rootClassName,
   labelClassName,
   selectClassName,
   menuClassName,
@@ -276,7 +277,8 @@ export default function AppSelect({
           "focus-within:shadow-[0_14px_36px_rgba(2,49,25,0.28),inset_0_1px_0_rgba(255,255,255,0.05)]",
           isOpen && "border-white/30 shadow-[0_14px_36px_rgba(2,49,25,0.28),inset_0_1px_0_rgba(255,255,255,0.05)]",
           error && "border-app-red-300/80 focus-within:border-app-red-300 hover:border-app-red-300/90",
-          disabled && "opacity-70"
+          disabled && "opacity-70",
+          rootClassName
         )}
       >
         {name ? <input type="hidden" name={name} value={selectedValue} required={required} /> : null}

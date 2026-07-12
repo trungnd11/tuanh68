@@ -19,6 +19,7 @@ export interface AppSelectProps {
   errorClassName?: string;
   required?: boolean;
   containerClassName?: string;
+  rootClassName?: string;
   labelClassName?: string;
   selectClassName?: string;
   menuClassName?: string;
